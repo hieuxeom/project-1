@@ -24,37 +24,38 @@
     <thead>
     <tr>
         <th>Họ và tên</th>
-        <th>Ngày sinh</th>
-        <th>Điểm</th>
-        <th>Học lực</th>
-        <th></th>
+        <th>Birthday</th>
+        <th>Score</th>
     </tr>
     </thead>
     <tbody>
     <?php
     foreach ($usersData as $user) {
+//        print_r($user);
         $xl = "";
 
-        if ($user["score"] >= 9) {
-            $xl = "Xuất sắc";
-        } else if ($user["score"] >= 8) {
-            $xl = "Giỏi";
-        } else if ($user["score"] >= 6.5) {
-            $xl = "Khá";
-        } else if ($user["score"] >= 5) {
-            $xl = "Trung bình";
-        } else if ($user["score"] >= 3) {
-            $xl = "Yếu";
-        } else {
-            $xl = "Kém";
+        if (isset($user["score"])) {
+            if ($user["score"] >= 9) {
+                $xl = "Xuất sắc";
+            } else if ($user["score"] >= 8) {
+                $xl = "Giỏi";
+            } else if ($user["score"] >= 6.5) {
+                $xl = "Khá";
+            } else if ($user["score"] >= 5) {
+                $xl = "Trung bình";
+            } else if ($user["score"] >= 3) {
+                $xl = "Yếu";
+            } else {
+                $xl = "Kém";
+            }
         }
 
         echo "
         <tr>
-        <td>$user[fullname]</td>
-        <td>$user[birthday]</td>
-        <td>$user[score]</td>
-        <td>$xl</td>
+        <td>" . (isset($user["fullname"]) ? $user["fullname"] : 'null') . "</td>
+        <td>" . (isset($user["birthday"]) ? $user["birthday"] : 'null') . "</td>
+        <td>" . (isset($user["score"]) ? $user["score"] : 'null') . "</td>
+        
         <td>
             <div class='table-action'>
             <a href='#'>Sửa</a>
