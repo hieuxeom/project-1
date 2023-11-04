@@ -1,21 +1,23 @@
 <?php
 
-class HomeController extends BaseController
+class ProductController extends BaseController
 {
-    private $homeModel;
-
     private $productModel;
+
     public function __construct()
     {
         $this->loadModel("HomeModel");
-        $this->homeModel = new HomeModel();
+        $this->productModel = new HomeModel();
     }
 
     public function index()
     {
         return $this->view(viewPath: "home.index", params: [
             "pageTitle" => "Test title",
-            "searchData" => $this->homeModel->getUserById($id),
+            "usersData" => $this->homeModel->getAllUser()
         ]);
     }
+
 }
+
+?>

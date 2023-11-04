@@ -1,27 +1,25 @@
-<h1>How to use this template? </h1>
+# How to use this template? 
 
-<h2>1. Change database config file</h2>
-Destination: ./config/config.php
+## 1. Change database config file
+Destination: `./config/config.php`
 
-<h2>2. Default definition</h2>
-Link structure: <br />
-<strong>{domain}/index.php?url={ControllerName}/{Action - Controller Method}</strong>
-<br />
-Ex1: Controller name: home / Controller method: index<br/>
+## 2. Default definition
+- Link structure: <br />
+**{domain}/index.php?url={ControllerName}/{Action - Controller Method}**
+- Example 1: Controller name: home / Controller method: index<br/>
 <strong>{domain}/index.php?url=home</strong>
-<br />
-Ex2: Controller name: home / Controller method: add<br/>
+- Example 2: Controller name: home / Controller method: add<br/>
 <strong>{domain}/index.php?url=home/add</strong>
 
-<h2>3. Controllers </h2>
-<h3>Follow this Format</h3>
+## 3. Controllers 
+### Follow this Format
 
 - Filename: {ControllerName}Controller.php <br />
 - Ex: Controller Name = home -> HomeController.php
 
-<h3>Base Code</h3>
+### Base Code
 
-```
+```php
     <?php
     
     class HomeController extends BaseController
@@ -47,21 +45,21 @@ Ex2: Controller name: home / Controller method: add<br/>
     ?>
 ```
 
-<h3>Explain Code</h3>
+### Explain Code
 
-```
+```php
     // Initialize Class extends from BaseController
 
     class HomeController extends BaseController {}
 ```
 
-```
+```php
     // Initialize the variable to contain the Home model
 
     private $homeModel
 ```
 
-```
+```php
     // Load the model when calling the controller to perform the necessary operations
     // Use method `loadModel` from BaseController to Load
     // `loadModel({ModelName}); 
@@ -73,7 +71,7 @@ Ex2: Controller name: home / Controller method: add<br/>
     }
 ```
 
-```
+```php
     // Except __construct, all the remaining methods created are Controller Methods
 
     public function index()
@@ -85,19 +83,34 @@ Ex2: Controller name: home / Controller method: add<br/>
     }
 ```
 
-<h2>4. Models </h2>
-<h3>Follow this Format</h3>
+## 4. Models 
+### Follow this Format
 
-- Filename: {ModelName}Model.php
-- Ex: Model Name = home -> HomeModel.php
+- Filename: `{ModelName}Model.php`
+- Ex: Model Name = `home` -> `HomeModel.php`
 
-<h3>CRUD (Create - Read - Update - Delete) methods</h3>
+### Base Code
+```php
+<?php
+
+class HomeModel extends BaseModel
+{
+    // Replace `tableName` with your table name in the database
+    // You can create additional data constants to contain `tableName` you need
+    const TABLE = `tableName`;
+
+    // The data processing methods are written below ...
+}
+```
+
+
+### CRUD (Create - Read - Update - Delete) methods
 <h4>CREATE Method</h4>
 
 - Require: The class must be extended from BaseModel
 - Call method:
 
-```
+```php
 $this->insert(table, data);
 ```
 
@@ -114,7 +127,7 @@ $this->insert(table, data);
 - Require: The class must be extended from BaseModel
 - Call method:
 
-```
+```php
 $this->getAll(table, arraySelect, conditions, limit, order, likeConditions);
 ```
 
@@ -134,7 +147,7 @@ $this->getAll(table, arraySelect, conditions, limit, order, likeConditions);
 - Require: The class must be extended from BaseModel
 - Call method:
 
-```
+```php
 $this->getOne(table, conditions, arraySelect);
 ```
 
@@ -151,7 +164,7 @@ $this->getOne(table, conditions, arraySelect);
 - Require: Class must be extended from Base Model
 - Call method:
 
-```
+```php
 $this->getTwoTable(table1, table2, joinColumn, table1Select, table2Select, conditions, limit, order)
 ```
 
@@ -173,7 +186,7 @@ $this->getTwoTable(table1, table2, joinColumn, table1Select, table2Select, condi
 - Require: The class must be extended from BaseModel
 - Call method:
 
-```
+```php
 $this->update(table, data, conditions);
 ```
 
@@ -190,7 +203,7 @@ $this->update(table, data, conditions);
 - Require: The class must be extended from BaseModel
 - Call method:
 
-```
+```php
 $this->delete($table, $condition);
 ```
 
@@ -200,3 +213,46 @@ $this->delete($table, $condition);
 |----------------|:--------:|:---------------------------------------------------------:|--------------------------------------------------------------------------|:-------------:|
 | table          |   yes    |                         `string`                          | Name of the table                                                        |       -       |
 | conditions     |   yes    | <pre align="left">array[<br>"field" => "value"<br>]</pre> | The array contains `fields` and `values` data to identify rows to delete |      []       |
+
+## 5. Views
+### Follow this Format
+- File destination: `/views/{parentFolder}/index.php`
+- Ex: Home view -> `/views/home/index.php`
+
+### How to call method
+- Required: Can only be called from the `ControllerFile` extended from `BaseController`
+- Call method
+```php
+$this->view(viewPath, params);
+```
+
+- Method parameters:
+
+| Parameter name | Required |                           Type                            | Description                                                                                                            | Default value |
+|----------------|:--------:|:---------------------------------------------------------:|------------------------------------------------------------------------------------------------------------------------|:-------------:|
+| viewPath       |   yes    |                         `string`                          | `viewPath` must be follow this format `{parentFolder}.{filename}`, the `filename` does not include the .php extension. |       -       |
+| params         |    no    | <pre align="left">array[<br>"field" => "value"<br>]</pre> | The array contains `variableName` and `variableValue` data for use in `view` file                                      |       -       |
+
+### Use variables in view file
+#### Sample data
+
+In `HomeController.php`
+```php
+public function index()
+{
+    echo __METHOD__;
+
+    return $this->view(viewPath: "home.index", params: [
+        "pageTitle" => "Test title",
+        "usersData" => $this->homeModel->getAllUser()
+    ]);
+}
+```
+
+In `/views/home/index.php`
+```php
+<?php
+echo $pageTitle;
+print_r($userData);
+```
+
