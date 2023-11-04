@@ -4,6 +4,7 @@ class HomeController extends BaseController
 {
     private $homeModel;
 
+    private $productModel;
     public function __construct()
     {
         $this->loadModel("HomeModel");
@@ -12,28 +13,9 @@ class HomeController extends BaseController
 
     public function index()
     {
-        echo __METHOD__;
-
         return $this->view(viewPath: "home.index", params: [
             "pageTitle" => "Test title",
-            "usersData" => $this->homeModel->getAllUser()
+            "searchData" => $this->homeModel->getUserById($id),
         ]);
     }
-
-    public function add()
-    {
-        $this->add();
-    }
-
-    public function update()
-    {
-        $this->homeModel->updateUser(2, [
-            "score" => 8
-        ]);
-    }
-
-    public function delete() {
-        $this->homeModel->deleteUser(4);
-    }
-
 }
