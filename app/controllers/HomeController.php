@@ -13,14 +13,6 @@ class HomeController extends BaseController
 
     public function index()
     {
-        print_r($_REQUEST);
-//        return $this->view(viewPath: "home.index", params: [
-//            "linkTest" => "/home/add"
-//        ]);
-    }
-
-    public function add() {
-        print_r($_REQUEST);
-        echo __METHOD__;
+        return $this->view(viewPath: "home.index");
     }
 }
