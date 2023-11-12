@@ -13,9 +13,10 @@ class HomeController extends BaseController
 
     public function index()
     {
-        return $this->view(viewPath: "home.index", params: [
-            "pageTitle" => "Test title",
-            "searchData" => $this->homeModel->getUserById($id),
-        ]);
+        print_r($_REQUEST);
+//        return $this->view(viewPath: "home.index", params: [
+//            "pageTitle" => "Test title",
+//            "searchData" => $this->homeModel->getUserById($id),
+//        ]);
     }
 }

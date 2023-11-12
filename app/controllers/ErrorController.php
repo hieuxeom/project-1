@@ -6,7 +6,7 @@
                 "status" => "Oops!",
                 "status_code" => "404",
                 "message" => "",
-                "url_back" => "index.php?url=home",
+                "url_back" => BASEPATH . "/home",
                 "btn_title" =>  "Quay lại trang chủ",
             ]);
         }
