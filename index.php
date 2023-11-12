@@ -1,3 +1,4 @@
+
 <?php
 
 //header("Access-Control-Allow-Origin: *");
@@ -38,6 +39,7 @@ $controllerFile = './app/controllers/' . $controllerName . '.php';
 
 
 require_once './app/views/base/header.php';
+
 
 
 if (file_exists($controllerFile)) {

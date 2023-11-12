@@ -1,19 +1,62 @@
+/* Import fonts */
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+
+
 /* Variables */
 :root {
-    --main-color: #bc9667;
-    --second-color: #edeae3;
-    --text-color: #1b1b1b;
-    --text-white: #fff;
+    /* Colors code */
 
-    --bg-color: #fff;
-    --category-color: #ffa02a;
+    --text-dark-500: #6b7280;
+    --text-dark-base: #1f2937;
+    --text-dark-950: #030712;
+    --text-light-base: #fff;
+
+    --primary-color: var(--rose-500);
+    --secondary-color: var(--yellow-500);
+    --third-color: var(--purple-500);
 
 
-    /* Box Shadow */
-    --box-shadow: 2px 2px 10px 4px rgba(0, 0, 0, .25);
+    --rose-50: #fef2f2;
+    --rose-100: #fee2e2;
+    --rose-200: #fecaca;
+    --rose-300: #fca5a5;
+    --rose-400: #f87171;
+    --rose-500: #ef4444;
+    --rose-600: #dc2626;
+    --rose-700: #b91c1c;
+    --rose-800: #991b1b;
+    --rose-900: #7f1d1d;
+    --rose-950: #450a0a;
+
+    --yellow-50: #fefce8;
+    --yellow-100: #fef9c3;
+    --yellow-200: #fef08a;
+    --yellow-300: #fde047;
+    --yellow-400: #facc15;
+    --yellow-500: #eab308;
+    --yellow-600: #ca8a04;
+    --yellow-700: #a16207;
+    --yellow-800: #854d0e;
+    --yellow-900: #713f12;
+    --yellow-950: #422006;
+
+    --purple-50: #faf5ff;
+    --purple-100: #f3e8ff;
+    --purple-200: #e9d5ff;
+    --purple-300: #d8b4fe;
+    --purple-400: #c084fc;
+    --purple-500: #a855f7;
+    --purple-600: #9333ea;
+    --purple-700: #7e22ce;
+    --purple-800: #6b21a8;
+    --purple-900: #581c87;
+    --purple-950: #3b0764;
+
 
     /* Font Family */
     --quicksand-font: 'Quicksand', sans-serif;
+    --helvetica-font: 'Helvetica', sans-serif;
 }
 
 * {
@@ -21,18 +64,547 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    scroll-padding-top: 4rem;
-    scroll-behavior: smooth;
-    text-decoration: none;
     font-weight: 500;
+    font-size: 16px;
+    color: var(--text-dark-base);
 }
 
-table {
-    border: 1px solid #000;
-    border-collapse: collapse;
+/******************/
+/* General Config */
+/******************/
+
+
+/* Flex Styles */
+.flex {
+    display: flex;
 }
 
-tr, td, th {
-    border: 1px solid #000;
+.flex-row {
+    flex-direction: row;
+}
+
+.flex-row-reverse {
+    flex-direction: row-reverse;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.flex-col-reverse {
+    flex-direction: column-reverse;
+}
+
+.justify-start {
+    justify-content: flex-start;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.justify-end {
+    justify-content: flex-end;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.justify-around {
+    justify-content: space-around;
+}
+
+.justify-evenly {
+    justify-content: space-evenly;
+}
+
+.items-start {
+    align-items: flex-start;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.items-end {
+    align-items: flex-end;
+}
+
+/* Grid Styles */
+.grid {
+    display: grid;
+}
+
+.grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.grid-cols-5 {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.grid-cols-6 {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.grid-cols-7 {
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+.grid-cols-8 {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+}
+
+.grid-cols-9 {
+    grid-template-columns: repeat(9, minmax(0, 1fr));
+}
+
+.grid-cols-10 {
+    grid-template-columns: repeat(10, minmax(0, 1fr));
+}
+
+.grid-cols-11 {
+    grid-template-columns: repeat(11, minmax(0, 1fr));
+}
+
+.grid-cols-12 {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+}
+
+.grid-cols-none {
+    grid-template-columns: none;
+}
+
+.grid-rows-1 {
+    grid-template-rows: repeat(1, minmax(0, 1fr));
+}
+
+.grid-rows-2 {
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+}
+
+.grid-rows-3 {
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+}
+
+.grid-rows-4 {
+    grid-template-rows: repeat(4, minmax(0, 1fr));
+}
+
+.grid-rows-5 {
+    grid-template-rows: repeat(5, minmax(0, 1fr));
+}
+
+.grid-rows-6 {
+    grid-template-rows: repeat(6, minmax(0, 1fr));
+}
+
+.grid-rows-none {
+    grid-template-rows: none;
+}
+
+/* Width Styles */
+.w-px {
+    width: 1px;
+}
+
+.w-auto {
+    width: auto;
+}
+
+.w-1-2 {
+    width: 50%;
+}
+
+.w-1-4 {
+    width: 25%;
+}
+
+.w-2-4 {
+    width: 50%;
+}
+
+.w-3-4 {
+    width: 75%;
+}
+
+.w-1-5 {
+    width: 20%;
+}
+
+.w-2-5 {
+    width: 40%;
+}
+
+.w-3-5 {
+    width: 60%;
+}
+
+.w-4-5 {
+    width: 80%;
+}
+
+.w-full {
+    width: 100%;
+}
+
+.w-screen {
+    width: 100vw;
+}
+
+.w-min {
+    width: min-content;
+}
+
+.w-max {
+    width: max-content;
+}
+
+.w-fit {
+    width: fit-content;
+}
+
+.w-fix-desktop {
+    width: 1280px;
+}
+
+
+/***************/
+/* TEXT CONFIG */
+/***************/
+
+/* Display Text Styles */
+.text-helvetica {
+    font-family: var(--helvetica-font);
+}
+
+.text-display-large {
+    font-size: 6rem;
+    font-weight: bold;
+    letter-spacing: -1.5px;
+}
+
+.text-display-small {
+    font-size: 4rem;
+    font-weight: bold;
+    letter-spacing: -1.5px;
+}
+
+
+/* Heading Styles */
+h1, h2, h3, h4, h5, h6,
+.heading-1, .heading-2, .heading-3, .heading-4, .heading-5, .heading-6 {
+    font-weight: bold;
+}
+
+h1, .heading-1 {
+    font-size: 3rem;
+}
+
+h2, .heading-2 {
+    font-size: 2.125rem;
+    letter-spacing: 0.25px;
+}
+
+h3, .heading-3 {
+    font-size: 1.5rem;
+}
+
+h4, .heading-4 {
+    font-size: 1.25rem;
+    letter-spacing: 0.15px;
+}
+
+h5, .heading-5 {
+    font-size: 1rem;
+    letter-spacing: 0.15px;
+}
+
+h6, .heading-6 {
+    font-size: 0.875rem;
+    letter-spacing: 0.1px;
+}
+
+/* Text Styles */
+.text-normal {
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+}
+
+.text-large {
+    font-size: 1.125rem;
+    letter-spacing: 0.5px;
+}
+
+.text-super-large {
+    font-size: 1.5rem;
+    letter-spacing: 0.75px;
+}
+
+.text-small {
+    font-size: 0.875rem;
+    letter-spacing: 0.25px;
+}
+
+.text-tiny {
+    font-size: 0.75rem;
+    letter-spacing: 0.25px;
+}
+
+/*****************/
+/* BUTTON CONFIG */
+/*****************/
+
+/* Primary Button */
+.button-primary-fill {
+    width: max-content;
+    padding: 0.5rem 1.5rem;
+    border-radius: 999px;
+    color: var(--text-light-base);
+    background: var(--primary-color);
+    border: none;
+    font-weight: 600;
+    letter-spacing: 0.75px;
+}
+
+.button-primary-outline {
+    width: max-content;
+    padding: 0.5rem 1.5rem;
+    border-radius: 999px;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    background: none;
+    font-weight: 600;
+    letter-spacing: 0.75px;
+}
+
+.button-primary-noborder {
+    width: max-content;
+    padding: 0.5rem 1.5rem;
+    border-radius: 999px;
+    color: var(--primary-color);
+    border: none;
+    background: none;
+    font-weight: 600;
+    letter-spacing: 0.75px;
+}
+
+.button-primary-fill:hover {
+    background: var(--rose-600);
+    color: var(--text-light-base);
+}
+
+.button-primary-outline:hover {
+    background: var(--rose-600);
+    color: var(--text-light-base);
+    border: 1px solid var(--rose-600);
+}
+
+.button-primary-noborder:hover {
+    color: var(--rose-600);
+}
+
+.button-primary-fill:active {
+    background: var(--rose-800);
+    color: var(--text-light-base);
+}
+
+.button-primary-outline:active {
+    background: var(--rose-800);
+    color: var(--text-light-base);
+    border: 1px solid var(--rose-800);
+}
+
+.button-primary-noborder:active {
+    color: var(--rose-800);
+}
+
+.button-primary-fill:disabled {
+    background: var(--rose-200);
+    pointer-events: none;
+}
+
+.button-primary-outline:disabled {
+    border: 1px solid var(--rose-200);
+    color: var(--rose-200);
+    pointer-events: none;
+}
+
+.button-primary-noborder:disabled {
+    color: var(--rose-200);
+    pointer-events: none;
+}
+
+/* Secondary Button */
+.button-secondary-fill {
+    width: max-content;
+    padding: 0.5rem 1.5rem;
+    border-radius: 999px;
+    color: var(--text-light-base);
+    background: var(--secondary-color);
+    border: none;
+    font-weight: 600;
+    letter-spacing: 0.75px;
+}
+
+.button-secondary-outline {
+    width: max-content;
+    padding: 0.5rem 1.5rem;
+    border-radius: 999px;
+    color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+    background: none;
+    font-weight: 600;
+    letter-spacing: 0.75px;
+}
+
+.button-secondary-noborder {
+    width: max-content;
+    padding: 0.5rem 1.5rem;
+    border-radius: 999px;
+    color: var(--secondary-color);
+    border: none;
+    background: none;
+    font-weight: 600;
+    letter-spacing: 0.75px;
+}
+
+.button-secondary-fill:hover {
+    background: var(--yellow-600);
+    color: var(--text-light-base);
+}
+
+.button-secondary-outline:hover {
+    background: var(--yellow-600);
+    color: var(--text-light-base);
+    border: 1px solid var(--yellow-600);
+}
+
+.button-secondary-noborder:hover {
+    color: var(--yellow-600);
+}
+
+.button-secondary-fill:active {
+    background: var(--yellow-800);
+    color: var(--text-light-base);
+}
+
+.button-secondary-outline:active {
+    background: var(--yellow-800);
+    color: var(--text-light-base);
+    border: 1px solid var(--yellow-800);
+}
+
+.button-secondary-noborder:active {
+    color: var(--yellow-800);
+}
+
+.button-secondary-fill:disabled {
+    background: var(--yellow-200);
+    pointer-events: none;
+}
+
+.button-secondary-outline:disabled {
+    border: 1px solid var(--yellow-200);
+    color: var(--yellow-200);
+    pointer-events: none;
+}
+
+.button-secondary-noborder:disabled {
+    color: var(--yellow-200);
+    pointer-events: none;
+}
+
+/* Third Button */
+.button-third-fill {
+    width: max-content;
+    padding: 0.5rem 1.5rem;
+    border-radius: 999px;
+    color: var(--text-light-base);
+    background: var(--third-color);
+    border: none;
+    font-weight: 600;
+    letter-spacing: 0.75px;
+}
+
+.button-third-outline {
+    width: max-content;
+    padding: 0.5rem 1.5rem;
+    border-radius: 999px;
+    color: var(--third-color);
+    border: 1px solid var(--third-color);
+    background: none;
+    font-weight: 600;
+    letter-spacing: 0.75px;
+}
+
+.button-third-noborder {
+    width: max-content;
+    padding: 0.5rem 1.5rem;
+    border-radius: 999px;
+    color: var(--third-color);
+    border: none;
+    background: none;
+    font-weight: 600;
+    letter-spacing: 0.75px;
+}
+
+.button-third-fill:hover {
+    background: var(--purple-600);
+    color: var(--text-light-base);
+}
+
+.button-third-outline:hover {
+    background: var(--purple-600);
+    color: var(--text-light-base);
+    border: 1px solid var(--purple-600);
+}
+
+.button-third-noborder:hover {
+    color: var(--purple-600);
+}
+
+.button-third-fill:active {
+    background: var(--purple-800);
+    color: var(--text-light-base);
+}
+
+.button-third-outline:active {
+    background: var(--purple-800);
+    color: var(--text-light-base);
+    border: 1px solid var(--purple-800);
+}
+
+.button-third-noborder:active {
+    color: var(--purple-800);
+}
+
+.button-third-fill:disabled {
+    background: var(--purple-200);
+    pointer-events: none;
+}
+
+.button-third-outline:disabled {
+    border: 1px solid var(--purple-200);
+    color: var(--purple-200);
+    pointer-events: none;
+}
+
+.button-third-noborder:disabled {
+    color: var(--purple-200);
+    pointer-events: none;
 }
 
