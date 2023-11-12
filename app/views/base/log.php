@@ -18,7 +18,7 @@
                 <br>
                 <p>Hosted by Tran Ngoc Hieu - PS35703</p>
             </div>
-            <a href="<?php echo $url_back ?? "index.php?url=home" ?>"><?php echo $btn_title ?? "Quay lại trang chủ" ?></a>
+            <a href="<?php echo $url_back ?? BASEPATH . "/home" ?>"><?php echo $btn_title ?? "Quay lại trang chủ" ?></a>
         </div>
     </div>
 

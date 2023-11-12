@@ -4,8 +4,10 @@ class HomeModel extends BaseModel
 {
     const TABLE = "users";
 
-    public function getAllUser() {
+    public function getAllUser()
+    {
         return $this->getAll(table: self::TABLE);
+    }
 
 
     public function getOneUser($userId)
@@ -24,13 +26,15 @@ class HomeModel extends BaseModel
         ]);
     }
 
-    public function getUserById($id) {
+    public function getUserById($id)
+    {
         print_r($this->getOne(table: self::TABLE, conditions: [
             "user_id" => $id,
         ]));
     }
 
-    public function updateUser() {
+    public function updateUser()
+    {
         $id = 3;
         $dataUpdate = [
             "fullname" => "Vu Quoc Hao",
@@ -42,22 +46,10 @@ class HomeModel extends BaseModel
         ]);
     }
 
-    public function deleteUser($id) {
+    public function deleteUser($id)
+    {
         $this->delete(table: self::TABLE, conditions: [
             "user_id" => $id
-        ]);
-    }
-
-    public function updateUser($userId, $dataUpdate)
-    {
-        return $this->update(table: self::TABLE,conditions: [
-            "user_id" => $userId,
-        ],data: $dataUpdate);
-    }
-
-    public function deleteUser($userId) {
-        return $this->delete(table: self::TABLE,conditions: [
-            "user_id" => $userId,
         ]);
     }
 
