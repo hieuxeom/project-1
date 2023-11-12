@@ -70,6 +70,7 @@ class ProductController extends BaseController
                 ]);
             case "default":
                 // Xử lí code lấy các thông tin cần trong return
+                // Test
 
                 return $this->view(viewPath: "product.viewDefault", params: [
                     "productData" => $productData ?? null,
