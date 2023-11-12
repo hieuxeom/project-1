@@ -15,8 +15,12 @@ class HomeController extends BaseController
     {
         print_r($_REQUEST);
 //        return $this->view(viewPath: "home.index", params: [
-//            "pageTitle" => "Test title",
-//            "searchData" => $this->homeModel->getUserById($id),
+//            "linkTest" => "/home/add"
 //        ]);
+    }
+
+    public function add() {
+        print_r($_REQUEST);
+        echo __METHOD__;
     }
 }
