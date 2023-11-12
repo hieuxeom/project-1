@@ -21,12 +21,12 @@ $url = isset($_GET['url']) ? rtrim($_GET['url'], '/') : '';
 
 // Check if the 'url' parameter is empty or not set
 if (empty($url)) {
-    // Set 'url' parameter to 'home'
-    $url = 'home';
-
-    // Redirect to the same URL with 'url' parameter added
-    $query = http_build_query(['url' => $url]);
-    header("Location: {$_SERVER['PHP_SELF']}?$query");
+//    // Set 'url' parameter to 'home'
+//    $url = 'home';
+//    // Redirect to the same URL with 'url' parameter added
+//    $query = http_build_query(['url' => $url]);
+//    header("Location: {$_SERVER['PHP_SELF']}?$query");
+    header("Location: ". BASEPATH. "/home");
     exit();
 }
 
