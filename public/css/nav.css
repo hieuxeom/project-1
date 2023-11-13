@@ -1,0 +1,20 @@
+nav {
+    padding: 1rem;
+}
+
+.nav-brand {
+    width: auto;
+    height: 50px;
+}
+
+.nav-brand .logo {
+    height: 100%;
+}
+
+.nav-brand, .nav-action {
+    flex: 2;
+}
+
+.nav-direct {
+    flex: 10;
+}

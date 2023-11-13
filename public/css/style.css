@@ -277,9 +277,43 @@
     width: fit-content;
 }
 
-.w-fix-desktop {
+.w-fix {
     width: 1280px;
 }
+
+/* Gap Styles */
+.gap-4 {
+    gap: .25rem;
+}
+
+.gap-8 {
+    gap: .5rem;
+}
+
+.gap-12 {
+    gap: .75rem;
+}
+
+.gap-16 {
+    gap: 1rem;
+}
+
+.gap-20 {
+    gap: 1.25rem;
+}
+
+.gap-24 {
+    gap: 1.5rem;
+}
+
+.gap-28 {
+    gap: 1.75rem;
+}
+
+.gap-32 {
+    gap: 2rem;
+}
+
 
 
 /***************/
@@ -369,6 +403,14 @@ h6, .heading-6 {
 /*****************/
 
 /* Primary Button */
+.button {
+    /*display: block;*/
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .button-primary-fill {
     width: max-content;
     padding: 0.5rem 1.5rem;
