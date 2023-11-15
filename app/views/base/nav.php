@@ -1,4 +1,4 @@
-<nav class="w-screen flex justify-center">
+<nav class="w-screen flex justify-center shadow-bottom-normal">
     <div class="w-fix flex justify-between ">
         <div class="nav-brand">
             <img class="logo" src="<?php echo BASEPATH . "/public/img/horizontal_title.png" ?>" alt="">

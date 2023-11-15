@@ -314,6 +314,367 @@
     gap: 2rem;
 }
 
+/* Gap Styles */
+.gap-4 {
+    gap: .25rem;
+}
+
+.gap-8 {
+    gap: .5rem;
+}
+
+.gap-12 {
+    gap: .75rem;
+}
+
+.gap-16 {
+    gap: 1rem;
+}
+
+.gap-20 {
+    gap: 1.25rem;
+}
+
+.gap-24 {
+    gap: 1.5rem;
+}
+
+.gap-28 {
+    gap: 1.75rem;
+}
+
+.gap-32 {
+    gap: 2rem;
+}
+
+/*****************/
+/* Padding Style */
+/*****************/
+
+/* Padding All */
+.p-4 {
+    padding: 0.25rem;
+}
+
+.p-8 {
+    padding: 0.5rem;
+}
+
+.p-12 {
+    padding: 0.75rem;
+}
+
+.p-16 {
+    padding: 1.0rem;
+}
+
+.p-20 {
+    padding: 1.25rem;
+}
+
+.p-24 {
+    padding: 1.5rem;
+}
+
+.p-28 {
+    padding: 1.75rem;
+}
+
+.p-32 {
+    padding: 2.0rem;
+}
+
+.p-36 {
+    padding: 2.25rem;
+}
+
+.p-40 {
+    padding: 2.5rem;
+}
+
+.p-44 {
+    padding: 2.75rem;
+}
+
+.p-48 {
+    padding: 3.0rem;
+}
+
+.p-52 {
+    padding: 3.25rem;
+}
+
+.p-56 {
+    padding: 3.5rem;
+}
+
+.p-60 {
+    padding: 3.75rem;
+}
+
+.p-64 {
+    padding: 4.0rem;
+}
+
+/* Padding Top */
+.p-t-4 {
+    padding-top: 0.25rem;
+}
+
+.p-t-8 {
+    padding-top: 0.5rem;
+}
+
+.p-t-12 {
+    padding-top: 0.75rem;
+}
+
+.p-t-16 {
+    padding-top: 1.0rem;
+}
+
+.p-t-20 {
+    padding-top: 1.25rem;
+}
+
+.p-t-24 {
+    padding-top: 1.5rem;
+}
+
+.p-t-28 {
+    padding-top: 1.75rem;
+}
+
+.p-t-32 {
+    padding-top: 2.0rem;
+}
+
+.p-t-36 {
+    padding-top: 2.25rem;
+}
+
+.p-t-40 {
+    padding-top: 2.5rem;
+}
+
+.p-t-44 {
+    padding-top: 2.75rem;
+}
+
+.p-t-48 {
+    padding-top: 3.0rem;
+}
+
+.p-t-52 {
+    padding-top: 3.25rem;
+}
+
+.p-t-56 {
+    padding-top: 3.5rem;
+}
+
+.p-t-60 {
+    padding-top: 3.75rem;
+}
+
+.p-t-64 {
+    padding-top: 4.0rem;
+}
+
+/* Padding Bottom */
+.p-b-4 {
+    padding-bottom: 0.25rem;
+}
+
+.p-b-8 {
+    padding-bottom: 0.5rem;
+}
+
+.p-b-12 {
+    padding-bottom: 0.75rem;
+}
+
+.p-b-16 {
+    padding-bottom: 1.0rem;
+}
+
+.p-b-20 {
+    padding-bottom: 1.25rem;
+}
+
+.p-b-24 {
+    padding-bottom: 1.5rem;
+}
+
+.p-b-28 {
+    padding-bottom: 1.75rem;
+}
+
+.p-b-32 {
+    padding-bottom: 2.0rem;
+}
+
+.p-b-36 {
+    padding-bottom: 2.25rem;
+}
+
+.p-b-40 {
+    padding-bottom: 2.5rem;
+}
+
+.p-b-44 {
+    padding-bottom: 2.75rem;
+}
+
+.p-b-48 {
+    padding-bottom: 3.0rem;
+}
+
+.p-b-52 {
+    padding-bottom: 3.25rem;
+}
+
+.p-b-56 {
+    padding-bottom: 3.5rem;
+}
+
+.p-b-60 {
+    padding-bottom: 3.75rem;
+}
+
+.p-b-64 {
+    padding-bottom: 4.0rem;
+}
+
+/* Padding Left */
+.p-l-4 {
+    padding-left: 0.25rem;
+}
+
+.p-l-8 {
+    padding-left: 0.5rem;
+}
+
+.p-l-12 {
+    padding-left: 0.75rem;
+}
+
+.p-l-16 {
+    padding-left: 1.0rem;
+}
+
+.p-l-20 {
+    padding-left: 1.25rem;
+}
+
+.p-l-24 {
+    padding-left: 1.5rem;
+}
+
+.p-l-28 {
+    padding-left: 1.75rem;
+}
+
+.p-l-32 {
+    padding-left: 2.0rem;
+}
+
+.p-l-36 {
+    padding-left: 2.25rem;
+}
+
+.p-l-40 {
+    padding-left: 2.5rem;
+}
+
+.p-l-44 {
+    padding-left: 2.75rem;
+}
+
+.p-l-48 {
+    padding-left: 3.0rem;
+}
+
+.p-l-52 {
+    padding-left: 3.25rem;
+}
+
+.p-l-56 {
+    padding-left: 3.5rem;
+}
+
+.p-l-60 {
+    padding-left: 3.75rem;
+}
+
+.p-l-64 {
+    padding-left: 4.0rem;
+}
+
+/* Padding Right */
+.p-r-4 {
+    padding-right: 0.25rem;
+}
+
+.p-r-8 {
+    padding-right: 0.5rem;
+}
+
+.p-r-12 {
+    padding-right: 0.75rem;
+}
+
+.p-r-16 {
+    padding-right: 1.0rem;
+}
+
+.p-r-20 {
+    padding-right: 1.25rem;
+}
+
+.p-r-24 {
+    padding-right: 1.5rem;
+}
+
+.p-r-28 {
+    padding-right: 1.75rem;
+}
+
+.p-r-32 {
+    padding-right: 2.0rem;
+}
+
+.p-r-36 {
+    padding-right: 2.25rem;
+}
+
+.p-r-40 {
+    padding-right: 2.5rem;
+}
+
+.p-r-44 {
+    padding-right: 2.75rem;
+}
+
+.p-r-48 {
+    padding-right: 3.0rem;
+}
+
+.p-r-52 {
+    padding-right: 3.25rem;
+}
+
+.p-r-56 {
+    padding-right: 3.5rem;
+}
+
+.p-r-60 {
+    padding-right: 3.75rem;
+}
+
+.p-r-64 {
+    padding-right: 4.0rem;
+}
 
 
 /***************/
@@ -399,12 +760,31 @@ h6, .heading-6 {
 }
 
 /*****************/
+/* SHADOW STYLES */
+/*****************/
+
+.shadow-center-normal {
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.12);
+}
+
+.shadow-center-large {
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.12);
+}
+
+.shadow-bottom-normal {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+}
+
+.shadow-bottom-large {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+/*****************/
 /* BUTTON CONFIG */
 /*****************/
 
 /* Primary Button */
 .button {
-    /*display: block;*/
     text-decoration: none;
     display: flex;
     justify-content: center;
