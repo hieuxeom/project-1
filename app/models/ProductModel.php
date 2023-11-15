@@ -14,8 +14,16 @@ class ProductModel extends BaseModel
         ]);
 
         $productData2 = $this->getTwoTable(table1: self::PROD, table2: self::PROD_CAT,
-                                            joinColumn: "category_id", table1Select: ["prod_name", "prod_desc", "prod_price", "img_path"], table2Select: ["category_name"], conditions: [
-                                                "prod_id" => $id,
+            joinColumn: "category_id",
+            table1Select: [
+                "prod_name",
+                "prod_desc",
+                "prod_price",
+                "img_path"
+            ], table2Select: [
+                "category_name"
+            ], conditions: [
+                "prod_id" => $id,
             ]);
         return $productData2;
     }
