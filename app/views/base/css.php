@@ -3,3 +3,4 @@
 <link rel="stylesheet" href="<?php echo BASEPATH ?>/public/css/nav.css">
 <link rel="stylesheet" href="<?php echo BASEPATH ?>/public/css/footer.css">
 <link rel="stylesheet" href="<?php echo BASEPATH ?>/public/css/notfound.css">
+<link rel="stylesheet" href="<?php echo BASEPATH ?>/public/css/home.css">
