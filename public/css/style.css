@@ -73,6 +73,355 @@
 /* General Config */
 /******************/
 
+/* Position Style */
+
+.static {
+    position: static;
+}
+
+.fixed {
+    position: fixed;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.relative {
+    position: relative;
+}
+
+.sticky {
+    position: sticky;
+}
+
+/* Top Style */
+
+.top-4 {
+    top: 0.25rem
+}
+
+
+.top-8 {
+    top: 0.5rem
+}
+
+
+.top-12 {
+    top: 0.75rem
+}
+
+
+.top-16 {
+    top: 1.0rem
+}
+
+
+.top-20 {
+    top: 1.25rem
+}
+
+
+.top-24 {
+    top: 1.5rem
+}
+
+
+.top-28 {
+    top: 1.75rem
+}
+
+
+.top-32 {
+    top: 2.0rem
+}
+
+
+.top-36 {
+    top: 2.25rem
+}
+
+
+.top-40 {
+    top: 2.5rem
+}
+
+
+.top-44 {
+    top: 2.75rem
+}
+
+
+.top-48 {
+    top: 3.0rem
+}
+
+
+.top-52 {
+    top: 3.25rem
+}
+
+
+.top-56 {
+    top: 3.5rem
+}
+
+
+.top-60 {
+    top: 3.75rem
+}
+
+
+.top-64 {
+    top: 4.0rem
+}
+
+
+/* Bottom Style */
+
+.bottom-4 {
+    bottom: 0.25rem
+}
+
+
+.bottom-8 {
+    bottom: 0.5rem
+}
+
+
+.bottom-12 {
+    bottom: 0.75rem
+}
+
+
+.bottom-16 {
+    bottom: 1.0rem
+}
+
+
+.bottom-20 {
+    bottom: 1.25rem
+}
+
+
+.bottom-24 {
+    bottom: 1.5rem
+}
+
+
+.bottom-28 {
+    bottom: 1.75rem
+}
+
+
+.bottom-32 {
+    bottom: 2.0rem
+}
+
+
+.bottom-36 {
+    bottom: 2.25rem
+}
+
+
+.bottom-40 {
+    bottom: 2.5rem
+}
+
+
+.bottom-44 {
+    bottom: 2.75rem
+}
+
+
+.bottom-48 {
+    bottom: 3.0rem
+}
+
+
+.bottom-52 {
+    bottom: 3.25rem
+}
+
+
+.bottom-56 {
+    bottom: 3.5rem
+}
+
+
+.bottom-60 {
+    bottom: 3.75rem
+}
+
+
+.bottom-64 {
+    bottom: 4.0rem
+}
+
+
+/* Left Style */
+
+.left-4 {
+    left: 0.25rem
+}
+
+
+.left-8 {
+    left: 0.5rem
+}
+
+
+.left-12 {
+    left: 0.75rem
+}
+
+
+.left-16 {
+    left: 1.0rem
+}
+
+
+.left-20 {
+    left: 1.25rem
+}
+
+
+.left-24 {
+    left: 1.5rem
+}
+
+
+.left-28 {
+    left: 1.75rem
+}
+
+
+.left-32 {
+    left: 2.0rem
+}
+
+
+.left-36 {
+    left: 2.25rem
+}
+
+
+.left-40 {
+    left: 2.5rem
+}
+
+
+.left-44 {
+    left: 2.75rem
+}
+
+
+.left-48 {
+    left: 3.0rem
+}
+
+
+.left-52 {
+    left: 3.25rem
+}
+
+
+.left-56 {
+    left: 3.5rem
+}
+
+
+.left-60 {
+    left: 3.75rem
+}
+
+
+.left-64 {
+    left: 4.0rem
+}
+
+
+/* Right Style */
+
+.right-4 {
+    right: 0.25rem
+}
+
+
+.right-8 {
+    right: 0.5rem
+}
+
+
+.right-12 {
+    right: 0.75rem
+}
+
+
+.right-16 {
+    right: 1.0rem
+}
+
+
+.right-20 {
+    right: 1.25rem
+}
+
+
+.right-24 {
+    right: 1.5rem
+}
+
+
+.right-28 {
+    right: 1.75rem
+}
+
+
+.right-32 {
+    right: 2.0rem
+}
+
+
+.right-36 {
+    right: 2.25rem
+}
+
+
+.right-40 {
+    right: 2.5rem
+}
+
+
+.right-44 {
+    right: 2.75rem
+}
+
+
+.right-48 {
+    right: 3.0rem
+}
+
+
+.right-52 {
+    right: 3.25rem
+}
+
+
+.right-56 {
+    right: 3.5rem
+}
+
+
+.right-60 {
+    right: 3.75rem
+}
+
+
+.right-64 {
+    right: 4.0rem
+}
+
 /* Overflow Style */
 
 .overflow-hidden {
