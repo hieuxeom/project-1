@@ -1,0 +1,31 @@
+.footer-brand {
+    width: 100%;
+}
+
+.footer-brand img {
+    width: 100%;
+}
+
+.footer-social i {
+    font-size: 1.75rem;
+    color: var(--primary-color);
+}
+
+.footer-info i {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+.footer-col-header {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.footer-col-body a {
+    text-decoration: none;
+    text-align: center;
+}
+
+.footer-col-body a:hover {
+    color: var(--primary-color);
+}

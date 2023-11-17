@@ -1,3 +1,4 @@
+
 <?php
 
 //header("Access-Control-Allow-Origin: *");
@@ -37,7 +38,8 @@ $controllerName = ucfirst($url[0]) . 'Controller';
 $controllerFile = './app/controllers/' . $controllerName . '.php';
 
 
-require_once './app/views/base/header.php';
+require_once './app/views/base/head.php';
+
 
 
 if (file_exists($controllerFile)) {
@@ -53,7 +55,7 @@ if (file_exists($controllerFile)) {
     showError();
 }
 
-require_once './app/views/base/footer.php';
+require_once './app/views/base/foot.php';
 
 function showError()
 {
