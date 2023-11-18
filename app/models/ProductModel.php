@@ -7,6 +7,8 @@ class ProductModel extends BaseModel
     const PROD_STOCK = "product_stocks";
     const PROD_CMT = "product_comments";
     const USER = "users";
+    const PROD_RATE = "product_rates";
+    
 
     public function getProductDetails($id) {
         $productData = $this->getOne(table: self::PROD, conditions: [
@@ -42,6 +44,18 @@ class ProductModel extends BaseModel
         return $catName;
     }
 
+    public function getProductRates($id){
+        $productRate=$this->getOne(table: self::PROD_RATE, conditions: [
+            "prod_id"=>$id,
+        ]);
+        $productRates=$this->getTwoTable(table1: self::PROD_RATE, table2: self::USER,
+                                    joinColumn: "user_id", table1Select:["rate_star", "rate_text", "rate_date"],
+                                    table2Select:["username"], conditions:[
+                                        "prod_id"=>$id,
+                                    ]);
+                                    return $productRates;
+    }
+
     public function getComments($id) {
         $productComment = $this->getOne(table: self::PROD_CMT, conditions: [
             "prod_id" => $id,
@@ -52,5 +66,10 @@ class ProductModel extends BaseModel
                                                 "prod_id" => $id,
             ]);
         return $productComment2;
+    }
+    public function getShowProduct($id){
+        $ShowProduct=$this->getOne(table: self::PROD,
+         arraySelect:["prod_name", "prod_desc", "prod_price", "img_path"], conditions:["prod_id"=>$id]);
+        return $ShowProduct;
     }
 }
