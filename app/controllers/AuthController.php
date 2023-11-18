@@ -12,16 +12,14 @@ class AuthController extends BaseController
 
     public function index()
     {
-
+        print_r($_SERVER);
     }
 
     public function register()
     {
         $serverMethod = $_SERVER["REQUEST_METHOD"];
-
         switch ($serverMethod) {
             case "GET":
-                echo __METHOD__;
                 break;
             case "POST":
                 print_r($_POST);
