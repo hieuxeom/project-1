@@ -73,6 +73,34 @@
 /* General Config */
 /******************/
 
+/* Color Style */
+
+.bg-white {
+    background: #fff;
+}
+
+/* Border Radius Style */
+
+.round-8 {
+    border-radius: .5rem;
+}
+
+.round-16 {
+    border-radius: 1rem;
+}
+
+.round-24 {
+    border-radius: 1.5rem;
+}
+
+.round-32 {
+    border-radius: 32rem;
+}
+
+.round-full {
+    border-radius: 999px;
+}
+
 /* Position Style */
 
 .static {
@@ -1459,6 +1487,17 @@ h6, .heading-6 {
     font-weight: bold;
 }
 
+.text-center {
+    text-align: center;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+.text-lowercase {
+    text-transform: lowercase;
+}
 
 /*****************/
 /* SHADOW STYLES */

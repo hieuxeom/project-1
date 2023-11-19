@@ -1,4 +1,4 @@
-<main class="w-full flex flex-col items-center">
+<main class="w-full flex flex-col items-center bg-">
     <div id="hero-section" class="flex w-fix m-32">
         <div class="w-1-2 flex flex-col gap-16">
             <div class="header-text">
@@ -20,6 +20,45 @@
         <div class="w-1-2 flex justify-center items-center">
             <img class="w-full" src="<?php echo BASEPATH . "/public/img/hero.png" ?>" alt="">
         </div>
-
+    </div>
+    <div id="best-sell-section" class="flex flex-col w-fix m-32">
+        <div class="w-full">
+            <h1 class="heading-1 text-helvetica text-center text-uppercase">Sản phẩm bán chạy</h1>
+        </div>
+        <div class="w-full grid grid-cols-3 m-t-40 gap-16">
+            <div class="flex flex-col gap-4 w-full bg-white round-8 shadow-bottom-normal overflow-hidden">
+                <div class="w-full p-16 flex  justify-center">
+                    <img class="w-3-4" src="<?php echo BASEPATH . "/public/img/test-img.png" ?>" alt="">
+                </div>
+                <div class="bg-white flex flex-col gap-8 p-16">
+                    <p class="product-name text-large">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+                        consectetur venenatis blandit. Praesent vehicula, libero non pretium vulputate, lacus arcu
+                        facilisis lectus</p>
+                    <p class="text-super-large text-bold">100.000đ</p>
+                </div>
+            </div>
+            <div class="flex flex-col gap-4 w-full bg-white round-8 shadow-bottom-normal overflow-hidden">
+                <div class="w-full p-16 flex  justify-center">
+                    <img class="w-3-4" src="<?php echo BASEPATH . "/public/img/test-img.png" ?>" alt="">
+                </div>
+                <div class="bg-white flex flex-col gap-8 p-16">
+                    <p class="product-name text-large">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+                        consectetur venenatis blandit. Praesent vehicula, libero non pretium vulputate, lacus arcu
+                        facilisis lectus</p>
+                    <p class="text-super-large text-bold">100.000đ</p>
+                </div>
+            </div>
+            <div class="flex flex-col gap-4 w-full bg-white round-8 shadow-bottom-normal overflow-hidden">
+                <div class="w-full p-16 flex  justify-center">
+                    <img class="w-3-4" src="<?php echo BASEPATH . "/public/img/test-img.png" ?>" alt="">
+                </div>
+                <div class="bg-white flex flex-col gap-8 p-16">
+                    <p class="product-name text-large">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+                        consectetur venenatis blandit. Praesent vehicula, libero non pretium vulputate, lacus arcu
+                        facilisis lectus</p>
+                    <p class="text-super-large text-bold">100.000đ</p>
+                </div>
+            </div>
+        </div>
     </div>
 </main>
