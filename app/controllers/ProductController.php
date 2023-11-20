@@ -62,7 +62,7 @@ class ProductController extends BaseController
         switch ($viewMode) {
             case "rate":
                 // Xử lí code lấy các thông tin cần trong return
-                $productName=$this->productModel->getProductRates($productId);
+                //$productName=$this->productModel->getProductRates($productId);
 
                 return $this->view(viewPath: "product.viewRate", params: [
                     "productName" => $productName ?? null,
@@ -72,7 +72,7 @@ class ProductController extends BaseController
             case "default":
                 // Xử lí code lấy các thông tin cần trong return
                 // Test
-                $productData=$this->productModel->getComments($productId);
+                $productData=$this->productModel->getProductRates($productId);;
 
                 return $this->view(viewPath: "product.viewDefault", params: [
                     "productData" => $productData ?? null,
