@@ -45,31 +45,32 @@ class ProductModel extends BaseModel
     }
 
     public function getProductRates($id){
-        $productRate=$this->getOne(table: self::PROD_RATE, conditions: [
+        $productRate=$this->getAll(table: self::PROD_RATE, conditions: [
             "prod_id"=>$id,
         ]);
         $productRates=$this->getTwoTable(table1: self::PROD_RATE, table2: self::USER,
                                     joinColumn: "user_id", table1Select:["rate_star", "rate_text", "rate_date"],
-                                    table2Select:["username"], conditions:[
-                                        "prod_id"=>$id,
-                                    ]);
+                                    table2Select:["username"], conditions:["prod_id"=>$id,],);
                                     return $productRates;
     }
 
+    // Showw comment
     public function getComments($id) {
         $productComment = $this->getOne(table: self::PROD_CMT, conditions: [
             "prod_id" => $id,
         ]);
 
         $productComment2 = $this->getTwoTable(table1: self::PROD_CMT, table2: self::USER,
-                                            joinColumn: "user_id", table1Select: ["comment_text", "comment_time"], table2Select: ["username"], conditions: [
+                                            joinColumn: "user_id", table1Select: ["comment_text", "comment_time"], 
+                                            table2Select: ["username", "email"],  conditions: [
                                                 "prod_id" => $id,
             ]);
         return $productComment2;
     }
+    // Showw sản phẩm
     public function getShowProduct($id){
-        $ShowProduct=$this->getOne(table: self::PROD,
-         arraySelect:["prod_name", "prod_desc", "prod_price", "img_path"], conditions:["prod_id"=>$id]);
+        $ShowProduct=$this->getAll(table: self::PROD,
+         arraySelect:["prod_name", "prod_desc", "prod_price", "img_path"], conditions:["prod_id"=>$id], limit:5);
         return $ShowProduct;
     }
 }
