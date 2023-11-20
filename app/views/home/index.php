@@ -26,7 +26,8 @@
             <h1 class="heading-1 text-helvetica text-center text-uppercase">Sản phẩm bán chạy</h1>
         </div>
         <div class="w-full grid grid-cols-3 m-t-40 gap-16">
-            <div class="flex flex-col gap-4 w-full bg-white round-8 shadow-bottom-normal overflow-hidden">
+            <a href="#"
+               class="block flex flex-col gap-4 w-full bg-white round-8 shadow-bottom-normal overflow-hidden text-nounderline">
                 <div class="w-full p-16 flex  justify-center">
                     <img class="w-3-4" src="<?php echo BASEPATH . "/public/img/test-img.png" ?>" alt="">
                 </div>
@@ -34,10 +35,13 @@
                     <p class="product-name text-large">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
                         consectetur venenatis blandit. Praesent vehicula, libero non pretium vulputate, lacus arcu
                         facilisis lectus</p>
-                    <p class="text-super-large text-bold">100.000đ</p>
+                    <div class="flex justify-between items-center">
+                        <p class="text-super-large text-bold">100.000đ</p>
+                        <p class="text-normal">(999 lượt xem)</p>
+                    </div>
                 </div>
-            </div>
-            <div class="flex flex-col gap-4 w-full bg-white round-8 shadow-bottom-normal overflow-hidden">
+            </a><a href="#"
+                   class="block flex flex-col gap-4 w-full bg-white round-8 shadow-bottom-normal overflow-hidden text-nounderline">
                 <div class="w-full p-16 flex  justify-center">
                     <img class="w-3-4" src="<?php echo BASEPATH . "/public/img/test-img.png" ?>" alt="">
                 </div>
@@ -45,10 +49,13 @@
                     <p class="product-name text-large">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
                         consectetur venenatis blandit. Praesent vehicula, libero non pretium vulputate, lacus arcu
                         facilisis lectus</p>
-                    <p class="text-super-large text-bold">100.000đ</p>
+                    <div class="flex justify-between items-center">
+                        <p class="text-super-large text-bold">100.000đ</p>
+                        <p class="text-normal">(999 lượt xem)</p>
+                    </div>
                 </div>
-            </div>
-            <div class="flex flex-col gap-4 w-full bg-white round-8 shadow-bottom-normal overflow-hidden">
+            </a><a href="#"
+                   class="block flex flex-col gap-4 w-full bg-white round-8 shadow-bottom-normal overflow-hidden text-nounderline">
                 <div class="w-full p-16 flex  justify-center">
                     <img class="w-3-4" src="<?php echo BASEPATH . "/public/img/test-img.png" ?>" alt="">
                 </div>
@@ -56,9 +63,56 @@
                     <p class="product-name text-large">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
                         consectetur venenatis blandit. Praesent vehicula, libero non pretium vulputate, lacus arcu
                         facilisis lectus</p>
-                    <p class="text-super-large text-bold">100.000đ</p>
+                    <div class="flex justify-between items-center">
+                        <p class="text-super-large text-bold">100.000đ</p>
+                        <p class="text-normal">(999 lượt xem)</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div id="faq-section" class="flex flex-col w-fix m-32">
+        <div class="w-full">
+            <h1 class="heading-1 text-helvetica text-center text-uppercase">Câu hỏi thường gặp</h1>
+        </div>
+        <div class="" id="faq-container">
+            <div class="faq-item">
+                <div data-answer="1" class="question flex justify-between items-center p-t-16 p-b-16 cursor-pointer">
+                    <p class="text-super-large color-primary text-bold">Câu hỏi thường gặp 1</p>
+                    <i class="fa-solid fa-chevron-up color-primary"></i>
+                </div>
+                <div id="answer1" class="answer p-b-16">
+                    <p class="text-normal">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                        when an unknown printer took a galley of type and scrambled it to make a type specimen book. It
+                        has survived not only five centuries</p>
                 </div>
             </div>
+            <div class="faq-item">
+                <div data-answer="2" class="question flex justify-between items-center p-t-16 p-b-16 cursor-pointer">
+                    <p class="text-super-large color-primary text-bold">Câu hỏi thường gặp 1</p>
+                    <i class="fa-solid fa-chevron-up color-primary"></i>
+                </div>
+                <div id="answer2" class="answer p-b-16">
+                    <p class="text-normal">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                        when an unknown printer took a galley of type and scrambled it to make a type specimen book. It
+                        has survived not only five centuries</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div data-answer="3" class="question flex justify-between items-center p-t-16 p-b-16 cursor-pointer">
+                    <p class="text-super-large color-primary text-bold">Câu hỏi thường gặp 1</p>
+                    <i class="fa-solid fa-chevron-up color-primary"></i>
+                </div>
+                <div id="answer3" class="answer p-b-16">
+                    <p class="text-normal">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                        when an unknown printer took a galley of type and scrambled it to make a type specimen book. It
+                        has survived not only five centuries</p>
+                </div>
+            </div>
+
         </div>
     </div>
 </main>

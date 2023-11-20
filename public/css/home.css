@@ -4,7 +4,6 @@
     text-transform: uppercase;
     font-weight: bold;
 }
-
 main {
     background: var(--purple-50);
 }
@@ -15,4 +14,8 @@ main {
     -webkit-line-clamp: 2; /* number of lines to show */
     line-clamp: 2;
     -webkit-box-orient: vertical;
+}
+
+.faq-item {
+    border-bottom: 2px solid var(--gray-800);
 }

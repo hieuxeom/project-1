@@ -17,6 +17,10 @@
     --third-color: var(--purple-500);
 
 
+    --gray-500: #6b7280;
+    --gray-800: #1f2937;
+    --gray-950: #030712;
+
     --rose-50: #fef2f2;
     --rose-100: #fee2e2;
     --rose-200: #fecaca;
@@ -73,10 +77,29 @@
 /* General Config */
 /******************/
 
+/* Cursor Style */
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+
 /* Color Style */
 
 .bg-white {
     background: #fff;
+}
+
+.color-primary {
+    color: var(--primary-color);
+}
+
+.color-secondary {
+    color: var(--secondary-color);
+}
+
+.color-third {
+    color: var(--third-color);
 }
 
 /* Border Radius Style */
@@ -99,6 +122,12 @@
 
 .round-full {
     border-radius: 999px;
+}
+
+/* Display Style */
+
+.block {
+    display: block;
 }
 
 /* Position Style */
@@ -1485,6 +1514,34 @@ h6, .heading-6 {
 
 .text-bold {
     font-weight: bold;
+}
+
+.text-underline {
+    text-decoration: underline;
+}
+
+.text-overline {
+    text-decoration: overline;
+}
+
+.text-through {
+    text-decoration: line-through;
+}
+
+.text-nounderline {
+    text-decoration: none;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-justify {
+    text-align: justify;
 }
 
 .text-center {
