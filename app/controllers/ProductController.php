@@ -72,14 +72,15 @@ class ProductController extends BaseController
             case "default":
                 // Xử lí code lấy các thông tin cần trong return
                 // Test
-                $productData=$this->productModel->getProductRates($productId);;
-
+                $productData=$this->productModel->getProductDetails($productId);
+                $listRateData=$this->productModel->getProductRates($productId);
+                $listComment=$this->productModel->getComments($productId);
                 return $this->view(viewPath: "product.viewDefault", params: [
                     "productData" => $productData ?? null,
                     // "productCategory" => $productCategory ?? null, // Bỏ '//' nếu cần
                     "rateScore" => $rateScore ?? null,
                     "listRateData" => $listRateData ?? null, // limit 5 rate gần nhất
-                    "listComment" => $listCommentData ?? null, // limit 10 comment gần nhất
+                    "listComment" => $listComment ?? null, // limit 10 comment gần nhất
                 ]);
 
         }
