@@ -38,7 +38,7 @@ class ProductModel extends BaseModel
     }
 
     public function getCategoryName($cat_id) {
-        $catName = $this->getOne(table: self::PROD_CAT, conditions: [
+        $catName = $this->getOne(table: self::PROD_CAT, arraySelect:["category_name"],conditions: [
             "category_id" => $cat_id,
         ]);
         return $catName;
