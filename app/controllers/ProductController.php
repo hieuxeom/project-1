@@ -12,9 +12,8 @@ class ProductController extends BaseController
 
     public function index()
     {
-        print_r($_REQUEST);
-        $filter = $_REQUEST['filter'] ?? null;
-        $search = $_REQUEST['search'] ?? null;
+        $filter = $_REQUEST['filter'] ?? null; // category_id
+        $search = $_REQUEST['search'] ?? null; // pattern tên sản phẩm
 
         echo "<br>";
 
@@ -32,21 +31,27 @@ class ProductController extends BaseController
 
         switch ($viewMode) {
             case "filter-search":
+                $listCategories = "test";
+                $listProducts = "tesst";
                 // Xử lí code lấy sản phẩm vừa có filter, vừa có search key
                 break;
             case "search":
+                $listCategories = "test";
+                $listProducts = "tesst";
                 // Xử lí code lấy sản phẩm theo search key
                 break;
             case "filter":
+                $listCategories = "test";
+                $listProducts = "tesst";
                 // Xử lí code lấy sản phẩm theo filter
                 break;
             case "default":
+                $listCategories = "test";
+                $listProducts = "tesst";
                 // Xử lí code lấy toàn bộ sản phẩm
                 break;
         }
-        $cat_id=$_REQUEST['pr1'];
-        $listCategories=$this->productModel->getCategoryName($cat_id);
-        $listProducts=$this->productModel->getShowProduct($cat_id);
+
         return $this->view(viewPath: "product.index", params: [
             "listCategories" => $listCategories ?? null,
             "listProducts" => $listProducts ?? null,
