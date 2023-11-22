@@ -75,6 +75,7 @@ class ProductController extends BaseController
                 // Xử lí code lấy các thông tin cần trong return
                 // Test
                 $productData=$this->productModel->getProductDetails($productId);
+                $rateScore=$this->productModel->getScore($productId);
                 $listRateData=$this->productModel->getProductRates($productId);
                 $listComment=$this->productModel->getComments($productId);
                 return $this->view(viewPath: "product.viewDefault", params: [
