@@ -119,6 +119,10 @@
     color: var(--third-color) !important;
 }
 
+.color-white {
+    color: #fff !important;
+}
+
 /* Border Radius Style */
 
 .round-8 {
