@@ -14,4 +14,14 @@ class AuthController extends BaseController
     {
         return $this->view(viewPath: "auth.login");
     }
+
+    public function login()
+    {
+        return $this->view(viewPath: "auth.login");
+    }
+
+    public function register()
+    {
+        return $this->view(viewPath: "auth.register");
+    }
 }
