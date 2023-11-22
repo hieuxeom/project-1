@@ -44,7 +44,9 @@ class ProductController extends BaseController
                 // Xử lí code lấy toàn bộ sản phẩm
                 break;
         }
-
+        $cat_id=$_REQUEST['pr1'];
+        $listCategories=$this->productModel->getCategoryName($cat_id);
+        $listProducts=$this->productModel->getShowProduct($cat_id);
         return $this->view(viewPath: "product.index", params: [
             "listCategories" => $listCategories ?? null,
             "listProducts" => $listProducts ?? null,
