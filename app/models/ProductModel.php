@@ -73,4 +73,10 @@ class ProductModel extends BaseModel
          arraySelect:["prod_name", "prod_desc", "prod_price", "img_path"], conditions:["prod_id"=>$id], limit:5);
         return $ShowProduct;
     }
+
+    public function getScore($id){
+        $Score=$this->getAll(table: self::PROD_RATE, arraySelect:["rate_star"],
+        conditions:["prod_id"=>$id]);
+            return $Score;
+       }
 }
