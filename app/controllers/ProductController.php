@@ -14,6 +14,7 @@ class ProductController extends BaseController
     {
         $kyw=1;
         $iddm=1;
+        $id=$_REQUEST['1'];
         $filter = $_REQUEST['filter'] ?? null; // category_id
         $search = $_REQUEST['search'] ?? null; // pattern tên sản phẩm
 
@@ -39,17 +40,17 @@ class ProductController extends BaseController
                 break;
             case "search":
                 $listCategories = "test";
-                $listProducts = "tesst";
+                $listProducts = $this->productModel->getProductSkey($kyw);
                 // Xử lí code lấy sản phẩm theo search key
                 break;
             case "filter":
-                $listCategories = "test";
+                $listCategories = $this->productModel->getProductByIddm($iddm);
                 $listProducts = "tesst";
                 // Xử lí code lấy sản phẩm theo filter
                 break;
             case "default":
-                $listCategories = "test";
-                $listProducts = "tesst";
+                $listCategories = $this->productModel->getCategoryName($id);
+                $listProducts = $this->productModel->getShowProduct($id) ;
                 // Xử lí code lấy toàn bộ sản phẩm
                 break;
         }
