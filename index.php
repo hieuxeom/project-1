@@ -1,4 +1,3 @@
-
 <?php
 
 //header("Access-Control-Allow-Origin: *");
@@ -22,12 +21,7 @@ $url = isset($_GET['url']) ? rtrim($_GET['url'], '/') : '';
 
 // Check if the 'url' parameter is empty or not set
 if (empty($url)) {
-//    // Set 'url' parameter to 'home'
-//    $url = 'home';
-//    // Redirect to the same URL with 'url' parameter added
-//    $query = http_build_query(['url' => $url]);
-//    header("Location: {$_SERVER['PHP_SELF']}?$query");
-    header("Location: ". BASEPATH. "/home");
+    header("Location: " . BASEPATH . "/home");
     exit();
 }
 
@@ -36,10 +30,8 @@ $url = explode('/', $url);
 // Load the appropriate controller and execute the action
 $controllerName = ucfirst($url[0]) . 'Controller';
 $controllerFile = './app/controllers/' . $controllerName . '.php';
-print_r($_SESSION);
 
 require_once './app/views/base/head.php';
-
 
 
 if (file_exists($controllerFile)) {

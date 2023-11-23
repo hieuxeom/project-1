@@ -20,7 +20,12 @@ class AuthController extends BaseController
         $serverMethod = $_SERVER["REQUEST_METHOD"];
         switch ($serverMethod) {
             case "GET":
-                return $this->view(viewPath: "auth.register");
+                if ($_SESSION["is_login"]) {
+                    return header("Location: " . BASEPATH . "/home");
+                } else {
+                    return $this->view("auth.register");
+
+                }
             case "POST":
                 $registerStatus = $this->authModel->createAccount($_POST);
 
@@ -66,28 +71,34 @@ class AuthController extends BaseController
 
         switch ($serverMethod) {
             case "GET":
-                return $this->view("auth.login");
+                if ($_SESSION["is_login"]) {
+                    return header("Location: " . BASEPATH . "/home");
+                } else {
+                    return $this->view("auth.login");
+
+                }
             case "POST":
                 $loginStatus = $this->authModel->checkLogin($_POST);
                 if ($loginStatus != 2) {
                     if ($loginStatus) {
-                        return $this->view(viewPath: "base.log", params: [
-                            "status" => "Successfully!",
-                            "message" => "Đăng nhập thành công",
-                            "btn_title" => "Đến trang chủ",
-                            "url_back" => BASEPATH . "/home",
-                        ]);
+//                        return $this->view(viewPath: "base.log", params: [
+//                            "status" => "Ok!",
+//                            "message" => "Đăng nhập thành công",
+//                            "btn_title" => "Đến trang chủ",
+//                            "url_back" => BASEPATH . "/home",
+//                        ]);
+                        return header("Location: " . BASEPATH . "/home");
                     } else {
                         return $this->view(viewPath: "base.log", params: [
-                            "status" => "Có gì đó sai sai!",
-                            "message" => "Mật khẩu không đúng!!",
+                            "status" => "Oops!",
+                            "message" => "Có vẻ mật khẩu bạn vừa nhập không đúng!",
                             "btn_title" => "Quay lại trang đăng nhập",
                             "url_back" => BASEPATH . "/auth/login",
                         ]);
                     }
                 } else {
                     return $this->view(viewPath: "base.log", params: [
-                        "status" => "Có gì đó sai sai!",
+                        "status" => "Oops!",
                         "message" => "Không tìm thấy thông tin tài khoản ứng với $_POST[username]",
                         "btn_title" => "Quay lại trang đăng nhập",
                         "url_back" => BASEPATH . "/auth/login",
@@ -96,5 +107,11 @@ class AuthController extends BaseController
             default:
                 return $this->view("auth.login");
         }
+    }
+
+    public function logout()
+    {
+        $this->authModel->removeSessionData();
+        return header("Location: " . BASEPATH . "/auth/login");
     }
 }

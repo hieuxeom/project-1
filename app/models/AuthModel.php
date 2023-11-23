@@ -7,10 +7,33 @@ class AuthModel extends BaseModel
     public function createAccount($accountData)
     {
         try {
+            // Email check
             $email = $accountData["email"];
+            if ($this->isEmpty($email)) {
+                return 0;
+            }
+
+            // Username check
             $username = $accountData["username"];
+            if ($this->isEmpty($username)) {
+                return 0;
+            }
+
+            // Fullname check
             $fullname = $accountData["fullname"];
-            $password = $this->createHashPassword($accountData["password"]);
+            if ($this->isEmpty($fullname)) {
+                return 0;
+            }
+
+            // Password check
+            $prePassword = $accountData["password"];
+            if ($this->isEmpty($prePassword)) {
+                return false;
+            }
+
+            $password = $this->createHashPassword($prePassword);
+
+
 
             if ($this->isExistEmail($email)) {
                 return 2;
@@ -68,9 +91,16 @@ class AuthModel extends BaseModel
         $_SESSION['user_id'] = $userId;
         $_SESSION['role'] = $this->getOne(self::USER_TABLE, conditions: [
             "user_id" => $userId,
-        ],arraySelect: [
+        ], arraySelect: [
             "role"
         ])["role"];
+    }
+
+    public function removeSessionData()
+    {
+        $_SESSION['is_login'] = false;
+        unset($_SESSION['user_id']);
+        unset($_SESSION['role']);
     }
 
     private function isExistEmail($email)
@@ -109,5 +139,14 @@ class AuthModel extends BaseModel
     private function createHashPassword($password)
     {
         return password_hash($password, PASSWORD_DEFAULT);
+    }
+
+    private function isEmpty($dataCheck)
+    {
+        if ($dataCheck == "") {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

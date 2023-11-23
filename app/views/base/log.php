@@ -6,7 +6,7 @@
     <div class="container d-flex justify-content-center align-items-center h-75">
         <div class="d-flex flex-column justify-content-center align-items-center gap-2 w-100">
             <div class="w-100">
-                <h1 class="text-display-large text-uppercase text-center text-helvetica text-bold"><?php
+                <h1 class="text-display-large text-center text-helvetica text-bold"><?php
                     echo $status ?? "000";
                     ?>
                 </h1>

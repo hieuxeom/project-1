@@ -8,11 +8,17 @@
                 echo "<a href='#' class='button button-primary-noborder'>Trang chủ</a>
                     <a href='#' class='button button-primary-noborder'>Giới thiệu</a>
             <a href='#' class='button button-primary-noborder'>Sản phẩm</a>";
-            }?>
+            } ?>
         </div>
         <div class="nav-action d-flex justify-content-center align-items-center gap-2">
-            <a href="<?php echo BASEPATH ?>/auth/register" class="btn btn-outline-primary m-0" role="button">Đăng ký</a>
-            <a href="<?php echo BASEPATH ?>/auth/login" class="btn btn-primary m-0" role="button">Đăng nhập</a>
+            <?php
+            if ($_SESSION['is_login'] == 1) {
+            echo "<a href='". BASEPATH ."/auth/logout' class='btn btn-outline-primary m-0' role='button'>Đăng xuất</a>";
+            } else {
+                echo "<a href='". BASEPATH ."/auth/register' class='btn btn-outline-primary m-0' role='button'>Đăng ký</a>
+            <a href='". BASEPATH ."/auth/login' class='btn btn-primary m-0' role='button'>Đăng nhập</a>";
+            }
+            ?>
         </div>
     </div>
 </nav>
