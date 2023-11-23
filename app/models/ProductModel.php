@@ -50,7 +50,8 @@ class ProductModel extends BaseModel
         ]);
         $productRates=$this->getTwoTable(table1: self::PROD_RATE, table2: self::USER,
                                     joinColumn: "user_id", table1Select:["rate_star", "rate_text", "rate_date"],
-                                    table2Select:["username"], conditions:["prod_id"=>$id,],);
+                                    table2Select:["username"], conditions:["prod_id"=>$id,],
+                                    limit:5, order:["rate_date"=>"desc"]);
                                     return $productRates;
     }
 
@@ -64,7 +65,7 @@ class ProductModel extends BaseModel
                                             joinColumn: "user_id", table1Select: ["comment_text", "comment_time"], 
                                             table2Select: ["username", "email"],  conditions: [
                                                 "prod_id" => $id,
-            ]);
+                                            ],limit:10, order:["comment_time"=>"desc"]);
         return $productComment2;
     }
     // Showw sản phẩm
