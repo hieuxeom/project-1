@@ -12,6 +12,8 @@ class ProductController extends BaseController
 
     public function index()
     {
+        $kyw=1;
+        $iddm=1;
         $filter = $_REQUEST['filter'] ?? null; // category_id
         $search = $_REQUEST['search'] ?? null; // pattern tên sản phẩm
 
@@ -31,8 +33,8 @@ class ProductController extends BaseController
 
         switch ($viewMode) {
             case "filter-search":
-                $listCategories = "test";
-                $listProducts = "tesst";
+                $listCategories = $this->productModel->getProductByIddm($iddm);
+                $listProducts = $this->productModel->getProductSkey($kyw);
                 // Xử lí code lấy sản phẩm vừa có filter, vừa có search key
                 break;
             case "search":
