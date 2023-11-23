@@ -30,6 +30,10 @@ class ProductModel extends BaseModel
         return $productData2;
     }
 
+    public function getProductName($id){
+        $ProductName=$this->getOne(table: self::PROD, arraySelect:["prod_name"],
+        conditions:["prod_id"=>$id]); return $ProductName;
+    }
     public function getProductStock($id) {
         $prodStock = $this->getOne(table: self::PROD_STOCK, conditions: [
             "prod_id" => $id,
