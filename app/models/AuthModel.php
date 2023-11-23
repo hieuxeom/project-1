@@ -2,7 +2,6 @@
 
 class AuthModel extends BaseModel
 {
-
     const USER_TABLE = "users";
 
     public function createAccount($accountData)

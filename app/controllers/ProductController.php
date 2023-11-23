@@ -12,7 +12,6 @@ class ProductController extends BaseController
 
     public function index()
     {
-        print_r($_REQUEST);
         $filter = $_REQUEST['filter'] ?? null;
         $search = $_REQUEST['search'] ?? null;
 
@@ -28,7 +27,6 @@ class ProductController extends BaseController
             $viewMode = "default";
         }
 
-        echo $viewMode;
 
         switch ($viewMode) {
             case "filter-search":
