@@ -12,7 +12,7 @@ class AuthController extends BaseController
 
     public function index()
     {
-        print_r($_SERVER);
+        return header("Location: " . BASEPATH . "/auth/login");
     }
 
     public function register()
@@ -20,7 +20,7 @@ class AuthController extends BaseController
         $serverMethod = $_SERVER["REQUEST_METHOD"];
         switch ($serverMethod) {
             case "GET":
-                break;
+                return $this->view("auth.register");
             case "POST":
                 print_r($_POST);
                 $registerStatus = $this->authModel->createAccount($_POST);
@@ -46,7 +46,7 @@ class AuthController extends BaseController
 
         switch ($serverMethod) {
             case "GET":
-                break;
+                return $this->view("auth.login");
             case "POST":
                 print_r($_POST);
                 $loginStatus = $this->authModel->checkLogin($_POST);

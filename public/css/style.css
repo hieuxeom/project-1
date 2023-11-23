@@ -126,23 +126,23 @@
 /* Border Radius Style */
 
 .round-8 {
-    border-radius: .5rem;
+    border-radius: .5rem !important;
 }
 
 .round-16 {
-    border-radius: 1rem;
+    border-radius: 1rem !important;
 }
 
 .round-24 {
-    border-radius: 1.5rem;
+    border-radius: 1.5rem !important;
 }
 
 .round-32 {
-    border-radius: 32rem;
+    border-radius: 32rem !important;
 }
 
 .round-full {
-    border-radius: 999px;
+    border-radius: 999px !important;
 }
 
 /* Display Style */

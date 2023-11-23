@@ -1,5 +1,5 @@
-<nav class="w-screen flex justify-center shadow-bottom-normal">
-    <div class="w-fix flex justify-between ">
+<nav class="container-fluid d-flex justify-content-center shadow-xl ">
+    <div class="container-lg d-flex justify-content-between">
         <div class="nav-brand">
             <img class="logo" src="<?php echo BASEPATH . "/public/img/horizontal_title.png" ?>" alt="">
         </div>
@@ -10,9 +10,9 @@
             <a href='#' class='button button-primary-noborder'>Sản phẩm</a>";
             }?>
         </div>
-        <div class="nav-action d-flex">
-            <a href="#" class="button button-primary-noborder">Đăng ký</a>
-            <a href="#" class="button button-primary-fill">Đăng nhập</a>
+        <div class="nav-action d-flex justify-content-center align-items-center gap-2">
+            <a href="<?php echo BASEPATH ?>/auth/register" class="btn btn-outline-primary m-0" role="button">Đăng ký</a>
+            <a href="<?php echo BASEPATH ?>/auth/login" class="btn btn-primary m-0" role="button">Đăng nhập</a>
         </div>
     </div>
 </nav>

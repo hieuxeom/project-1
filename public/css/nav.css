@@ -11,9 +11,9 @@ nav {
     height: 100%;
 }
 
-.nav-brand, .nav-action {
-    flex: 2;
-}
+/*.nav-brand, .nav-action {*/
+/*    flex: 2;*/
+/*}*/
 
 .nav-direct {
     flex: 10;
