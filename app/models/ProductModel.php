@@ -79,4 +79,19 @@ class ProductModel extends BaseModel
         conditions:["prod_id"=>$id]);
             return $Score;
        }
+
+    // Lấy sp theo seach key
+    public function getProductSkey($kyw){
+        $Key=$this->getAll(table: self::PROD,arraySelect:["prod_name", "prod_desc", "prod_price", "img_path"],
+        likeConditions:["prod_name" =>$kyw] );
+        return $Key;
+    }
+    
+    // Lọc sp theo iddm
+    public function getProductByIddm($iddm){
+        $fitter=$this->getTwoTable(table1: self::PROD, table2: self::PROD_CAT,
+        joinColumn:"category_id",table1Select:["prod_name", "prod_desc", "prod_price", "img_path"],
+        table2Select:["category_name"], conditions:["category_id"=>$iddm]);
+        return $fitter;
+    }
 }
