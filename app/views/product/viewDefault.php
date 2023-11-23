@@ -105,7 +105,6 @@
                         <p class="m-0" style="color: var(--text-dark-500)">
                             March 07, 2021
                         </p>
-
                         <!--                    <a href="#!" class="link-muted"><i class="fas fa-pencil-alt ms-2"></i></a>-->
                         <!--                    <a href="#!" class="link-muted"><i class="fas fa-redo-alt ms-2"></i></a>-->
                         <!--                    <a href="#!" class="link-muted"><i class="fas fa-heart ms-2"></i></a>-->

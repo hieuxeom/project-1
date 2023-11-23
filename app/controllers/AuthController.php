@@ -20,23 +20,43 @@ class AuthController extends BaseController
         $serverMethod = $_SERVER["REQUEST_METHOD"];
         switch ($serverMethod) {
             case "GET":
-                return $this->view("auth.register");
+                return $this->view(viewPath: "auth.register");
             case "POST":
-                print_r($_POST);
                 $registerStatus = $this->authModel->createAccount($_POST);
 
                 if ($registerStatus == 2) {
-                    echo "Đăng kí thất bại do `email` đã tồn tại trên hệ thống";
+                    return $this->view(viewPath: "base.log", params: [
+                        "status" => "Lỗi",
+                        "message" => "Đăng kí thất bại do `email` đã tồn tại trên hệ thống",
+                        "btn_title" => "Quay lại trang đăng kí",
+                        "url_back" => BASEPATH . "/auth/register",
+                    ]);
                 } else if ($registerStatus == 3) {
-                    echo "Đăng kí thất bại do `username` đã tồn tại trên hệ thống";
+                    return $this->view(viewPath: "base.log", params: [
+                        "status" => "Lỗi",
+                        "message" => "Đăng kí thất bại do `username` đã tồn tại trên hệ thống",
+                        "btn_title" => "Quay lại trang đăng kí",
+                        "url_back" => BASEPATH . "/auth/register",
+                    ]);
                 } else {
                     if ($registerStatus) {
-                        echo "Đăng kí thành công";
+                        return $this->view(viewPath: "base.log", params: [
+                            "status" => "Thanks",
+                            "message" => "Đăng kí thành công",
+                            "btn_title" => "Đến trang chủ",
+                            "url_back" => BASEPATH . "/home",
+                        ]);
                     } else {
-                        echo "Đăng kí thất bại";
+                        return $this->view(viewPath: "base.log", params: [
+                            "status" => "Lỗi",
+                            "message" => "Đăng kí thất bại",
+                            "btn_title" => "Quay lại trang đăng kí",
+                            "url_back" => BASEPATH . "/auth/register",
+                        ]);
                     }
-                    break;
                 }
+            default:
+                return $this->view("auth.register");
         }
     }
 
@@ -48,18 +68,33 @@ class AuthController extends BaseController
             case "GET":
                 return $this->view("auth.login");
             case "POST":
-                print_r($_POST);
                 $loginStatus = $this->authModel->checkLogin($_POST);
                 if ($loginStatus != 2) {
                     if ($loginStatus) {
-                        echo "Login thành công";
+                        return $this->view(viewPath: "base.log", params: [
+                            "status" => "Successfully!",
+                            "message" => "Đăng nhập thành công",
+                            "btn_title" => "Đến trang chủ",
+                            "url_back" => BASEPATH . "/home",
+                        ]);
                     } else {
-                        echo "Sai mật khẩu";
+                        return $this->view(viewPath: "base.log", params: [
+                            "status" => "Có gì đó sai sai!",
+                            "message" => "Mật khẩu không đúng!!",
+                            "btn_title" => "Quay lại trang đăng nhập",
+                            "url_back" => BASEPATH . "/auth/login",
+                        ]);
                     }
                 } else {
-                    echo "Không tìm thấy thông tin tài khoản ứng với $_POST[username]";
+                    return $this->view(viewPath: "base.log", params: [
+                        "status" => "Có gì đó sai sai!",
+                        "message" => "Không tìm thấy thông tin tài khoản ứng với $_POST[username]",
+                        "btn_title" => "Quay lại trang đăng nhập",
+                        "url_back" => BASEPATH . "/auth/login",
+                    ]);
                 }
-                break;
+            default:
+                return $this->view("auth.login");
         }
     }
 }

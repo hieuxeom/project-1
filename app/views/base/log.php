@@ -2,24 +2,31 @@
     document.title = 'Thông báo';
 </script>
 
-<section class="log-section" id="log-section">
-    <div id="notfound">
-        <div class="notfound">
-            <div class="notfound-404">
-                <h1><?php
-                echo $status ?? "";
-                    ?></h1>
+<main class="container-fluid d-flex flex-column justify-content-center align-items-center" style="min-height: 75vh" id="log-section">
+    <div class="container d-flex justify-content-center align-items-center h-75">
+        <div class="d-flex flex-column justify-content-center align-items-center gap-2 w-100">
+            <div class="w-100">
+                <h1 class="text-display-large text-uppercase text-center text-helvetica text-bold"><?php
+                    echo $status ?? "000";
+                    ?>
+                </h1>
             </div>
-            <div class="notfound-mess">
-                <h2><?php echo $status_code ?? ""; ?></h2>
-                <p><?php
-                    echo $message ?? "";
+            <div class="d-flex flex-column">
+                <h2 class="heading-2 text-helvetica text-center text-bold"><?php echo $status_code ?? ""; ?></h2>
+                <p class="m-0 text-super-large text-center">
+                    <?php
+                    if (is_array($message)) {
+                        print_r($message) ?? "";
+                    } else {
+                        echo  $message ?? "";
+                    }
                     ?></p>
                 <br>
-                <p>Hosted by Tran Ngoc Hieu - PS35703</p>
+
             </div>
-            <a href="<?php echo $url_back ?? BASEPATH . "/home" ?>"><?php echo $btn_title ?? "Quay lại trang chủ" ?></a>
+            <a href="<?php echo $url_back ?? BASEPATH . "/home" ?>" class="btn btn-primary btn-lg"><?php echo $btn_title ?? "Quay lại trang chủ" ?></a>
+            <p class="m-0 text-small text-center">Hosted by Tran Ngoc Hieu - PS35703</p>
         </div>
     </div>
 
-</section>
+</main>

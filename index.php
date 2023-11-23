@@ -36,7 +36,7 @@ $url = explode('/', $url);
 // Load the appropriate controller and execute the action
 $controllerName = ucfirst($url[0]) . 'Controller';
 $controllerFile = './app/controllers/' . $controllerName . '.php';
-
+print_r($_SESSION);
 
 require_once './app/views/base/head.php';
 

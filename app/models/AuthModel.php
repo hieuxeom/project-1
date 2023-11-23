@@ -55,13 +55,26 @@ class AuthModel extends BaseModel
         }
 
         if ($this->verifyPassword($password, $accountId)) {
+            $this->createSessionData($accountId);
             return 1;
         } else {
             return 0;
         }
     }
 
-    private function isExistEmail($email) {
+    private function createSessionData($userId)
+    {
+        $_SESSION['is_login'] = true;
+        $_SESSION['user_id'] = $userId;
+        $_SESSION['role'] = $this->getOne(self::USER_TABLE, conditions: [
+            "user_id" => $userId,
+        ],arraySelect: [
+            "role"
+        ])["role"];
+    }
+
+    private function isExistEmail($email)
+    {
         $rsQuery = $this->getOne(table: self::USER_TABLE, conditions: [
             "email" => $email,
         ]);
@@ -72,7 +85,8 @@ class AuthModel extends BaseModel
         }
     }
 
-    private function isExistUsername($username) {
+    private function isExistUsername($username)
+    {
         $rsQuery = $this->getOne(table: self::USER_TABLE, conditions: [
             "username" => $username,
         ]);
