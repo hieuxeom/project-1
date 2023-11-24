@@ -79,7 +79,7 @@ class ProductController extends BaseController
                 $productData = $this->productModel->getProductDetails($productId)[0];
                 $rateScore = $this->productModel->getScore($productId);
                 $listRateData = $this->productModel->getProductRates($productId);
-//                $listComment = $this->productModel->getComments($productId);
+                $listComment = $this->productModel->getComments($productId);
                 return $this->view(viewPath: "product.viewDefault", params: [
                     "productData" => $productData ?? null,
                     // "productCategory" => $productCategory ?? null, // Bỏ '//' nếu cần

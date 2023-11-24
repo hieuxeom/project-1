@@ -15,6 +15,7 @@ class ProductModel extends BaseModel
         $productData2 = $this->getTwoTable(table1: self::PROD, table2: self::PROD_CAT,
             joinColumn: "category_id",
             table1Select: [
+                "prod_id",
                 "prod_name",
                 "prod_desc",
                 "prod_price",

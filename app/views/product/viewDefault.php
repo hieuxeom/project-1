@@ -1,9 +1,3 @@
-<?php
-//    print_r($productData);
-//    print_r($rateScore);
-//print_r($listRateData);
-//print_r($listComment);
-?>
 <main class="container-fluid d-flex flex-column justify-content-center align-items-center gap-3 p-5">
     <div class="container-lg row row-cols-xl-2 row-cols-lg-1 round-16">
         <div class="bg-white d-flex justify-content-center align-items-center p-5">
@@ -86,34 +80,33 @@
             <h3 class="heading-3 m-0">Bình luận sản phẩm</h3>
         </div>
         <div id="comment-form">
-            <form action="#" class="d-flex flex-column gap-2 justify-content-end">
-                <textarea class="form-control position-relative" name="comment-content" id="" rows="5"></textarea>
+            <form action="<?php echo BASEPATH . "/comment?productId=$productData[prod_id]" ?>" method="post"
+                  class="d-flex flex-column gap-2 justify-content-end">
+                <textarea class="form-control position-relative" name="comment_text" id="" rows="5"></textarea>
                 <input class="btn btn-primary" type="submit" value="Bình luận">
 
             </form>
         </div>
-        <div class="d-flex flex-start shadow round-8 p-3" style="background: var(--rose-50)">
-            <div class="d-flex flex-column gap-2">
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="d-flex align-items-center gap-2">
-                        <p class=" text-normal fw-bold mb-1">Maggie Marsh</p>
+        <?php
+        foreach ($listComment as $comment) {
+            echo "<div class='d-flex flex-start shadow-sm round-8 p-3' style='background: var(--rose-50)'>
+            <div class='w-full d-flex flex-column gap-2'>
+                <div class='d-flex justify-content-between align-items-center'>
+                    <div class='d-flex align-items-center gap-2'>
+                        <p class=' text-normal fw-bold mb-1'>$comment[username]</p>
                     </div>
-                    <div class="">
-                        <p class="m-0" style="color: var(--text-dark-500)">
-                            March 07, 2021
+                    <div class=''>
+                        <p class='m-0' style='color: var(--text-dark-500)'>
+                            $comment[comment_time]
                         </p>
-                        <!--                    <a href="#!" class="link-muted"><i class="fas fa-pencil-alt ms-2"></i></a>-->
-                        <!--                    <a href="#!" class="link-muted"><i class="fas fa-redo-alt ms-2"></i></a>-->
-                        <!--                    <a href="#!" class="link-muted"><i class="fas fa-heart ms-2"></i></a>-->
                     </div>
                 </div>
-                <p class="m-0">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting
-                    industry. Lorem Ipsum has been the industry's standard dummy text ever
-                    since the 1500s, when an unknown printer took a galley of type and
-                    scrambled it.
-                </p>
+                <p class='m-0'>$comment[comment_text]</p>
             </div>
         </div>
+            ";
+        }
+        ?>
+
     </div>
 </main>
