@@ -71,6 +71,8 @@ class ProductController extends BaseController
             case "rate":
                 // Xử lí code lấy các thông tin cần trong return
                 //$productName=$this->productModel->getProductRates($productId);
+                $productName=$this->productModel->getProductName($productId);
+                $listRateData=$this->productModel->getProductRates($productId);
 
                 return $this->view(viewPath: "product.viewRate", params: [
                     "productName" => $productName ?? null,
