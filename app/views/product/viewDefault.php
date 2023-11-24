@@ -1,32 +1,21 @@
-<!-- <<<<<<< defind-router
 <?php
-print_r($productData);
-echo "<br>";
-print_r($listRateData); 
-echo "<br>";
-print_r($listComment); 
-
-print_r($rateScore);
-echo "<br>";
-
-foreach($rateScore as $sp){
-    $tb=array_sum($sp)/count($sp);
-}
-echo "Đánh giá tb: ".$tb;
-======= -->
+//    print_r($productData);
+//    print_r($rateScore);
+//print_r($listRateData);
+//print_r($listComment);
+?>
 <main class="container-fluid d-flex flex-column justify-content-center align-items-center gap-3 p-5">
     <div class="container-lg row row-cols-xl-2 row-cols-lg-1 round-16">
         <div class="bg-white d-flex justify-content-center align-items-center p-5">
-            <img src="<?php echo BASEPATH . "/public/img/test-img.png" ?>" alt="">
+            <!--            <img src="--><?php //echo BASEPATH . "/public/img/test-img.png" ?><!--" alt="">-->
+            <img src="<?php echo $productData["img_path"] ?>" alt="">
         </div>
         <div class="p-3 d-flex flex-column gap-3" style="background-color: var(--purple-100)">
             <div class="product-header d-flex flex-column gap-2">
-                <h2 class="heading-2">Lorem Ipsum is simply dummy text
-                    of the printing and typesetting
-                    industry.</h2>
+                <h2 class="heading-2"><?php echo $productData["prod_name"] ?></h2>
                 <div>
                     <a href="#" class="text-decoration-none badge rounded-pill px-3 py-2 bg-secondary"><p
-                                class="color-white m-0 text-small">Tên loại bánh</p></a>
+                                class="color-white m-0 text-small"><?php echo $productData["category_name"] ?></p></a>
                     <a href="#" class="text-decoration-none badge rounded-pill px-3 py-2 bg-secondary"><p
                                 class="color-white m-0 text-small">4/5 Điểm đánh giá (9999 Lượt đánh giá)</p></a>
                     <a href="#" class="text-decoration-none badge rounded-pill px-3 py-2 bg-secondary"><i
@@ -35,7 +24,7 @@ echo "Đánh giá tb: ".$tb;
             </div>
             <div class="d-flex flex-column">
                 <p class="text-super-large text-bold m-0">Giá:</p>
-                <h1 class="heading-1 text-helvetica color-primary m-0">100.000đ</h1>
+                <h1 class="heading-1 text-helvetica color-primary m-0"><?php echo $productData["prod_price"] ?>đ</h1>
             </div>
             <div class="d-flex flex-column">
                 <p class="text-super-large text-bold m-0">Số lượng:</p>
@@ -58,13 +47,7 @@ echo "Đánh giá tb: ".$tb;
     </div>
     <div class="container-lg d-flex flex-column gap-3 px-4 py-3 bg-white round-16">
         <h3 class="heading-3 m-0">Mô tả sản phẩm</h3>
-        <p class="m-0 text-normal">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet cupiditate delectus
-            dignissimos, ea eum excepturi id, in iure nesciunt numquam omnis possimus praesentium quaerat rerum sit sunt
-            tenetur voluptate voluptatibus? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet cupiditate
-            delectus dignissimos, ea eum excepturi id, in iure nesciunt numquam omnis possimus praesentium quaerat rerum
-            sit sunt tenetur voluptate voluptatibus? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet
-            cupiditate delectus dignissimos, ea eum excepturi id, in iure nesciunt numquam omnis possimus praesentium
-            quaerat rerum sit sunt tenetur voluptate voluptatibus?</p>
+        <p class="m-0 text-normal"><?php echo $productData["prod_desc"] ?></p>
 
     </div>
     <div class="container-lg bg-white d-flex flex-column gap-3 px-4 py-3 round-16">
@@ -73,32 +56,30 @@ echo "Đánh giá tb: ".$tb;
             <a href="#" class="m-0 text-small text-decoration-none badge bg-secondary  px-3 py-2 ">4/5 Điểm đánh giá
                 (9999 Lượt đánh giá)</a>
         </div>
-        <div class="d-flex flex-start shadow round-8 p-3" style="background: var(--rose-50)">
-            <div class="d-flex flex-column gap-2">
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="d-flex align-items-center gap-2">
-                        <p class=" text-normal fw-bold mb-1">Maggie Marsh</p>
-                        <span class="badge bg-primary d-flex justify-content-center align-items-center">5 <i
-                                    class="color-white ps-1 fa-solid fa-star"></i></span>
-                    </div>
-                    <div class="">
-                        <p class="m-0" style="color: var(--text-dark-500)">
-                            March 07, 2021
-                        </p>
 
-                        <!--                    <a href="#!" class="link-muted"><i class="fas fa-pencil-alt ms-2"></i></a>-->
-                        <!--                    <a href="#!" class="link-muted"><i class="fas fa-redo-alt ms-2"></i></a>-->
-                        <!--                    <a href="#!" class="link-muted"><i class="fas fa-heart ms-2"></i></a>-->
+        <?php
+        foreach ($listRateData as $rate) {
+            echo "<div class='d-flex flex-start shadow-sm round-8 p-3' style='background: var(--rose-50)'>
+                <div class='w-full d-flex flex-column gap-2'>
+                    <div class='d-flex justify-content-between align-items-center'>
+                        <div class='d-flex align-items-center gap-2'>
+                            <p class=' text-normal fw-bold mb-1'>$rate[username]</p>
+                            <span class='badge bg-primary d-flex justify-content-center align-items-center'>$rate[rate_star] <i
+                                        class='color-white ps-1 fa-solid fa-star'></i></span>
+                        </div>
+                        <div class=''>
+                            <p class='m-0' style='color: var(--text-dark-500)'>
+                                $rate[rate_date]
+                            </p>
+                        </div>
                     </div>
+                    <p class='m-0'>
+                        $rate[rate_text]
+                    </p>
                 </div>
-                <p class="m-0">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting
-                    industry. Lorem Ipsum has been the industry's standard dummy text ever
-                    since the 1500s, when an unknown printer took a galley of type and
-                    scrambled it.
-                </p>
-            </div>
-        </div>
+            </div>";
+        } ?>
+    </div>
     </div>
     <div class="container-lg bg-white d-flex flex-column gap-3 px-4 py-3 round-16">
         <div class="w-full d-flex justify-content-between align-items-center">
@@ -136,4 +117,3 @@ echo "Đánh giá tb: ".$tb;
         </div>
     </div>
 </main>
-// >>>>>>> ui-coding

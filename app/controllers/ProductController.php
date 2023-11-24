@@ -12,14 +12,10 @@ class ProductController extends BaseController
 
     public function index()
     {
-// <<<<<<< defind-router
-        $id=$_REQUEST['pr1'];
+//        $id=$_REQUEST['pr1'];
         $filter = $_REQUEST['filter'] ?? null; // category_id
-        $search = $_REQUEST['search'] ?? null; // pattern tên sản phẩm
-// =======
-//         $filter = $_REQUEST['filter'] ?? null;
-//         $search = $_REQUEST['search'] ?? null;
-// >>>>>>> ui-coding
+        $search = $_REQUEST['search_key'] ?? null; // pattern tên sản phẩm
+
 
         echo "<br>";
 
@@ -34,25 +30,21 @@ class ProductController extends BaseController
         }
 
 
+        $listCategories = $this->productModel->getListCategories();
         switch ($viewMode) {
             case "filter-search":
-                $listCategories = $this->productModel->getProductByIddm($filter);
-                $listProducts = $this->productModel->getProductSkey($search);
-                // Xử lí code lấy sản phẩm vừa có filter, vừa có search key
+                $listProducts = $this->productModel->getListProduct(filter: $filter, search: $search);
                 break;
             case "search":
-                $listCategories = "test";
-                $listProducts = $this->productModel->getProductSkey($search);
+                $listProducts = $this->productModel->getListProduct(search: $search);
                 // Xử lí code lấy sản phẩm theo search key
                 break;
             case "filter":
-                $listCategories = $this->productModel->getProductByIddm($filter);
-                $listProducts = "tesst";
+                $listProducts = $this->productModel->getListProduct(filter: $filter);
                 // Xử lí code lấy sản phẩm theo filter
                 break;
             case "default":
-                $listCategories = $this->productModel->getCategoryName($id);
-                $listProducts = $this->productModel->getShowProduct($id) ;
+                $listProducts = $this->productModel->getListProduct();
                 // Xử lí code lấy toàn bộ sản phẩm
                 break;
         }
@@ -75,8 +67,8 @@ class ProductController extends BaseController
             case "rate":
                 // Xử lí code lấy các thông tin cần trong return
                 //$productName=$this->productModel->getProductRates($productId);
-                $productName=$this->productModel->getProductName($productId);
-                $listRateData=$this->productModel->getProductRates($productId);
+                $productName = $this->productModel->getProductName($productId);
+                $listRateData = $this->productModel->getProductRates($productId);
 
                 return $this->view(viewPath: "product.viewRate", params: [
                     "productName" => $productName ?? null,
@@ -84,12 +76,10 @@ class ProductController extends BaseController
                     "listRateData" => $listRateData ?? null
                 ]);
             case "default":
-                // Xử lí code lấy các thông tin cần trong return
-                // Test
-                $productData=$this->productModel->getProductDetails($productId);
-                $rateScore=$this->productModel->getScore($productId);
-                $listRateData=$this->productModel->getProductRates($productId);
-                $listComment=$this->productModel->getComments($productId);
+                $productData = $this->productModel->getProductDetails($productId)[0];
+                $rateScore = $this->productModel->getScore($productId);
+                $listRateData = $this->productModel->getProductRates($productId);
+//                $listComment = $this->productModel->getComments($productId);
                 return $this->view(viewPath: "product.viewDefault", params: [
                     "productData" => $productData ?? null,
                     // "productCategory" => $productCategory ?? null, // Bỏ '//' nếu cần
