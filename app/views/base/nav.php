@@ -5,9 +5,9 @@
         </div>
         <div class="nav-direct d-flex justify-content-center align-items-center gap-3">
             <?php if (strpos($_SERVER["REQUEST_URI"], '/auth') == false) {
-                echo "<a href='#' class='button button-primary-noborder'>Trang chủ</a>
-                    <a href='#' class='button button-primary-noborder'>Giới thiệu</a>
-            <a href='#' class='button button-primary-noborder'>Sản phẩm</a>";
+                echo "<a href='". BASEPATH ."/home' class='button button-primary-noborder'>Trang chủ</a>
+                    <a href='". BASEPATH ."/about' class='button button-primary-noborder'>Giới thiệu</a>
+            <a href='". BASEPATH ."/product' class='button button-primary-noborder'>Sản phẩm</a>";
             } ?>
         </div>
         <div class="nav-action d-flex justify-content-center align-items-center gap-2">
