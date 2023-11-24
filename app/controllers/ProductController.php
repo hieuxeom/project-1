@@ -12,9 +12,14 @@ class ProductController extends BaseController
 
     public function index()
     {
-        $id=$_REQUEST['1'];
+// <<<<<<< defind-router
+        $id=$_REQUEST['pr1'];
         $filter = $_REQUEST['filter'] ?? null; // category_id
         $search = $_REQUEST['search'] ?? null; // pattern tên sản phẩm
+// =======
+//         $filter = $_REQUEST['filter'] ?? null;
+//         $search = $_REQUEST['search'] ?? null;
+// >>>>>>> ui-coding
 
         echo "<br>";
 
@@ -28,7 +33,6 @@ class ProductController extends BaseController
             $viewMode = "default";
         }
 
-        echo $viewMode;
 
         switch ($viewMode) {
             case "filter-search":
