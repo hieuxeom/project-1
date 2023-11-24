@@ -1,3 +1,19 @@
+<!-- <<<<<<< defind-router
+<?php
+print_r($productData);
+echo "<br>";
+print_r($listRateData); 
+echo "<br>";
+print_r($listComment); 
+
+print_r($rateScore);
+echo "<br>";
+
+foreach($rateScore as $sp){
+    $tb=array_sum($sp)/count($sp);
+}
+echo "Đánh giá tb: ".$tb;
+======= -->
 <main class="container-fluid d-flex flex-column justify-content-center align-items-center gap-3 p-5">
     <div class="container-lg row row-cols-xl-2 row-cols-lg-1 round-16">
         <div class="bg-white d-flex justify-content-center align-items-center p-5">
@@ -120,3 +136,4 @@
         </div>
     </div>
 </main>
+// >>>>>>> ui-coding

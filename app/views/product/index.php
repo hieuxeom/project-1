@@ -1,3 +1,8 @@
+<!-- <<<<<<< defind-router -->
+// <?php
+// print_r($listCategories);
+// echo "<br>"; print_r($listProducts);
+// =======
 <main class="container-fluid d-flex flex-column justify-content-center align-items-center gap-3 p-5">
     <div class="search-box container-lg">
         <form action="" class="d-flex gap-3 justify-content-center">
@@ -182,3 +187,4 @@
     </div>
 
 </main>
+// >>>>>>> ui-coding
