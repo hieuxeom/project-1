@@ -65,8 +65,6 @@ class ProductController extends BaseController
 
         switch ($viewMode) {
             case "rate":
-                // Xử lí code lấy các thông tin cần trong return
-                //$productName=$this->productModel->getProductRates($productId);
                 $productName = $this->productModel->getProductName($productId);
                 $listRateData = $this->productModel->getProductRates($productId);
 
@@ -78,11 +76,10 @@ class ProductController extends BaseController
             case "default":
                 $productData = $this->productModel->getProductDetails($productId)[0];
                 $rateScore = $this->productModel->getScore($productId);
-                $listRateData = $this->productModel->getProductRates($productId);
+                $listRateData = $this->productModel->getProductRates(productId: $productId, limit: 5);
                 $listComment = $this->productModel->getComments($productId);
                 return $this->view(viewPath: "product.viewDefault", params: [
                     "productData" => $productData ?? null,
-                    // "productCategory" => $productCategory ?? null, // Bỏ '//' nếu cần
                     "rateScore" => $rateScore ?? null,
                     "listRateData" => $listRateData ?? null, // limit 5 rate gần nhất
                     "listComment" => $listComment ?? null, // limit 10 comment gần nhất
