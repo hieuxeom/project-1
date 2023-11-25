@@ -111,8 +111,15 @@ class ProductModel extends BaseModel
     }
 
 
-    public function addNewProduct() {
-        return true;
+    public function addNewProduct($insertData) {
+        return $this->insert(table: self::PROD, data: [
+            "prod_name" => $insertData["prod_name"],
+            "prod_desc" => $insertData["prod_desc"],
+            "prod_price" => $insertData["prod_price"],
+            "category_id" => $insertData["category_id"],
+            "best_sell" => $insertData["best_sell"],
+            "img_path" => $insertData["img_path"],
+        ]);
     }
 
     public function updateProductInfo($modifyData, $productId)
@@ -126,6 +133,16 @@ class ProductModel extends BaseModel
             "img_path" => $modifyData["img_path"],
         ], conditions: [
             "prod_id" => $productId,
+        ]);
+    }
+
+    public function updateCategoryInfo($modifyData, $categoryId)
+    {
+        return $this->update(table: self::PROD_CAT, data: [
+            "category_name" => $modifyData["category_name"],
+            "category_desc" => $modifyData["category_desc"],
+        ], conditions: [
+            "category_id" => $categoryId,
         ]);
     }
 

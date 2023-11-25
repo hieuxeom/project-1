@@ -63,7 +63,6 @@ class AdminController extends BaseController
         $action = $_REQUEST['pr1'] ?? "default";
         $productId = $_REQUEST['productId'] ?? null;
 
-
         switch ($action) {
             case "edit":
                 if (isset($productId)) {
@@ -74,19 +73,24 @@ class AdminController extends BaseController
                         "modifyData" => $modifyData[0],
                     ]);
                 }
-                return header("Location: " . BASEPATH . "/admin/users");
+                return header("Location: " . BASEPATH . "/admin/products");
 
             case "delete":
                 if (isset($productId)) {
                     $this->productModel->deleteUser($productId);
                 };
-                return header("Location: " . BASEPATH . "/admin/users");
+                return header("Location: " . BASEPATH . "/admin/products");
 
-            case "banned":
-                if (isset($productId)) {
-                    $this->productModel->deleteUser($productId);
-                };
-                return header("Location: " . BASEPATH . "/admin/users");
+            case "add":
+                if ($_SERVER["REQUEST_METHOD"] == "GET") {
+                    $listCategories = $this->productModel->getListCategories();
+                    return $this->view(viewPath: "admin.productAdd", params: [
+                        "listCategories" => $listCategories,
+                    ]);
+                } else if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    $this->productModel->addNewProduct(insertData: $_POST);
+                }
+                return header("Location: " . BASEPATH . "/admin/products");
 
             default:
                 $listProducts = $this->productModel->getListProduct();
@@ -96,7 +100,8 @@ class AdminController extends BaseController
         }
     }
 
-    public function categories() {
+    public function categories()
+    {
         $action = $_REQUEST['pr1'] ?? "default";
         $categoryId = $_REQUEST['categoryId'] ?? null;
 
@@ -149,9 +154,12 @@ class AdminController extends BaseController
                     case "products":
                         $this->productModel->updateProductInfo(modifyData: $_POST, productId: $id);
                         return header("Location: " . BASEPATH . "/admin/products");
+                    case "categories":
+                        $this->productModel->updateCategoryInfo(modifyData: $_POST, categoryId: $id);
+                        return header("Location: " . BASEPATH . "/admin/categories");
                 }
             case "GET":
-//                return header("Location: " . BASEPATH . "/admin/users");
+
                 break;
             default:
                 break;
@@ -159,7 +167,8 @@ class AdminController extends BaseController
         }
     }
 
-    public function delete() {
+    public function delete()
+    {
         $for = $_REQUEST["for"];
         $id = $_REQUEST["id"];
 

@@ -18,7 +18,7 @@
                         <div class="table-title pb-3">
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <a href="#" class="btn btn-success " data-toggle="modal">
+                                    <a href="<?php echo BASEPATH . "/admin/products/add"?>" class="btn btn-success " data-toggle="modal">
                                         <i class="fa-solid fa-plus text-white"></i>
                                         <span class="text-white">New</span>
                                     </a>
