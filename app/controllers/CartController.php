@@ -14,8 +14,13 @@ class CartController extends BaseController
 //        $userId = $_SESSION['userId']; // Sau code xong login sẽ dùng cái này
         $userId = 1; // Gán tạm 1 userId
 
+        $cartId=1;
+        $prodId=1;
+        $cartData=$this->cartModel->getCart($userId);
+        $showCart=$this->cartModel->getShowCart($cartId, $prodId);
         return $this->view(viewPath: "cart.index", params: [
-            "cartData" => $cartData ?? null // Lấy dữ liệu cho $cartData
+            "cartData" => $cartData ?? null, // Lấy dữ liệu cho $cartData
+            "showCart"=>$showCart ?? null
         ]);
     }
 
