@@ -32,7 +32,7 @@ class CommentModel extends BaseModel
             "username"
         ]);
 
-        return $this->mergeSameCommentId(array_merge($a1, $a2));
+        return array_merge($a1, $a2);
     }
 
     public function deleteComment($commentId) {
@@ -40,24 +40,5 @@ class CommentModel extends BaseModel
             "comment_id" => $commentId,
         ]);
     }
-
-    private function mergeSameCommentId($originalArray)
-    {
-
-
-        $mergedArray = [];
-
-        foreach ($originalArray as $item) {
-            $key = $item['comment_id'];
-
-            if (!array_key_exists($key, $mergedArray)) {
-                $mergedArray[$key] = $item;
-            } else {
-                $mergedArray[$key] = array_merge($mergedArray[$key], $item);
-            }
-        }
-        $mergedArray = array_values($mergedArray);
-
-        return ($mergedArray);
-    }
+    
 }

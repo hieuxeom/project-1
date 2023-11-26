@@ -10,7 +10,7 @@ require_once './app/models/BaseModel.php';
 
 
 session_start();
-
+print_r($_SESSION);
 if (!isset($_SESSION['is_login'])) {
     $_SESSION['is_login'] = false;
 }

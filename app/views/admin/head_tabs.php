@@ -3,7 +3,8 @@
         "Members" => "users",
         "Danh mục" => "categories",
         "Sản phẩm" => "products",
-        "Bình luận" => "comments"
+        "Bình luận" => "comments",
+        "Đánh giá" => "rates",
     ]
 ?>
 
