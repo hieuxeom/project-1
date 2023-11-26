@@ -20,7 +20,7 @@
                                 <div class="col-sm-6">
                                     <a href="<?php echo BASEPATH . "/admin/products/add"?>" class="btn btn-success " data-toggle="modal">
                                         <i class="fa-solid fa-plus text-white"></i>
-                                        <span class="text-white">New</span>
+                                        <span class="text-white">Thêm</span>
                                     </a>
                                 </div>
                             </div>
@@ -28,7 +28,7 @@
                         <table class="table table-striped table-hover">
                             <thead>
                             <tr>
-                                <th>ID Sản phẩm</th>
+                                <th>ID</th>
                                 <th>Tên sản phẩm</th>
                                 <th>Mô tả sản phẩm</th>
                                 <th>Giá sản phẩm</th>
@@ -52,8 +52,7 @@
                                         <td>$product[img_path]</td>
                                         <td class='d-flex gap-3'>
                                             <a href='" . BASEPATH . "/admin/products/edit?productId=$product[prod_id]" . "' class='edit' data-toggle='modal'><i class='fa-solid fa-pen-to-square'></i></a>
-                                            <a href='" . BASEPATH . "/admin/delete?for=products&id=$product[prod_id]" . "' class='delete' data-toggle='modal'><i class='fa-solid fa-trash'></i></a>
-                                            <a href='" . BASEPATH . "/admin/products/banned?productId=$product[prod_id]" . "' class='banned' data-toggle='modal'><i class='fa-solid fa-ban'></i></a>
+                                            <a href='" . BASEPATH . "/admin/products/delete?productId=$product[prod_id]" . "' class='delete' data-toggle='modal'><i class='fa-solid fa-trash'></i></a>
                                         </td>
                                     </tr>
                                     ";

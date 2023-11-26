@@ -35,7 +35,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <input type="submit" value="Sửa" class="btn btn-primary w-full">
+                <input type="submit" value="Thêm" class="btn btn-primary w-full">
             </div>
         </form>
     </div>

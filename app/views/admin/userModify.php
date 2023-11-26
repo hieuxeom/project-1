@@ -25,9 +25,9 @@ print_r($modifyData);
             </div>
             <div class="form-group">
                 <label for="">Quyền</label>
-                <select class="form-control" name="role">
-                    <option value="member">Member</option>
-                    <option value="admin">Admin</option>
+            <select class="form-control" name="role">
+                    <option value="member" <?php echo ($modifyData["role"] == "member" ? "selected" : "")?>>Member</option>
+                    <option value="admin" <?php echo ($modifyData["role"] == "admin" ? "selected" : "")?>>Admin</option>
                 </select>
             </div>
             <div class="form-group">

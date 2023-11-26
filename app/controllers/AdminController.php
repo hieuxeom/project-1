@@ -5,15 +5,21 @@ class AdminController extends BaseController
     private $adminModel;
     private $userModel;
     private $productModel;
+    private $commentModel;
 
     public function __construct()
     {
         $this->loadModel("AdminModel");
         $this->adminModel = new AdminModel();
+
         $this->loadModel("UserModel");
         $this->userModel = new UserModel();
+
         $this->loadModel("ProductModel");
         $this->productModel = new ProductModel();
+
+        $this->loadModel("CommentModel");
+        $this->commentModel = new CommentModel();
     }
 
     public function index()
@@ -77,7 +83,7 @@ class AdminController extends BaseController
 
             case "delete":
                 if (isset($productId)) {
-                    $this->productModel->deleteUser($productId);
+                    $this->productModel->deleteProduct($productId);
                 };
                 return header("Location: " . BASEPATH . "/admin/products");
 
@@ -120,15 +126,17 @@ class AdminController extends BaseController
 
             case "delete":
                 if (isset($categoryId)) {
-                    $this->productModel->deleteUser($categoryId);
+                    $this->productModel->deleteCategory($categoryId);
                 };
-                return header("Location: " . BASEPATH . "/admin/users");
+                return header("Location: " . BASEPATH . "/admin/categories");
 
-            case "banned":
-                if (isset($categoryId)) {
-                    $this->productModel->deleteUser($categoryId);
-                };
-                return header("Location: " . BASEPATH . "/admin/users");
+            case "add":
+                if ($_SERVER["REQUEST_METHOD"] == "GET") {
+                    return $this->view(viewPath: "admin.categoryAdd");
+                } else if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    $this->productModel->addNewCategory(insertData: $_POST);
+                }
+                return header("Location: " . BASEPATH . "/admin/categories");
 
             default:
                 $listCategories = $this->productModel->getListCategories();
@@ -138,6 +146,26 @@ class AdminController extends BaseController
         }
     }
 
+    public function comments()
+    {
+        $action = $_REQUEST['pr1'] ?? "default";
+        $commentId = $_REQUEST['commentId'] ?? null;
+
+
+        switch ($action) {
+            case "delete":
+                if (isset($commentId)) {
+                    $this->commentModel->deleteComment($commentId);
+                };
+                return header("Location: " . BASEPATH . "/admin/comments");
+
+            default:
+                $listComments = $this->commentModel->getAllComment();
+                return $this->view(viewPath: "admin.commentViews", params: [
+                    "listComments" => $listComments,
+                ]);
+        }
+    }
     public function update()
     {
         // path = admin/update?for=?&id=?
@@ -164,22 +192,6 @@ class AdminController extends BaseController
             default:
                 break;
 
-        }
-    }
-
-    public function delete()
-    {
-        $for = $_REQUEST["for"];
-        $id = $_REQUEST["id"];
-
-
-        switch ($for) {
-            case "users":
-                $this->userModel->updateUserInfo(modifyData: $_POST, userId: $id);
-                return header("Location: " . BASEPATH . "/admin/users");
-            case "products":
-                $this->productModel->deleteProduct(productId: $id);
-                return header("Location: " . BASEPATH . "/admin/products");
         }
     }
 

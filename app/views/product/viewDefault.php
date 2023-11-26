@@ -89,7 +89,7 @@
         </div>
         <?php
         foreach ($listComment as $comment) {
-            echo "<div class='d-flex flex-start shadow-sm round-8 p-3' style='background: var(--rose-50)'>
+            echo "<div id='cmtId=$comment[comment_id]' class='d-flex flex-start shadow-sm round-8 p-3' style='background: var(--rose-50)'>
             <div class='w-full d-flex flex-column gap-2'>
                 <div class='d-flex justify-content-between align-items-center'>
                     <div class='d-flex align-items-center gap-2'>
