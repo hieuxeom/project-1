@@ -1,3 +1,7 @@
+hr {
+    margin: 0;
+}
+
 .btn-primary {
     background-color: var(--primary-color); /* Your desired color code */
     border-color: var(--primary-color); /* Border color should match the background color */

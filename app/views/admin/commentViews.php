@@ -1,24 +1,24 @@
 <main class="container-fluid">
     <div class="bg-white container-lg py-5">
-        <?php require_once "./app/views/admin/head_tabs.php"?>
+        <?php require_once "./app/views/admin/head_tabs.php" ?>
         <div class="py-3">
-            <table>
-                <div class="table-responsive">
-                    <div class="table-wrapper">
-                        <table class="table table-striped table-hover">
-                            <thead>
-                            <tr>
-                                <th>Bình luận</th>
-                                <th>Người bình luận</th>
-                                <th>Tên sản phẩm</th>
-                                <th>Thời gian</th>
-                                <th>Hành động</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <?php
-                            foreach ($listComments as $comment) {
-                                echo "
+
+            <div class="table-responsive">
+                <div class="table-wrapper">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th>Bình luận</th>
+                            <th>Người bình luận</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Thời gian</th>
+                            <th>Hành động</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        foreach ($listComments as $comment) {
+                            echo "
                                     <tr>
                                         <td>$comment[comment_text]</td>
                                         <td>$comment[username]</td>
@@ -30,13 +30,12 @@
                                         </td>
                                     </tr>
                                     ";
-                            }
-                            ?>
-                            </tbody>
-                        </table>
-                    </div>
+                        }
+                        ?>
+                        </tbody>
+                    </table>
                 </div>
-            </table>
+            </div>
         </div>
     </div>
 

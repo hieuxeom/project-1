@@ -1,28 +1,27 @@
 <main class="container-fluid">
     <div class="bg-white container-lg py-5">
-        <?php require_once "./app/views/admin/head_tabs.php"?>
+        <?php require_once "./app/views/admin/head_tabs.php" ?>
         <div class="py-3">
-            <table>
-                <div class="table-responsive">
-                    <div class="table-wrapper">
-                        <table class="table table-striped table-hover">
-                            <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Email</th>
-                                <th>Tên đăng nhập</th>
-                                <th>Họ và tên</th>
-                                <th>Địa chỉ</th>
-                                <th>Quyền</th>
-                                <th>Ngày đăng ký</th>
-                                <th>Trạng thái</th>
-                                <th>Hành động</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <?php
-                                foreach ($listUsers as $user) {
-                                    echo "
+            <div class="table-responsive">
+                <div class="table-wrapper">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Email</th>
+                            <th>Tên đăng nhập</th>
+                            <th>Họ và tên</th>
+                            <th>Địa chỉ</th>
+                            <th>Quyền</th>
+                            <th>Ngày đăng ký</th>
+                            <th>Trạng thái</th>
+                            <th>Hành động</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        foreach ($listUsers as $user) {
+                            echo "
                                     <tr>
                                         <td>$user[user_id]</td>
                                         <td>$user[email]</td>
@@ -39,13 +38,12 @@
                                         </td>
                                     </tr>
                                     ";
-                                }
-                            ?>
-                            </tbody>
-                        </table>
-                    </div>
+                        }
+                        ?>
+                        </tbody>
+                    </table>
                 </div>
-            </table>
+            </div>
         </div>
     </div>
 

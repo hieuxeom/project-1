@@ -10,21 +10,27 @@ class CartController extends BaseController
         $this->cartModel = new CartModel();
     }
 
-    public function index() {
-//        $userId = $_SESSION['userId']; // Sau code xong login sẽ dùng cái này
-        $userId = 1; // Gán tạm 1 userId
+    public function index()
+    {
+        $userId = $_SESSION['user_id']; // Sau code xong login sẽ dùng cái này
 
-        $cartId=1;
-        $prodId=1;
-        $cartData=$this->cartModel->getCart($userId);
-        $showCart=$this->cartModel->getShowCart($cartId, $prodId);
+        $cartItems = $this->cartModel->getCartItems($userId);
+        $cartData = $this->cartModel->getCartInfo($userId);
+
         return $this->view(viewPath: "cart.index", params: [
-            "cartData" => $cartData ?? null, // Lấy dữ liệu cho $cartData
-            "showCart"=>$showCart ?? null
+            "cartData" => $cartData ?? null,
+            "cartItems" => $cartItems ?? null, // Lấy dữ liệu cho $cartData
         ]);
     }
 
-    public function add() {
+    public function update()
+    {
+        print_r($_POST);
+        return $this->cartModel->updateQuantity(cartId: $_POST["cartId"], quantity: $_POST["quantity"],productId: $_POST["prodId"]);
+    }
+
+    public function add()
+    {
 //        if ($_SERVER["REQUEST_METHOD"] != "POST") {
 //            return header("Location: " . BASEPATH . "/cart");
 //        } // Không bỏ comment đoạn này
@@ -37,7 +43,8 @@ class CartController extends BaseController
         // return $this->cartModel->[hàm insert dữ liệu tương ứng]
     }
 
-    public function delete() {
+    public function delete()
+    {
 //        if ($_SERVER["REQUEST_METHOD"] != "POST") {
 //            return header("Location: " . BASEPATH . "/cart");
 //        } // Không bỏ comment đoạn này
@@ -49,7 +56,8 @@ class CartController extends BaseController
         // return $this->cartModel->[hàm xóa dữ liệu tương ứng]
     }
 
-    public function voucher() {
+    public function voucher()
+    {
 //        if ($_SERVER["REQUEST_METHOD"] != "POST") {
 //            return header("Location: " . BASEPATH . "/cart");
 //        } // Không bỏ comment đoạn này
@@ -63,6 +71,17 @@ class CartController extends BaseController
 
         return header("Location: " . BASEPATH . "/cart");
 
+    }
+
+    public function test()
+    {
+        $userId = 1;
+//        $this->cartModel->addItemsToCart(userId: $userId,productId: 6,quantity: 3);
+//        $this->cartModel->removeItemsInCart(userId: $userId,productId: 6);
+//        $this->cartModel->updateQuantity(userId: $userId,productId: 6, quantity: 1);
+        return $this->view(viewPath: "cart.index", params: [
+            "cartItems" => $this->cartModel->getCartItems($userId),
+        ]);
     }
 
 }
