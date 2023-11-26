@@ -68,7 +68,11 @@ class AdminController extends BaseController
 
             case "banned":
                 if (isset($userId)) {
-                    $this->userModel->deleteUser($userId);
+                    if ($_SERVER["REQUEST_METHOD"] == "GET") {
+                        return $this->view(viewPath: "admin.userBlock");
+                    } else if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                        $this->userModel->blockUser(userId: $userId, reasonData: $_POST);
+                    }
                 };
                 return header("Location: " . BASEPATH . "/admin/users");
 
@@ -193,7 +197,7 @@ class AdminController extends BaseController
         switch ($action) {
             case "delete":
                 if (isset($rateId)) {
-                    $this->rateModel->deleteComment($rateId);
+                    $this->rateModel->deleteRate($rateId);
                 };
                 return header("Location: " . BASEPATH . "/admin/rates");
 

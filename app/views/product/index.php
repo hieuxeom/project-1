@@ -11,17 +11,18 @@
     <div class="container-lg d-flex justify-content-center align-items-center">
         <div class="button-group d-flex justify-content-center align-items-center gap-2">
             <?php
-//                    print_r($listCategories);
-                foreach ($listCategories as $category) {
-                    echo "<a href='". BASEPATH . "/product?filter=$category[category_id]' class='btn btn-outline-primary'>$category[category_name]</a>";
+            //                    print_r($listCategories);
+            foreach ($listCategories as $category) {
+                echo "<a href='" . BASEPATH . "/product?filter=$category[category_id]' class='btn btn-outline-primary'>$category[category_name]</a>";
             }
             ?>
         </div>
     </div>
     <!--    show product list -->
     <div class="container-lg row row-cols-4 justify-content-center">
-        <?php 
-            foreach ($listProducts as $product) {
+        <?php
+        foreach ($listProducts as $product) {
+            if (!$product["is_delete"]) {
                 echo "<div class='card w-1-4'>
             <div class='w-full d-flex justify-content-center align-items-center p-2'>
                 <img src='$product[img_path]' class='card-img-top' alt='...'>
@@ -30,28 +31,12 @@
                 <h5 class='card-title text-truncate'>$product[prod_name]</h5>
                 <p class='card-text'>($product[views] lượt xem)</p>
                 <div class='d-flex justify-content-between align-items-center'>
-                    <a href='". BASEPATH ."/product/details/$product[prod_id]' class='btn btn-primary'>Xem sản phẩm</a>
+                    <a href='" . BASEPATH . "/product/details/$product[prod_id]' class='btn btn-primary'>Xem sản phẩm</a>
                     <p class='m-0 text-super-large text-bold color-primary'>$product[prod_price]đ</p>
                 </div>
             </div>
         </div>";
             }
+        }
         ?>
-<!--        <div class='card w-1-4'>-->
-<!--            <div class='w-full d-flex justify-content-center align-items-center p-2'>-->
-<!--                <img src='--><?php //echo BASEPATH . '/public/img/test-img.png' ?><!--' class='card-img-top' alt='...'>-->
-<!--            </div>-->
-<!--            <div class='card-body'>-->
-<!--                <h5 class='card-title text-truncate'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.-->
-<!--                    Aliquam-->
-<!--                    consectetur venenatis blandit. Praesent vehicula, libero non pretium vulputate, lacus arcu-->
-<!--                    facilisis lectus</h5>-->
-<!--                <p class='card-text'>(999 lượt xem)</p>-->
-<!--                <div class='d-flex justify-content-between align-items-center'>-->
-<!--                    <a href='#' class='btn btn-primary'>Xem sản phẩm</a>-->
-<!--                    <p class='m-0 text-super-large text-bold color-primary'>100.000đ</p>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-    </div>
 </main>

@@ -3,6 +3,7 @@
 class UserModel extends BaseModel
 {
     const USER_TABLE = "users";
+    const VIOLATE_TABLE = "violates";
 
     public function getAllUser()
     {
@@ -31,8 +32,27 @@ class UserModel extends BaseModel
 
     public function deleteUser($userId)
     {
-        return $this->delete(table: self::USER_TABLE,conditions: [
-            "user_id" => $userId
+        return $this->update(table: self::USER_TABLE, data: [
+            "is_active" => "delete",
+        ],
+            conditions: [
+                "user_id" => $userId
+            ]);
+    }
+
+    public function blockUser($userId, $reasonData)
+    {
+
+        $this->update(table: self::USER_TABLE, data: [
+            "is_active" => "disable",
+        ],
+            conditions: [
+                "user_id" => $userId
+            ]);
+
+        return $this->insert(table: self::VIOLATE_TABLE, data: [
+            "user_id" => $userId,
+            "violate_reason" => $reasonData["reason"],
         ]);
     }
 }

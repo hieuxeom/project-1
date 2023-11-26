@@ -8,13 +8,14 @@
                         <table class="table table-striped table-hover">
                             <thead>
                             <tr>
-                                <th>User ID</th>
+                                <th>ID</th>
                                 <th>Email</th>
                                 <th>Tên đăng nhập</th>
                                 <th>Họ và tên</th>
                                 <th>Địa chỉ</th>
                                 <th>Quyền</th>
                                 <th>Ngày đăng ký</th>
+                                <th>Trạng thái</th>
                                 <th>Hành động</th>
                             </tr>
                             </thead>
@@ -30,10 +31,11 @@
                                         <td>$user[address]</td>
                                         <td>$user[role]</td>
                                         <td>$user[regis_date]</td>
-                                        <td class='d-flex gap-3'>
-                                            <a href='" . BASEPATH . "/admin/users/edit?userId=$user[user_id]" . "' class='edit' data-toggle='modal'><i class='fa-solid fa-pen-to-square'></i></a>
-                                            <a href='" . BASEPATH . "/admin/users/delete?userId=$user[user_id]" . "' class='delete' data-toggle='modal'><i class='fa-solid fa-trash'></i></a>
-                                            <a href='" . BASEPATH . "/admin/users/banned?userId=$user[user_id]" . "' class='banned' data-toggle='modal'><i class='fa-solid fa-ban'></i></a>
+                                        <td>$user[is_active]</td>
+                                        <td>
+                                            <a href='" . BASEPATH . "/admin/users/edit?userId=$user[user_id]" . "' class='me-2'><i class='fa-solid fa-pen-to-square'></i></a>
+                                            <a href='" . BASEPATH . "/admin/users/delete?userId=$user[user_id]" . "' class='me-2'><i class='fa-solid fa-trash'></i></a>
+                                            <a href='" . BASEPATH . "/admin/users/banned?userId=$user[user_id]" . "' class='me-2'><i class='fa-solid fa-ban'></i></a>
                                         </td>
                                     </tr>
                                     ";

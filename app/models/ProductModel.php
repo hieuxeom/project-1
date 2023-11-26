@@ -145,28 +145,33 @@ class ProductModel extends BaseModel
 
     public function deleteProduct($productId)
     {
-        $this->delete(table: self::PROD_STOCK_TABLE, conditions: [
-            "prod_id" => $productId,
-        ]);
+//        $this->delete(table: self::PROD_STOCK_TABLE, conditions: [
+//            "prod_id" => $productId,
+//        ]);
+//
+//        $this->delete(table: self::PROD_CMT_TABLE, conditions: [
+//            "prod_id" => $productId,
+//        ]);
+//
+//        $this->delete(table: self::CART_ITEMS_TABLE, conditions: [
+//            "prod_id" => $productId,
+//        ]);
+//
+//        $this->delete(table: self::PROD_RATE_TABLE, conditions: [
+//            "prod_id" => $productId,
+//        ]);
+//
+//        $this->delete(table: self::USER_SAVED_TABLE, conditions: [
+//            "prod_id" => $productId,
+//        ]);
 
-        $this->delete(table: self::PROD_CMT_TABLE, conditions: [
-            "prod_id" => $productId,
-        ]);
-
-        $this->delete(table: self::CART_ITEMS_TABLE, conditions: [
-            "prod_id" => $productId,
-        ]);
-
-        $this->delete(table: self::PROD_RATE_TABLE, conditions: [
-            "prod_id" => $productId,
-        ]);
-
-        $this->delete(table: self::USER_SAVED_TABLE, conditions: [
-            "prod_id" => $productId,
-        ]);
-
-        return $this->delete(table: self::PROD_TABLE, conditions: [
-            "prod_id" => $productId,
+//        return $this->delete(table: self::PROD_TABLE, conditions: [
+//            "prod_id" => $productId,
+//        ]);
+        return $this->update(table: self::PROD_TABLE, data: [
+            "is_delete" => 1,
+        ], conditions: [
+            "prod_id" => $productId
         ]);
     }
 

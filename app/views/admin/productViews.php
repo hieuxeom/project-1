@@ -25,6 +25,7 @@
                                 <th>Danh mục</th>
                                 <th>Lượt xem</th>
                                 <th>Link ảnh sản phẩm</th>
+                                <th>Trạng thái</th>
                                 <th>Hành động</th>
                             </tr>
                             </thead>
@@ -40,9 +41,10 @@
                                         <td>$product[category_id]</td>
                                         <td>$product[views]</td>
                                         <td>$product[img_path]</td>
-                                        <td class='d-flex gap-3'>
-                                            <a href='" . BASEPATH . "/admin/products/edit?productId=$product[prod_id]" . "' class='edit' data-toggle='modal'><i class='fa-solid fa-pen-to-square'></i></a>
-                                            <a href='" . BASEPATH . "/admin/products/delete?productId=$product[prod_id]" . "' class='delete' data-toggle='modal'><i class='fa-solid fa-trash'></i></a>
+                                        <td>" . ($product["is_delete"] ? "Bị Xóa" : "Hoạt động") . "</td>
+                                        <td>
+                                            <a href='" . BASEPATH . "/admin/products/edit?productId=$product[prod_id]" . "' class=' me-2'><i class='fa-solid fa-pen-to-square'></i></a>
+                                            <a href='" . BASEPATH . "/admin/products/delete?productId=$product[prod_id]" . "' class='   me-2'><i class='fa-solid fa-trash'></i></a>
                                         </td>
                                     </tr>
                                     ";

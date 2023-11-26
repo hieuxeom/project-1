@@ -24,4 +24,10 @@ class RateModel extends BaseModel
 
         return array_merge($a, $b);
     }
+
+    public function deleteRate($rateId) {
+        return $this->delete(table: self::RATES_TABLE, conditions: [
+            "rate_id" => $rateId,
+        ]);
+    }
 }

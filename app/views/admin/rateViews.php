@@ -2,7 +2,7 @@
 ?>
 <main class="container-fluid">
     <div class="bg-white container-lg py-5">
-        <?php require_once "./app/views/admin/head_tabs.php"?>
+        <?php require_once "./app/views/admin/head_tabs.php" ?>
         <div class="py-3">
             <table>
                 <div class="table-responsive">
@@ -28,9 +28,9 @@
                                         <td>$rate[username]</td>
                                         <td>$rate[prod_name]</td>
                                         <td>$rate[rate_date]</td>
-                                        <td class='d-flex gap-3'>
-                                            <a href='" . BASEPATH . "/product/details/$rate[prod_id]#cmtId=$rate[rate_id]' class='edit' data-toggle='modal'><i class='fa-solid fa-eye'></i></a>
-                                            <a href='" . BASEPATH . "/admin/comments/delete?commentId=$rate[rate_id]' class='delete' data-toggle='modal'><i class='fa-solid fa-trash'></i></a>
+                                        <td>
+                                            <a href='" . BASEPATH . "/product/details/$rate[prod_id]#cmtId=$rate[rate_id]' class='me-2'><i class='fa-solid fa-eye'></i></a>
+                                            <a href='" . BASEPATH . "/admin/rates/delete?rateId=$rate[rate_id]' class='me-2'><i class='fa-solid fa-trash'></i></a>
                                         </td>
                                     </tr>
                                     ";

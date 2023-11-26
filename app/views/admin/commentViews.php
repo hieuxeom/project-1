@@ -24,9 +24,9 @@
                                         <td>$comment[username]</td>
                                         <td>$comment[prod_name]</td>
                                         <td>$comment[comment_time]</td>
-                                        <td class='d-flex gap-3'>
-                                            <a href='" . BASEPATH . "/product/details/$comment[prod_id]#cmtId=$comment[comment_id]' class='edit' data-toggle='modal'><i class='fa-solid fa-eye'></i></a>
-                                            <a href='" . BASEPATH . "/admin/comments/delete?commentId=$comment[comment_id]' class='delete' data-toggle='modal'><i class='fa-solid fa-trash'></i></a>
+                                        <td>
+                                            <a href='" . BASEPATH . "/product/details/$comment[prod_id]#cmtId=$comment[comment_id]' class='me-2'><i class='fa-solid fa-eye'></i></a>
+                                            <a href='" . BASEPATH . "/admin/comments/delete?commentId=$comment[comment_id]' class='me-2'><i class='fa-solid fa-trash'></i></a>
                                         </td>
                                     </tr>
                                     ";

@@ -33,9 +33,9 @@
                                         <td>$category[category_id]</td>
                                         <td>$category[category_name]</td>
                                         <td>$category[category_desc]</td>
-                                        <td class='d-flex gap-3'>
-                                            <a href='" . BASEPATH . "/admin/categories/edit?categoryId=$category[category_id]' class='edit' data-toggle='modal'><i class='fa-solid fa-pen-to-square'></i></a>
-                                            <a href='" . BASEPATH . "/admin/categories/delete?categoryId=$category[category_id]' class='delete' data-toggle='modal'><i class='fa-solid fa-trash'></i></a>
+                                        <td>
+                                            <a href='" . BASEPATH . "/admin/categories/edit?categoryId=$category[category_id]' class=' me-2'><i class='fa-solid fa-pen-to-square'></i></a>
+                                            <a href='" . BASEPATH . "/admin/categories/delete?categoryId=$category[category_id]' class='me-2'><i class='fa-solid fa-trash'></i></a>
                                         </td>
                                     </tr>
                                     ";

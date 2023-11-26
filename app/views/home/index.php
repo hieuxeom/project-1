@@ -26,7 +26,7 @@
         <div class="container-fluid">
             <h1 class="heading-1 text-helvetica text-center text-uppercase">Sản phẩm bán chạy</h1>
         </div>
-        <div class="container-fluid mt-5 row row-cols-sm-1 row-cols-md`-2 row-cols-lg-3 gap-1 p-0 justify-content-center">
+        <div class="container-fluid mt-5 row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 p-0 justify-content-center">
             <div class="card w-1-4">
                 <div class="d-flex justify-content-center align-items-center p-2">
                     <img src="<?php echo BASEPATH . "/public/img/test-img.png" ?>" class="card-img-top" alt="...">

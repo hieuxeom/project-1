@@ -40,5 +40,5 @@ class CommentModel extends BaseModel
             "comment_id" => $commentId,
         ]);
     }
-    
+
 }
