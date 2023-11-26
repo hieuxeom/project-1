@@ -24,21 +24,18 @@ class CartModel extends BaseModel
         table2Select:["quantity"], conditions:["prod_id"=>$prodId]);
         return $showCart;
     }
-// add khi chưa có sp
-    public function addProduct($cartId,$productId,$quantity,$pad){
-        $addPro=$this->insert(table: self::CART_ITEMS_TABLE,
-         data:["cart_id"=>$cartId,
-         "prod_id"=>$productId,
-         "quantity"=>$quantity,
-         "price_at_paid"=>$pad]
+
+    public function createNewCartId($cartId,){
+        $addPro=$this->insert(table: self::CART_TABLE,
+         data:["cart_id"=>$cartId,]
     ); return $addPro;
     }
-//add khi có sp
-    public function addQuantityProduct($productId,$quantity){
-        $addQProd=$this->update(table: self::CART_ITEMS_TABLE, data:["quantity"=>$quantity],
+
+     public function  addItemToCartt($productId){
+        $addQProd=$this->update(table: self::CART_ITEMS_TABLE, data:["prod_id"=>$productId],
         conditions:["prod_id"=>$productId]);
-        return $addQProd;
-    }
+       return $addQProd;
+   }
 
     // Xóa giỏ hàng
     public function delCart($cartId){
