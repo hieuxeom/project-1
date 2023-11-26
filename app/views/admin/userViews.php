@@ -1,30 +1,10 @@
 <main class="container-fluid">
     <div class="bg-white container-lg py-5">
-        <ul class="nav nav-tabs">
-            <li class="nav-item">
-                <a href="#" class="nav-link active">Quản lí Users</a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link ">Profile</a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">Messages</a>
-            </li>
-        </ul>
+        <?php require_once "./app/views/admin/head_tabs.php"?>
         <div class="py-3">
             <table>
                 <div class="table-responsive">
                     <div class="table-wrapper">
-                        <!--                        <div class="table-title">-->
-                        <!--                            <div class="row">-->
-                        <!--                                <div class="col-sm-6">-->
-                        <!--                                    <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i-->
-                        <!--                                                class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>-->
-                        <!--                                    <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i-->
-                        <!--                                                class="material-icons">&#xE15C;</i> <span>Delete</span></a>-->
-                        <!--                                </div>-->
-                        <!--                            </div>-->
-                        <!--                        </div>-->
                         <table class="table table-striped table-hover">
                             <thead>
                             <tr>

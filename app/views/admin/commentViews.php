@@ -1,16 +1,6 @@
 <main class="container-fluid">
     <div class="bg-white container-lg py-5">
-        <ul class="nav nav-tabs">
-            <li class="nav-item">
-                <a href="#" class="nav-link active">Quản lí User</a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link ">Quản lí đơn hàng</a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">Quản lí cc</a>
-            </li>
-        </ul>
+        <?php require_once "./app/views/admin/head_tabs.php"?>
         <div class="py-3">
             <table>
                 <div class="table-responsive">
