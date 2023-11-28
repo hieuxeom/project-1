@@ -1,2 +1,2 @@
 <?php
-print_r($postData);
+print_r($cartItems);

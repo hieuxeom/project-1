@@ -3,11 +3,15 @@
 class ProductController extends BaseController
 {
     private $productModel;
+    private $cartModel;
 
     public function __construct()
     {
         $this->loadModel("ProductModel");
         $this->productModel = new ProductModel();
+
+        $this->loadModel("CartModel");
+        $this->cartModel = new CartModel();
     }
 
     public function index()
@@ -74,11 +78,16 @@ class ProductController extends BaseController
                     "listRateData" => $listRateData ?? null
                 ]);
             case "default":
+                if (isset($_SESSION["user_id"])) {
+
+                $cartData = $this->cartModel->getCartInfo($_SESSION["user_id"]);
+                };
                 $productData = $this->productModel->getProductDetails($productId)[0];
                 $rateScore = $this->productModel->getScore($productId);
                 $listRateData = $this->productModel->getProductRates(productId: $productId, limit: 5);
                 $listComment = $this->productModel->getComments($productId);
                 return $this->view(viewPath: "product.viewDefault", params: [
+                    "cartData" => $cartData ?? null,
                     "productData" => $productData ?? null,
                     "rateScore" => $rateScore ?? null,
                     "listRateData" => $listRateData ?? null, // limit 5 rate gần nhất

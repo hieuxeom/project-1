@@ -17,6 +17,13 @@ if (strpos($_SERVER["REQUEST_URI"], "/home")) {
 ?>
 
 <?php
+if (strpos($_SERVER["REQUEST_URI"], "/product")) {
+    echo "<script src='" . BASEPATH . "/public/scripts/product.js" . "'></script>";
+
+}
+?>
+
+<?php
 if (strpos($_SERVER["REQUEST_URI"], '/auth')) {
     echo "<script src='" . BASEPATH . "/public/scripts/auth.js" . "'></script>";
 } ?>

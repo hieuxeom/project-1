@@ -24,15 +24,23 @@
                 <p class="text-super-large text-bold m-0">Số lượng:</p>
                 <div class="d-flex align-items-center gap-3">
                     <div class="w-1-5 input-group">
-                        <button class="input-group-text bg-third color-white" id="">-</button>
-                        <input type="text" class="text-center form-control" value="0">
-                        <button class="input-group-text bg-third color-white" id="">+</button>
+                        <?php
+                        if ($_SESSION['is_login'] == 1) {
+                            echo "<input id='cartId' type='hidden' class='text-center form-control' name='cart_id' value='$cartData[cart_id]'>";
+                        }
+                        ?>
+
+                        <input id="prodId" type="hidden" class="text-center form-control" name="prod_id"
+                               value="<?php echo $productData["prod_id"] ?>">
+                        <button id="minusButton" class="input-group-text bg-third color-white" id="">-</button>
+                        <input id="quantityInput" type="text" class="text-center form-control" value="1">
+                        <button id="addButton" class="input-group-text bg-third color-white" id="">+</button>
                     </div>
                     <p class="m-0 text-small">(<strong>999</strong> sản phẩm có sẵn)</p>
                 </div>
             </div>
             <div class="pt-3">
-                <button class="btn btn-primary btn-lg rounded-pill d-flex gap-2 align-items-center">
+                <button id="submitButton" class="btn btn-primary btn-lg rounded-pill d-flex gap-2 align-items-center">
                     <i class="color-white text-normal fa-solid fa-cart-plus"></i>
                     Thêm sản phẩm vào giỏ hàng
                 </button>
@@ -79,15 +87,18 @@
         <div class="w-full d-flex justify-content-between align-items-center">
             <h3 class="heading-3 m-0">Bình luận sản phẩm</h3>
         </div>
-        <div id="comment-form">
-            <form action="<?php echo BASEPATH . "/comment?productId=$productData[prod_id]" ?>" method="post"
-                  class="d-flex flex-column gap-2 justify-content-end">
-                <textarea class="form-control position-relative" name="comment_text" id="" rows="5"></textarea>
-                <input class="btn btn-primary" type="submit" value="Bình luận">
-
-            </form>
-        </div>
         <?php
+
+        if ($_SESSION['is_login'] == 1) {
+            echo "<div id='comment-form' >
+            <form action='" .BASEPATH . "/comment?productId=$productData[prod_id]' method='post'
+                  class='d-flex flex-column gap-2 justify-content-end'>
+                <textarea class='form-control position-relative' name='comment_text' id='' rows='5'></textarea>
+                <input class='btn btn-primary' type='submit' value='Bình luận'>
+            </form>
+        </div>";
+        }
+
         foreach ($listComment as $comment) {
             echo "<div id='cmtId=$comment[comment_id]' class='d-flex flex-start shadow-sm round-8 p-3' style='background: var(--rose-50)'>
             <div class='w-full d-flex flex-column gap-2'>

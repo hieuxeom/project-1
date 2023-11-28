@@ -5,6 +5,8 @@
         "Sản phẩm" => "products",
         "Bình luận" => "comments",
         "Đánh giá" => "rates",
+        "Giỏ hàng/Đơn hàng" => "carts",
+        "Voucher" => "vouchers",
     ]
 ?>
 

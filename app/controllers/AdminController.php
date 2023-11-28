@@ -7,6 +7,8 @@ class AdminController extends BaseController
     private $productModel;
     private $commentModel;
     private $rateModel;
+    private $cartModel;
+    private $voucherModel;
 
     public function __construct()
     {
@@ -25,6 +27,12 @@ class AdminController extends BaseController
 
             $this->loadModel("RateModel");
             $this->rateModel = new RateModel();
+
+            $this->loadModel("CartModel");
+            $this->cartModel = new CartModel();
+
+            $this->loadModel("VoucherModel");
+            $this->voucherModel = new VoucherModel();
         } else {
             return header("Location: " . BASEPATH . "/home");
         }
@@ -180,7 +188,6 @@ class AdminController extends BaseController
                 return header("Location: " . BASEPATH . "/admin/comments");
 
             default:
-//                $listComments = ;
                 $listComments = $this->adminModel->mergeArray(originalArray: $this->commentModel->getAllComment(), byKey: "comment_id");
                 return $this->view(viewPath: "admin.commentViews", params: [
                     "listComments" => $listComments,
@@ -209,6 +216,65 @@ class AdminController extends BaseController
         }
     }
 
+    public function carts()
+    {
+        $action = $_REQUEST['pr1'] ?? "default";
+//        $rateId = $_REQUEST['rateId'] ?? null;
+
+
+        switch ($action) {
+            case "delete":
+                if (isset($rateId)) {
+                    $this->rateModel->deleteRate($rateId);
+                };
+                return header("Location: " . BASEPATH . "/admin/rates");
+
+            default:
+                $listCarts = $this->cartModel->getAllCarts();
+                return $this->view(viewPath: "admin.cartViews", params: [
+                    "listCarts" => $listCarts,
+                ]);
+        }
+    }
+
+    public function vouchers()
+    {
+        $action = $_REQUEST['pr1'] ?? "default";
+        $voucherId = $_REQUEST['voucherId'] ?? null;
+
+        switch ($action) {
+            case "delete":
+                if (isset($rateId)) {
+                    $this->rateModel->deleteRate($rateId);
+                };
+                return header("Location: " . BASEPATH . "/admin/rates");
+            case "add":
+                if ($_SERVER["REQUEST_METHOD"] == "GET") {
+                    return $this->view(viewPath: "admin.voucherAdd");
+                } else if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    $this->voucherModel->createNewVoucher($_POST);
+                }
+                return header("Location: " . BASEPATH . "/admin/vouchers");
+
+            case "edit":
+                if (isset($voucherId)) {
+                    $voucherData = $this->voucherModel->getVoucherInfo($voucherId);
+
+                    return $this->view(viewPath: "admin.voucherModify", params: [
+                        "voucherData" => $voucherData,
+                    ]);
+                }
+
+                return header("Location: " . BASEPATH . "/admin/vouchers");
+
+            default:
+                $listVouchers = $this->voucherModel->getAllVoucher();
+
+                return $this->view(viewPath: "admin.voucherViews", params: [
+                    "listVouchers" => $listVouchers,
+                ]);
+        }
+    }
 
     public function update()
     {
@@ -228,9 +294,11 @@ class AdminController extends BaseController
                     case "categories":
                         $this->productModel->updateCategoryInfo(modifyData: $_POST, categoryId: $id);
                         return header("Location: " . BASEPATH . "/admin/categories");
+                    case "vouchers":
+                        $this->voucherModel->updateVouchersInfo(modifyData: $_POST, voucherId: $id);
+                        return header("Location: " . BASEPATH . "/admin/vouchers");
                 }
             case "GET":
-
                 break;
             default:
                 break;
