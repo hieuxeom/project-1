@@ -44,3 +44,8 @@ hr {
     background-color: var(--rose-300);
     border-color: var(--rose-300);
 }
+
+
+a:hover {
+    color: var(--text-light-base);
+}

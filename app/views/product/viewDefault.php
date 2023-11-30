@@ -1,7 +1,6 @@
 <main class="container-fluid d-flex flex-column justify-content-center align-items-center gap-3 p-5">
     <div class="container-lg row row-cols-xl-2 row-cols-lg-1 round-16">
         <div class="bg-white d-flex justify-content-center align-items-center p-5">
-            <!--            <img src="--><?php //echo BASEPATH . "/public/img/test-img.png" ?><!--" alt="">-->
             <img src="<?php echo $productData["img_path"] ?>" alt="">
         </div>
         <div class="p-3 d-flex flex-column gap-3" style="background-color: var(--purple-100)">
@@ -10,7 +9,8 @@
                 <div>
                     <a href="#" class="text-decoration-none badge rounded-pill px-3 py-2 bg-secondary"><p
                                 class="color-white m-0 text-small"><?php echo $productData["category_name"] ?></p></a>
-                    <a href="#" class="text-decoration-none badge rounded-pill px-3 py-2 bg-secondary"><p
+                    <a href="<?php echo BASEPATH . "/product/details/" . $productData["prod_id"] . "?view=rate" ?>"
+                       class="text-decoration-none badge rounded-pill px-3 py-2 bg-secondary"><p
                                 class="color-white m-0 text-small">4/5 Điểm đánh giá (9999 Lượt đánh giá)</p></a>
                     <a href="#" class="text-decoration-none badge rounded-pill px-3 py-2 bg-secondary"><i
                                 class="text-small color-white fa-regular fa-bookmark"></i></a>
@@ -91,7 +91,7 @@
 
         if ($_SESSION['is_login'] == 1) {
             echo "<div id='comment-form' >
-            <form action='" .BASEPATH . "/comment?productId=$productData[prod_id]' method='post'
+            <form action='" . BASEPATH . "/comment?productId=$productData[prod_id]' method='post'
                   class='d-flex flex-column gap-2 justify-content-end'>
                 <textarea class='form-control position-relative' name='comment_text' id='' rows='5'></textarea>
                 <input class='btn btn-primary' type='submit' value='Bình luận'>
@@ -99,7 +99,7 @@
         </div>";
         }
 
-        foreach ($listComment as $comment) {
+        foreach ($listComments as $comment) {
             echo "<div id='cmtId=$comment[comment_id]' class='d-flex flex-start shadow-sm round-8 p-3' style='background: var(--rose-50)'>
             <div class='w-full d-flex flex-column gap-2'>
                 <div class='d-flex justify-content-between align-items-center'>

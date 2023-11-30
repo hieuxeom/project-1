@@ -178,14 +178,19 @@ class AdminController extends BaseController
     {
         $action = $_REQUEST['pr1'] ?? "default";
         $commentId = $_REQUEST['commentId'] ?? null;
-
+        $backLink = $_REQUEST["back"] ?? "admin";
 
         switch ($action) {
             case "delete":
                 if (isset($commentId)) {
                     $this->commentModel->deleteComment($commentId);
                 };
-                return header("Location: " . BASEPATH . "/admin/comments");
+
+                if ($backLink == "admin") {
+                    return header("Location: " . BASEPATH . "/admin/comments");
+                } else {
+                    return header("Location: " . BASEPATH . "/user/commentHistory");
+                }
 
             default:
                 $listComments = $this->adminModel->mergeArray(originalArray: $this->commentModel->getAllComment(), byKey: "comment_id");
@@ -276,6 +281,7 @@ class AdminController extends BaseController
         }
     }
 
+
     public function update()
     {
         $method = $_SERVER["REQUEST_METHOD"];
@@ -306,8 +312,18 @@ class AdminController extends BaseController
         }
     }
 
+    public function sendOTP()
+    {
+        $userId = $_POST["userId"];
+        $userData = $this->userModel->getUserInfo($userId);
+        $this->adminModel->sendMail($userData);
+    }
+
     public function test()
     {
-        print_r($_REQUEST);
+        $userId = $_SESSION["user_id"];
+        $userData = $this->userModel->getUserInfo($userId);
+        $this->adminModel->sendMail($userData);
+//        echo rand(100000, 999999);
     }
 }

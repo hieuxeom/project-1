@@ -28,7 +28,7 @@
                                         <td>$rate[prod_name]</td>
                                         <td>$rate[rate_date]</td>
                                         <td>
-                                            <a href='" . BASEPATH . "/product/details/$rate[prod_id]#cmtId=$rate[rate_id]' class='me-2'><i class='fa-solid fa-eye'></i></a>
+                                            <a href='" . BASEPATH . "/product/details/$rate[prod_id]?view=rate#rateId=$rate[rate_id]' class='me-2'><i class='fa-solid fa-eye'></i></a>
                                             <a href='" . BASEPATH . "/admin/rates/delete?rateId=$rate[rate_id]' class='me-2'><i class='fa-solid fa-trash'></i></a>
                                         </td>
                                     </tr>

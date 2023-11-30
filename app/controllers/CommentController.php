@@ -20,9 +20,6 @@ class CommentController extends BaseController
             case "GET":
                 return header("Location: " . BASEPATH . "/home");
             case "POST":
-                echo $productId . " - " . $userId;
-                print_r($_POST);
-
                 $this->commentModel->createComment(productId: $productId, userId: $userId, commentData: $_POST);
                 return header("Location: " . BASEPATH . "/product/details/$productId");
             default:

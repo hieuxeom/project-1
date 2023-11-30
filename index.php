@@ -3,14 +3,17 @@
 //header("Access-Control-Allow-Origin: *");
 //header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
+
 require_once './config/config.php';
 require_once './app/core/Database.php';
 require_once './app/controllers/BaseController.php';
 require_once './app/models/BaseModel.php';
 
 
+require 'vendor/autoload.php';
+
+
 session_start();
-print_r($_SESSION);
 if (!isset($_SESSION['is_login'])) {
     $_SESSION['is_login'] = false;
 }

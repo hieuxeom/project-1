@@ -1,10 +1,5 @@
-<?php
-print_r($modifyData);
-?>
-
 <main class="container-fluid">
     <div class="container-lg py-5">
-<!--                <form action="--><?php //echo BASEPATH . "/admin/test" ?><!--" method="post"-->
         <form action="<?php echo BASEPATH . "/admin/update?for=products&id=$modifyData[prod_id]" ?>" method="post"  class="d-flex flex-column gap-3 w-auto bg-white p-3 round-8 shadow-sm">
             <div class="form-group">
                 <label for="prod_name">Tên sản phẩm</label>

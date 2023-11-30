@@ -35,10 +35,37 @@ class CommentModel extends BaseModel
         return array_merge($a1, $a2);
     }
 
-    public function deleteComment($commentId) {
+    public function deleteComment($commentId)
+    {
         return $this->delete(table: self::PRODUCT_COMMENTS_TABLE, conditions: [
             "comment_id" => $commentId,
         ]);
+    }
+
+    public function getCommentByUserId($userId)
+    {
+        $a1 = $this->getTwoTable(table1: self::PRODUCT_COMMENTS_TABLE, table2: self::PROD_TABLE, joinColumn: "prod_id", table1Select: [
+            "comment_id",
+            "comment_text",
+            "comment_time",
+        ], table2Select: [
+            "prod_id",
+            "prod_name"
+        ],conditions: [
+            "user_id" => $userId,
+        ], order: [
+            "comment_time" => "desc",
+        ]);
+
+        $a2 = $this->getTwoTable(table1: self::PRODUCT_COMMENTS_TABLE, table2: self::USER_TABLE, joinColumn: "user_id", table1Select: [
+            "comment_id",
+        ], table2Select: [
+            "username"
+        ],conditions: [
+            "user_id" => $userId,
+        ]);
+
+        return array_merge($a1, $a2);
     }
 
 }

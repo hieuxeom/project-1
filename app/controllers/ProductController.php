@@ -41,15 +41,12 @@ class ProductController extends BaseController
                 break;
             case "search":
                 $listProducts = $this->productModel->getListProduct(search: $search);
-                // Xử lí code lấy sản phẩm theo search key
                 break;
             case "filter":
                 $listProducts = $this->productModel->getListProduct(filter: $filter);
-                // Xử lí code lấy sản phẩm theo filter
                 break;
             case "default":
                 $listProducts = $this->productModel->getListProduct();
-                // Xử lí code lấy toàn bộ sản phẩm
                 break;
         }
 
@@ -69,29 +66,30 @@ class ProductController extends BaseController
 
         switch ($viewMode) {
             case "rate":
-                $productName = $this->productModel->getProductName($productId);
+                $productData = $this->productModel->getProductDetails($productId)[0];
                 $listRateData = $this->productModel->getProductRates($productId);
 
                 return $this->view(viewPath: "product.viewRate", params: [
-                    "productName" => $productName ?? null,
+                    "productData" => $productData ?? null,
                     "rateScore" => $rateScore ?? null,
                     "listRateData" => $listRateData ?? null
                 ]);
             case "default":
-                if (isset($_SESSION["user_id"])) {
 
-                $cartData = $this->cartModel->getCartInfo($_SESSION["user_id"]);
+                if (isset($_SESSION["user_id"])) {
+                    $cartData = $this->cartModel->getCartInfo($_SESSION["user_id"]);
                 };
+                $this->productModel->increaseViewProduct($productId);
                 $productData = $this->productModel->getProductDetails($productId)[0];
                 $rateScore = $this->productModel->getScore($productId);
                 $listRateData = $this->productModel->getProductRates(productId: $productId, limit: 5);
-                $listComment = $this->productModel->getComments($productId);
+                $listComments = $this->productModel->getComments($productId);
                 return $this->view(viewPath: "product.viewDefault", params: [
                     "cartData" => $cartData ?? null,
                     "productData" => $productData ?? null,
                     "rateScore" => $rateScore ?? null,
                     "listRateData" => $listRateData ?? null, // limit 5 rate gần nhất
-                    "listComment" => $listComment ?? null, // limit 10 comment gần nhất
+                    "listComments" => $listComments ?? null, // limit 10 comment gần nhất
                 ]);
 
         }

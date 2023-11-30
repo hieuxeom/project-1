@@ -26,5 +26,5 @@ submitButton.addEventListener("click", (e) => {
 
     XHR.send(formData);
 
-    window.location = `${envVars.apiUrl}/product`
+    window.location = `${envVars.apiUrl}/cart`;
 })

@@ -75,19 +75,19 @@ class AuthController extends BaseController
                     return header("Location: " . BASEPATH . "/home");
                 } else {
                     return $this->view("auth.login");
-
                 }
             case "POST":
                 $loginStatus = $this->authModel->checkLogin($_POST);
                 if ($loginStatus != 2) {
-                    if ($loginStatus) {
-//                        return $this->view(viewPath: "base.log", params: [
-//                            "status" => "Ok!",
-//                            "message" => "Đăng nhập thành công",
-//                            "btn_title" => "Đến trang chủ",
-//                            "url_back" => BASEPATH . "/home",
-//                        ]);
+                    if ($loginStatus == 1) {
                         return header("Location: " . BASEPATH . "/home");
+                    } else if ($loginStatus == 3){
+                        return $this->view(viewPath: "base.log", params: [
+                            "status" => "Locked!",
+                            "message" => "Tài khoản của bạn đã bị khóa!",
+                            "btn_title" => "Quay lại trang đăng nhập",
+                            "url_back" => BASEPATH . "/auth/login",
+                        ]);
                     } else {
                         return $this->view(viewPath: "base.log", params: [
                             "status" => "Oops!",

@@ -39,7 +39,7 @@ class ProductModel extends BaseModel
 
     public function getProductDetails($id)
     {
-        $productData2 = $this->getTwoTable(table1: self::PROD_TABLE, table2: self::CATEGORIES_TABLE,
+        $productData = $this->getTwoTable(table1: self::PROD_TABLE, table2: self::CATEGORIES_TABLE,
             joinColumn: "category_id",
             table1Select: [
                 "prod_id",
@@ -53,14 +53,15 @@ class ProductModel extends BaseModel
             ], conditions: [
                 "prod_id" => $id,
             ]);
-        return $productData2;
+        return $productData;
     }
 
-    public function getProductName($id)
+    public function getProductName($productId)
     {
-        $ProductName = $this->getOne(table: self::PROD_TABLE, arraySelect: ["prod_name"],
-            conditions: ["prod_id" => $id]);
-        return $ProductName;
+        return $this->getOne(table: self::PROD_TABLE,
+            conditions: [
+                "prod_id" => $productId,
+            ]);
     }
 
     public function getProductStock($id)
@@ -88,9 +89,21 @@ class ProductModel extends BaseModel
     public function getProductRates($productId, $limit = null)
     {
         $productRates = $this->getTwoTable(table1: self::PROD_RATE_TABLE, table2: self::USER_TABLE,
-            joinColumn: "user_id", table1Select: ["rate_star", "rate_text", "rate_date"],
-            table2Select: ["username"], conditions: ["prod_id" => $productId,],
-            limit: $limit, order: ["rate_date" => "desc"]);
+            joinColumn: "user_id", table1Select: [
+                "rate_id",
+                "rate_star",
+                "rate_text",
+                "rate_date"
+            ],
+            table2Select: [
+                "username"
+            ], conditions: [
+                "prod_id" => $productId,
+            ],
+            limit: $limit, order: [
+                "rate_date" => "desc"
+            ]
+        );
         return $productRates;
     }
 
@@ -198,9 +211,29 @@ class ProductModel extends BaseModel
         $this->delete(table: self::PROD_TABLE, conditions: [
             "category_id" => $categoryId,
         ]);
-        
+
         return $this->delete(table: self::CATEGORIES_TABLE, conditions: [
             "category_id" => $categoryId,
+        ]);
+    }
+
+    public function getTopSeller($limit = 10)
+    {
+        return $this->getAll(table: self::PROD_TABLE, conditions: [
+            "best_sell" => "1",
+        ],limit: $limit);
+    }
+
+    public function increaseViewProduct($productId)
+    {
+        $currentViews = $this->getOne(table: self::PROD_TABLE, conditions: [
+            "prod_id" => $productId,
+        ])["views"];
+
+        return $this->update(table: self::PROD_TABLE, conditions: [
+            "prod_id" =>$productId,
+        ], data: [
+            "views" => $currentViews + 1,
         ]);
     }
 }

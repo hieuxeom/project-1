@@ -1,4 +1,3 @@
-var formData = new FormData();
 const cartId = document.getElementById("cartId").value;
 
 const quantity = document.querySelectorAll(".quantity-input");
@@ -8,6 +7,7 @@ quantity.forEach((e) => {
         let prodId = k.target.getAttribute("id").split("=")[1];
         let quantityVal = k.target.value;
 
+        let formData = new FormData();
         formData.append("prodId", prodId);
         formData.append("quantity", quantityVal);
         formData.append("cartId", cartId);
@@ -25,8 +25,9 @@ function addQuantity(id) {
     let quantityBox = document.getElementById(`prodId=${id}`);
 
     let quantityVal = document.getElementById(`prodId=${id}`).value;
-
     quantityBox.value = Number(quantityVal) + 1;
+
+    let formData = new FormData();
     formData.append("prodId", prodId);
     formData.append("quantity", Number(quantityVal) + 1);
     formData.append("cartId", cartId);
@@ -43,8 +44,9 @@ function minusQuantity(id) {
     let quantityBox = document.getElementById(`prodId=${id}`);
 
     let quantityVal = document.getElementById(`prodId=${id}`).value;
-
     quantityBox.value = Number(quantityVal) - 1;
+
+    let formData = new FormData();
     formData.append("prodId", prodId);
     formData.append("quantity", Number(quantityVal) - 1);
     formData.append("cartId", cartId);

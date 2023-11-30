@@ -55,4 +55,13 @@ class UserModel extends BaseModel
             "violate_reason" => $reasonData["reason"],
         ]);
     }
+
+    public function updateUserAddress($userId, $newAddress)
+    {
+        return $this->update(table: self::USER_TABLE, data: [
+            "address" => $newAddress
+        ], conditions: [
+            "user_id" => $userId,
+        ]);
+    }
 }

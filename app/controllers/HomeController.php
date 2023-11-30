@@ -3,20 +3,23 @@
 class HomeController extends BaseController
 {
     private $homeModel;
-
     private $productModel;
+
     public function __construct()
     {
         $this->loadModel("HomeModel");
         $this->homeModel = new HomeModel();
+
+        $this->loadModel("ProductModel");
+        $this->productModel = new ProductModel();
     }
 
     public function index()
     {
-//        $listTop10BestSeller // Lấy top 10  sản phẩm có best_sell = 1
+        $listTop4BestSeller = $this->productModel->getTopSeller(limit: 4);
 //        $listFAQs // Lấy tất cả trong FAQs
         return $this->view(viewPath: "home.index", params: [
-            "listTop10BestSeller" => $listTop10BestSeller ?? null,
+            "listTopBestSeller" => $listTop4BestSeller ?? null,
             "listFAQs" => $listFAQs ?? null,
         ]);
     }

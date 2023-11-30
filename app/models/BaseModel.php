@@ -191,8 +191,9 @@ class BaseModel extends Database
             if ($order !== null) {
                 $sql .= " ORDER BY ";
                 foreach ($order as $key => $value) {
-                    $sql .= " $table1.$key $value";
+                    $sql .= " $table1.$key $value,";
                 }
+            $sql =  substr($sql, 0, strlen($sql) - 1);
             }
 
             if ($limit !== null) {

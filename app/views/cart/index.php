@@ -1,7 +1,7 @@
 <?php
 $shipCost = 35000;
 $discountCost = 0;
-$viewMode = ($_SESSION["role"] == "admin") && ($cartData["user_id"] != $_SESSION["user_id"]) ? 0 : 1;
+$viewMode = ($_SESSION["role"] == "admin") && ($cartData["user_id"] != $_SESSION["user_id"]) || ($cartData["status"] != "active") ? 0 : 1;
 
 ?>
 
@@ -23,7 +23,9 @@ $viewMode = ($_SESSION["role"] == "admin") && ($cartData["user_id"] != $_SESSION
                                         <th>Tên sản phẩm</th>
                                         <th>Số lượng</th>
                                         <th>Tổng tiền</th>
-                                        <th>Hành động</th>
+                                        <?php
+                                        echo $cartData["status"] == "active" ? "<th>Hành động</th>" : "";
+                                        ?>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -58,9 +60,10 @@ $viewMode = ($_SESSION["role"] == "admin") && ($cartData["user_id"] != $_SESSION
                                         <td>
                                             <p class='text-normal text-bold m-0'>" . number_format((int)$item["prod_price"] * (int)$item["quantity"], thousands_separator: ".", decimal_separator: ",") . "đ</p>
                                         </td>
+                                        " . ($cartData["status"] == "active" ? "
                                         <td>
                                             <a href='#' class='btn btn-primary'>Xóa</a>
-                                        </td>
+                                        </td>" : "") . "
                                     </tr>";
                                     }
                                     ?>
@@ -131,8 +134,13 @@ $viewMode = ($_SESSION["role"] == "admin") && ($cartData["user_id"] != $_SESSION
                             </div>
                         </div>
                         <div>
-                            <?php
-                            echo $viewMode ? "<a href='#' class='w-full btn btn-primary btn-lg'>Thanh toán</a>" : "" ?>
+                            <form action="<?php echo BASEPATH ?>/cart/payment" method="post">
+                                <input type="hidden" name="cart_id" value="<?php echo $cartData["cart_id"] ?>">
+                                <?php
+                                echo $viewMode ? "<input class='w-full btn btn-primary btn-lg' type='submit' value='Thanh toán'>" : ""
+                                ?>
+
+                            </form>
                         </div>
                     </div>
                 </div>

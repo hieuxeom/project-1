@@ -3,12 +3,17 @@
 class CartController extends BaseController
 {
     private $cartModel;
+    private $userModel;
 
     public function __construct()
     {
         if ($this->checkLogin()) {
             $this->loadModel("CartModel");
             $this->cartModel = new CartModel();
+
+            $this->loadModel("UserModel");
+            $this->userModel = new UserModel();
+
         } else {
             return header("Location: " . BASEPATH . "/home");
         }
@@ -53,7 +58,6 @@ class CartController extends BaseController
 
     public function update()
     {
-        print_r($_POST);
         return $this->cartModel->updateQuantity(cartId: $_POST["cartId"], quantity: $_POST["quantity"], productId: $_POST["prodId"]);
     }
 
@@ -80,6 +84,36 @@ class CartController extends BaseController
         return header("Location: " . BASEPATH . "/cart");
 
     }
+
+    public function payment()
+    {
+        $action = $_REQUEST["pr1"] ?? "default";
+
+        switch ($action) {
+            case "success":
+                $newAddress = $_POST["address"];
+                $userId = $_SESSION["user_id"];
+                $cartId = $_POST["cart_id"];
+                $this->userModel->updateUserAddress(userId: $userId, newAddress: $newAddress);
+                $this->cartModel->changeStatusCart(cartId: $cartId);
+
+                return $this->view(viewPath: "base.log", params: [
+                    "status" => "Done!",
+                    "message" => "Thanh toán thành công, cảm ơn bạn đã đặt hàng!",
+                    "btn_title" => "Đến trang chủ",
+                    "url_back" => BASEPATH . "/home",
+                ]);
+            default:
+                $cartData = $this->cartModel->getCartInfo(cartId: $_POST["cart_id"]);
+                $userInfo = $this->userModel->getUserInfo($_SESSION["user_id"]);
+                return $this->view(viewPath: "cart.payment", params: [
+                    "userInfo" => $userInfo,
+                    "cartData" => $cartData,
+                ]);
+        }
+
+    }
+
 
     public function test()
     {

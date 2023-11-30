@@ -57,6 +57,14 @@ class AuthModel extends BaseModel
 
     }
 
+    public function changePassword($newPassword, $userId) {
+        $this->update(table: self::USER_TABLE, conditions: [
+            "user_id" => $userId,
+        ], data: [
+            "password" => $this->createHashPassword($newPassword),
+        ]);
+    }
+
     public function checkLogin($accountData)
     {
         $username = $accountData["username"];
@@ -73,9 +81,16 @@ class AuthModel extends BaseModel
             ], arraySelect: ["user_id"])["user_id"] ?? null;
         }
 
+
         if ($accountId == null) {
             return 2;
         }
+
+        if ($this->checkDisable($accountId)) {
+            return 3;
+        }
+
+
 
         if ($this->verifyPassword($password, $accountId)) {
             $this->createSessionData($accountId);
@@ -127,7 +142,18 @@ class AuthModel extends BaseModel
         }
     }
 
-    private function verifyPassword($password, $accountId)
+    private function checkDisable($accountId) {
+        $accountData = $this->getOne(table: self::USER_TABLE,conditions: [
+            "user_id" => $accountId,
+        ]);
+
+        if ($accountData["is_active"] == "disable" || $accountData["is_active"] == "delete") {
+            return true;
+        }
+        return false;
+    }
+
+    public function verifyPassword($password, $accountId)
     {
         $hash_pwd = $this->getOne(table: self::USER_TABLE, conditions: [
             'user_id' => $accountId,

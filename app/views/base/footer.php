@@ -41,6 +41,7 @@
                 <h3>Danh mục sản phẩm</h3>
             </div>
             <div class="footer-col-body d-flex flex-column gap-1">
+
                 <a href="#" class="button text-normal text-dark">Loại sản phẩm 1</a>
                 <a href="#" class="button text-normal text-dark">Loại sản phẩm 2</a>
                 <a href="#" class="button text-normal text-dark">Loại sản phẩm 3</a>

@@ -27,70 +27,23 @@
             <h1 class="heading-1 text-helvetica text-center text-uppercase">Sản phẩm bán chạy</h1>
         </div>
         <div class="container-fluid mt-5 row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 p-0 justify-content-center">
-            <div class="card w-1-4">
-                <div class="d-flex justify-content-center align-items-center p-2">
-                    <img src="<?php echo BASEPATH . "/public/img/test-img.png" ?>" class="card-img-top" alt="...">
+            <?php
+            foreach ($listTopBestSeller as $product) {
+                echo "<div class='card w-1-4'>
+                <div class='d-flex justify-content-center align-items-center p-2'>
+                    <img src='" . BASEPATH . "/public/img/test-img.png' class='card-img-top' alt='...'>
                 </div>
-                <div class="card-body">
-                    <h5 class="card-title text-truncate">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Aliquam
-                        consectetur venenatis blandit. Praesent vehicula, libero non pretium vulputate, lacus arcu
-                        facilisis lectus</h5>
-                    <p class="card-text">(999 lượt xem)</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <a href="#" class="btn btn-primary">Xem sản phẩm</a>
-                        <p class="m-0 text-super-large text-bold color-primary">100.000đ</p>
+                <div class='card-body'>
+                    <h5 class='card-title text-truncate'>$product[prod_name]</h5>
+                    <p class='card-text'>($product[views] lượt xem)</p>
+                    <div class='d-flex justify-content-between align-items-center'>
+                        <a href='" . BASEPATH . "/product/details/$product[prod_id]' class='btn btn-primary'>Xem sản phẩm</a>
+                        <p class='m-0 text-super-large text-bold color-primary'>" . number_format($product["prod_price"], thousands_separator: ".",decimal_separator: ",") . "đ</p>
                     </div>
                 </div>
-            </div>
-            <div class="card w-1-4">
-                <div class="w-full d-flex justify-content-center align-items-center p-2">
-                    <img src="<?php echo BASEPATH . "/public/img/test-img.png" ?>" class="card-img-top" alt="...">
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title text-truncate">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Aliquam
-                        consectetur venenatis blandit. Praesent vehicula, libero non pretium vulputate, lacus arcu
-                        facilisis lectus</h5>
-                    <p class="card-text">(999 lượt xem)</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <a href="#" class="btn btn-primary">Xem sản phẩm</a>
-                        <p class="m-0 text-super-large text-bold color-primary">100.000đ</p>
-                    </div>
-                </div>
-            </div>
-            <div class="card w-1-4">
-                <div class="w-full d-flex justify-content-center align-items-center p-2">
-                    <img src="<?php echo BASEPATH . "/public/img/test-img.png" ?>" class="card-img-top" alt="...">
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title text-truncate">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Aliquam
-                        consectetur venenatis blandit. Praesent vehicula, libero non pretium vulputate, lacus arcu
-                        facilisis lectus</h5>
-                    <p class="card-text">(999 lượt xem)</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <a href="#" class="btn btn-primary">Xem sản phẩm</a>
-                        <p class="m-0 text-super-large text-bold color-primary">100.000đ</p>
-                    </div>
-                </div>
-            </div>
-            <div class="card w-1-4">
-                <div class="w-full d-flex justify-content-center align-items-center p-2">
-                    <img src="<?php echo BASEPATH . "/public/img/test-img.png" ?>" class="card-img-top" alt="...">
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title text-truncate">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Aliquam
-                        consectetur venenatis blandit. Praesent vehicula, libero non pretium vulputate, lacus arcu
-                        facilisis lectus</h5>
-                    <p class="card-text">(999 lượt xem)</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <a href="#" class="btn btn-primary">Xem sản phẩm</a>
-                        <p class="m-0 text-super-large text-bold color-primary">100.000đ</p>
-                    </div>
-                </div>
-            </div>
+            </div>";
+            }
+            ?>
         </div>
     </div>
     <div id="faq-section" class="container-xl d-flex flex-column my-5">
@@ -99,51 +52,23 @@
         </div>
         <div class="py-3" id="faq-container">
             <div class="faq-item">
-                <div data-answer="1" class="question d-flex justify-content-between align-items-center py-3 cursor-pointer">
-                    <p class="text-super-large color-primary text-bold m-0">Câu hỏi thường gặp 1</p>
+                <div data-answer="1"
+                     class="question d-flex justify-content-between align-items-center py-3 cursor-pointer">
+                    <p class="text-super-large color-primary text-bold m-0">Tôi có thể xem lịch sử mua hàng của mình không?</p>
                     <i class="fa-solid fa-chevron-up color-primary"></i>
                 </div>
                 <div id="answer1" class="answer pb-16">
-                    <p class="text-normal">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                        when an unknown printer took a galley of type and scrambled it to make a type specimen book. It
-                        has survived not only five centuries</p>
+                    <p class="text-normal">Có, bạn có thể xem lịch sử dụng hàng của mình tại đây: <a href="<?php echo BASEPATH ?>/user/orderHistory" class="btn btn-secondary btn-sm">Xem lịch sử mua hàng</a></p>
                 </div>
             </div>
             <div class="faq-item">
-                <div data-answer="2" class="question d-flex justify-content-between align-items-center py-3 cursor-pointer">
-                    <p class="text-super-large color-primary text-bold m-0">Câu hỏi thường gặp 1</p>
+                <div data-answer="1"
+                     class="question d-flex justify-content-between align-items-center py-3 cursor-pointer">
+                    <p class="text-super-large color-primary text-bold m-0">Tôi có thể xem lịch sử bình luận của mình không?</p>
                     <i class="fa-solid fa-chevron-up color-primary"></i>
                 </div>
-                <div id="answer2" class="answer pb-16">
-                    <p class="text-normal">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                        when an unknown printer took a galley of type and scrambled it to make a type specimen book. It
-                        has survived not only five centuries</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div data-answer="3" class="question d-flex justify-content-between align-items-center py-3 cursor-pointer">
-                    <p class="text-super-large color-primary text-bold m-0">Câu hỏi thường gặp 1</p>
-                    <i class="fa-solid fa-chevron-up color-primary"></i>
-                </div>
-                <div id="answer3" class="answer pb-16">
-                    <p class="text-normal">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                        when an unknown printer took a galley of type and scrambled it to make a type specimen book. It
-                        has survived not only five centuries</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div data-answer="4" class="question d-flex justify-content-between align-items-center py-3 cursor-pointer">
-                    <p class="text-super-large color-primary text-bold m-0">Câu hỏi thường gặp 1</p>
-                    <i class="fa-solid fa-chevron-up color-primary"></i>
-                </div>
-                <div id="answer4" class="answer pb-16">
-                    <p class="text-normal">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                        when an unknown printer took a galley of type and scrambled it to make a type specimen book. It
-                        has survived not only five centuries</p>
+                <div id="answer1" class="answer pb-16">
+                    <p class="text-normal">Có, bạn có thể xem lịch sử bình luận của mình tại đây: <a href="<?php echo BASEPATH ?>/user/commentHistory" class="btn btn-secondary btn-sm">Xem lịch sử bình luận</a></p>
                 </div>
             </div>
         </div>

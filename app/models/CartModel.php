@@ -12,7 +12,8 @@ class CartModel extends BaseModel
     public function getCartId($userId)
     {
         $request = $this->getOne(table: self::CART_TABLE, conditions: [
-            "user_id" => $userId
+            "user_id" => $userId,
+            "status" => "active",
         ]);
 
         if (sizeof($request) != 0) {
@@ -28,6 +29,8 @@ class CartModel extends BaseModel
         if (!isset($cartId)) {
             $cartId = $this->getCartId($userId);
         }
+
+        $this->updateCartTotal($cartId);
 
         return $this->getOne(table: self::CART_TABLE, conditions: [
             "cart_id" => $cartId
@@ -91,8 +94,6 @@ class CartModel extends BaseModel
             "cart_id" => $cartId,
         ]);
 
-        print_r($request);
-
         if (sizeof($request) != 0) {
             echo "cc: $request[quantity]";
             return $request["quantity"];
@@ -133,7 +134,7 @@ class CartModel extends BaseModel
         return $this->update(table: self::CART_TABLE, conditions: [
             "cart_id" => $cartId,
         ], data: [
-            "voucher_id" => $voucherCode == "" ? null : $voucherCode ,
+            "voucher_id" => $voucherCode == "" ? null : $voucherCode,
         ]);
 
     }
@@ -159,7 +160,6 @@ class CartModel extends BaseModel
         $sum = 0;
 
         foreach ($getTotalPrice as $prod) {
-            echo $prod["prod_id"] . " - " . $prod["prod_price"] . " - " . $prod["quantity"] . "<br>";
             $sum += $prod["prod_price"] * $prod["quantity"];
         }
 
@@ -172,17 +172,42 @@ class CartModel extends BaseModel
         return $getTotalPrice;
     }
 
-    public function getAllCarts()
+    public function getAllCarts($userId = null)
     {
-//        return $this->getAll(table: self::CART_TABLE);
-        return $this->getTwoTable(table1: self::CART_TABLE, table2: self::USER_TABLE, joinColumn: "user_id",
-            table1Select: [
-                "cart_id",
-                "cart_total",
-                "status",
-            ], table2Select: [
-                "username",
-            ]);
+        if (!isset($userId)) {
+            return $this->getTwoTable(table1: self::CART_TABLE, table2: self::USER_TABLE, joinColumn: "user_id",
+                table1Select: [
+                    "cart_id",
+                    "cart_total",
+                    "status",
+                ], table2Select: [
+                    "username",
+                ]);
+        } else {
+            return $this->getTwoTable(table1: self::CART_TABLE, table2: self::USER_TABLE, joinColumn: "user_id",
+                table1Select: [
+                    "cart_id",
+                    "cart_total",
+                    "status",
+                ], table2Select: [
+                    "username",
+                ],conditions: [
+                    "user_id" => $userId,
+                ], order: [
+                    "status" => "desc",
+                    "paid_date" => "desc",
+                ]);
+        }
     }
+
+    public function changeStatusCart($cartId)
+    {
+        return $this->update(table: self::CART_TABLE, conditions: [
+            "cart_id" => $cartId,
+        ], data: [
+            "status" => "order_success",
+        ]);
+    }
+
 
 }

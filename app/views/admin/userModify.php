@@ -1,7 +1,3 @@
-<?php
-print_r($modifyData);
-?>
-
 <main class="container-fluid">
     <div class="container-lg py-5">
 <!--        <form action="--><?php //echo BASEPATH . "/admin/test" ?><!--" method="post"-->
