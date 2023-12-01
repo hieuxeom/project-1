@@ -176,7 +176,7 @@ class BaseModel extends Database
             $columns1 = $table1 . '.' . implode(", $table1.", $table1Select);
             $columns2 = $table2 . '.' . implode(", $table2.", $table2Select);
             $sql = "SELECT $columns1, $columns2 FROM $table1 
-                    INNER JOIN $table2 ON $table1.$joinColumn = $table2.$joinColumn";
+                    JOIN $table2 ON $table1.$joinColumn = $table2.$joinColumn";
 
             // Check if conditions are provided and build the WHERE clause
             if (!empty($conditions)) {
@@ -188,15 +188,16 @@ class BaseModel extends Database
                 $sql .= implode(' AND ', $conditionsArray);
             }
 
-            if ($limit !== null) {
-                $sql .= " LIMIT $limit";
-            }
-
             if ($order !== null) {
                 $sql .= " ORDER BY ";
                 foreach ($order as $key => $value) {
-                    $sql .= " $table1.$key $value";
+                    $sql .= " $table1.$key $value,";
                 }
+            $sql =  substr($sql, 0, strlen($sql) - 1);
+            }
+
+            if ($limit !== null) {
+                $sql .= " LIMIT $limit";
             }
 
             $stmt = $this->conn->prepare($sql);

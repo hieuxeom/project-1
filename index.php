@@ -3,14 +3,17 @@
 //header("Access-Control-Allow-Origin: *");
 //header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
+
 require_once './config/config.php';
 require_once './app/core/Database.php';
 require_once './app/controllers/BaseController.php';
 require_once './app/models/BaseModel.php';
 
 
-session_start();
+require 'vendor/autoload.php';
 
+
+session_start();
 if (!isset($_SESSION['is_login'])) {
     $_SESSION['is_login'] = false;
 }
@@ -21,12 +24,7 @@ $url = isset($_GET['url']) ? rtrim($_GET['url'], '/') : '';
 
 // Check if the 'url' parameter is empty or not set
 if (empty($url)) {
-//    // Set 'url' parameter to 'home'
-//    $url = 'home';
-//    // Redirect to the same URL with 'url' parameter added
-//    $query = http_build_query(['url' => $url]);
-//    header("Location: {$_SERVER['PHP_SELF']}?$query");
-    header("Location: ". BASEPATH. "/home");
+    header("Location: " . BASEPATH . "/home");
     exit();
 }
 
@@ -36,8 +34,7 @@ $url = explode('/', $url);
 $controllerName = ucfirst($url[0]) . 'Controller';
 $controllerFile = './app/controllers/' . $controllerName . '.php';
 
-
-require_once './app/views/base/header.php';
+require_once './app/views/base/head.php';
 
 
 if (file_exists($controllerFile)) {
@@ -53,7 +50,7 @@ if (file_exists($controllerFile)) {
     showError();
 }
 
-require_once './app/views/base/footer.php';
+require_once './app/views/base/foot.php';
 
 function showError()
 {
