@@ -70,12 +70,12 @@ class AdminModel extends BaseModel
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
             $mail->Port = 465;
-            $mail->Username = 'hieutn.bedev@gmail.com';
-            $mail->Password = 'mgkb ftcy hdrs bidi';
+            $mail->Username = MAIL_ID;
+            $mail->Password = MAIL_PASSWORD;
             $mail->SMTPSecure = "ssl";
             $mail->CharSet = 'UTF-8';
             //Recipients
-            $mail->setFrom('hieutn.bedev@gmail.com', 'ShopBake');
+            $mail->setFrom(MAIL_ID, STORE_NAME);
             $mail->addAddress("$receiverEmail");               //Name is optional
 
             //Content

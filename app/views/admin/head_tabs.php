@@ -3,6 +3,7 @@
         "Members" => "users",
         "Danh mục" => "categories",
         "Sản phẩm" => "products",
+        "Kho" => "stocks",
         "Bình luận" => "comments",
         "Đánh giá" => "rates",
         "Giỏ hàng/Đơn hàng" => "carts",

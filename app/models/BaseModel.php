@@ -1,7 +1,9 @@
 <?php
+
 class BaseModel extends Database
 {
     protected $conn;
+
     public function __construct()
     {
         $this->conn = $this->getConnection();
@@ -129,7 +131,6 @@ class BaseModel extends Database
     }
 
 
-
     private function _queryOne($table, $arraySelect = ['*'], $conditions = [])
     {
         try {
@@ -193,7 +194,7 @@ class BaseModel extends Database
                 foreach ($order as $key => $value) {
                     $sql .= " $table1.$key $value,";
                 }
-            $sql =  substr($sql, 0, strlen($sql) - 1);
+                $sql = substr($sql, 0, strlen($sql) - 1);
             }
 
             if ($limit !== null) {
@@ -221,8 +222,6 @@ class BaseModel extends Database
     }
 
 
-
-
     private function _insertData($table, $data = [])
     {
         try {
@@ -236,10 +235,8 @@ class BaseModel extends Database
             foreach ($data as $param => $value) {
                 $stmt->bindValue(':' . $param, $value);
             }
-
             // Execute the INSERT statement
             $result = $stmt->execute();
-
             // Return true if insertion was successful, otherwise false
             return $result;
         } catch (PDOException $e) {

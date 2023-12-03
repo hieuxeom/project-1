@@ -30,4 +30,30 @@ class RateModel extends BaseModel
             "rate_id" => $rateId,
         ]);
     }
+
+    public function getRateScore($productId) {
+        $listRate = $this->getAll(table: self::RATES_TABLE,conditions: [
+            "prod_id" => $productId,
+        ]);
+
+        if (empty($listRate)) {
+            return [
+                "score" => 0,
+                "count" => 0,
+            ];
+        }
+
+        $score = 0;
+        $count = 0;
+
+
+        foreach ($listRate as $rate) {
+            $score += $rate["rate_star"];
+            $count ++;
+        }
+        return [
+            "score" => $score/$count,
+            "count" => $count,
+        ];
+    }
 }

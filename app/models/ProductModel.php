@@ -12,6 +12,30 @@ class ProductModel extends BaseModel
     const USER_SAVED_TABLE = "user_saved";
 
 
+    public function getListProductStock()
+    {
+        $listProduct = $this->getTwoTable(table2: self::PROD_TABLE, table1: self::PROD_STOCK_TABLE,
+            joinColumn: "prod_id",
+            table1Select: [
+                "quantity",
+                "last_update",
+            ], table2Select: [
+                "prod_id",
+                "prod_name",
+                "prod_desc",
+                "prod_price",
+                "category_id",
+                "views",
+                "best_sell",
+                "img_path",
+                "is_delete",
+            ], order: [
+                "quantity" => "asc",
+            ]);
+
+        return $listProduct;
+    }
+
     public function getListProduct($limit = null, $filter = null, $search = null)
     {
         if (isset($search)) {
@@ -33,6 +57,20 @@ class ProductModel extends BaseModel
 
 
         $listProduct = $this->getAll(table: self::PROD_TABLE, limit: $limit, conditions: $filterData, likeConditions: $searchData);
+//        $listProduct = $this->getTwoTable(table1: self::PROD_TABLE, table2: self::PROD_STOCK_TABLE, table1Select: [
+//            "prod_id",
+//            "prod_name",
+//            "prod_desc",
+//            "prod_price",
+//            "category_id",
+//            "views",
+//            "best_sell",
+//            "img_path",
+//            "is_delete",
+//        ], table2Select: [
+//            "quantity",
+//            "last_update",
+//        ], limit: $limit, conditions: $filterData, likeConditions: $searchData);
 
         return $listProduct;
     }
@@ -64,12 +102,12 @@ class ProductModel extends BaseModel
             ]);
     }
 
-    public function getProductStock($id)
+    public function getProductStock($productId)
     {
         $prodStock = $this->getOne(table: self::PROD_STOCK_TABLE, conditions: [
-            "prod_id" => $id,
+            "prod_id" => $productId,
         ]);
-        return $prodStock;
+        return $prodStock["quantity"];
     }
 
 
@@ -131,13 +169,25 @@ class ProductModel extends BaseModel
 
     public function addNewProduct($insertData)
     {
-        return $this->insert(table: self::PROD_TABLE, data: [
+        $this->insert(table: self::PROD_TABLE, data: [
             "prod_name" => $insertData["prod_name"],
             "prod_desc" => $insertData["prod_desc"],
             "prod_price" => $insertData["prod_price"],
             "category_id" => $insertData["category_id"],
             "best_sell" => $insertData["best_sell"],
             "img_path" => $insertData["img_path"],
+        ]);
+
+        $productId = $this->getOne(table: self::PROD_TABLE, conditions: [
+            "prod_name" => $insertData["prod_name"],
+            "prod_price" => $insertData["prod_price"],
+            "category_id" => $insertData["category_id"],
+            "img_path" => $insertData["img_path"],
+        ]);
+
+        return $this->insert(table: self::PROD_STOCK_TABLE, data: [
+            "prod_id" => $productId["prod_id"],
+            "quantity" => $insertData["quantity"],
         ]);
     }
 
@@ -221,7 +271,7 @@ class ProductModel extends BaseModel
     {
         return $this->getAll(table: self::PROD_TABLE, conditions: [
             "best_sell" => "1",
-        ],limit: $limit);
+        ], limit: $limit);
     }
 
     public function increaseViewProduct($productId)
@@ -231,9 +281,18 @@ class ProductModel extends BaseModel
         ])["views"];
 
         return $this->update(table: self::PROD_TABLE, conditions: [
-            "prod_id" =>$productId,
+            "prod_id" => $productId,
         ], data: [
             "views" => $currentViews + 1,
+        ]);
+    }
+
+    public function updateProductStock($modifyData, $productId)
+    {
+        return $this->update(table: self::PROD_STOCK_TABLE, conditions: [
+            "prod_id" => $productId,
+        ], data: [
+            "quantity" => $modifyData["quantity"],
         ]);
     }
 }
