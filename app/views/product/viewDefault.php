@@ -11,14 +11,16 @@
                                 class="color-white m-0 text-small"><?php echo $productData["category_name"] ?></p></a>
                     <a href="<?php echo BASEPATH . "/product/details/" . $productData["prod_id"] . "?view=rate" ?>"
                        class="text-decoration-none badge rounded-pill px-3 py-2 bg-secondary"><p
-                                class="color-white m-0 text-small">4/5 Điểm đánh giá (9999 Lượt đánh giá)</p></a>
+                                class="color-white m-0 text-small"><?php echo "$rateScore[score] Điểm đánh giá ($rateScore[count] Lượt đánh giá)" ?></p>
+                    </a>
                     <a href="#" class="text-decoration-none badge rounded-pill px-3 py-2 bg-secondary"><i
                                 class="text-small color-white fa-regular fa-bookmark"></i></a>
                 </div>
             </div>
             <div class="d-flex flex-column">
                 <p class="text-super-large text-bold m-0">Giá:</p>
-                <h1 class="heading-1 text-helvetica color-primary m-0"><?php echo $productData["prod_price"] ?>đ</h1>
+                <h1 class="heading-1 text-helvetica color-primary m-0"><?php echo number_format($productData["prod_price"], thousands_separator: ".", decimal_separator: ",") ?>
+                    đ</h1>
             </div>
             <div class="d-flex flex-column">
                 <p class="text-super-large text-bold m-0">Số lượng:</p>
@@ -26,21 +28,21 @@
                     <div class="w-1-5 input-group">
                         <?php
                         if ($_SESSION['is_login'] == 1) {
-                            echo "<input id='cartId' type='hidden' class='text-center form-control' name='cart_id' value='$cartData[cart_id]'>";
+                            echo "<input id='cartId' type='hidden' class='text-center form-control' name='cart_id' value='" . ($cartData["cart_id"] ?? "") . "'>";
                         }
                         ?>
 
                         <input id="prodId" type="hidden" class="text-center form-control" name="prod_id"
                                value="<?php echo $productData["prod_id"] ?>">
-                        <button id="minusButton" class="input-group-text bg-third color-white" id="">-</button>
+                        <button id="minusButton" class="input-group-text bg-third color-white">-</button>
                         <input id="quantityInput" type="text" class="text-center form-control" value="1">
-                        <button id="addButton" class="input-group-text bg-third color-white" id="">+</button>
+                        <button id="addButton" class="input-group-text bg-third color-white">+</button>
                     </div>
-                    <p class="m-0 text-small">(<strong>999</strong> sản phẩm có sẵn)</p>
+                    <p class="m-0 text-small">(<strong><?php echo $productStock ?></strong> sản phẩm có sẵn)</p>
                 </div>
             </div>
             <div class="pt-3">
-                <button id="submitButton" class="btn btn-primary btn-lg rounded-pill d-flex gap-2 align-items-center">
+                <button id="submitButton" class="btn btn-primary btn-lg rounded-pill d-flex gap-2 align-items-center" <?php echo $productStock == 0 ? "disabled" : ""?>>
                     <i class="color-white text-normal fa-solid fa-cart-plus"></i>
                     Thêm sản phẩm vào giỏ hàng
                 </button>
@@ -55,8 +57,8 @@
     <div class="container-lg bg-white d-flex flex-column gap-3 px-4 py-3 round-16">
         <div class="w-full d-flex justify-content-between align-items-center">
             <h3 class="heading-3 m-0">Đánh giá sản phẩm</h3>
-            <a href="#" class="m-0 text-small text-decoration-none badge bg-secondary  px-3 py-2 ">4/5 Điểm đánh giá
-                (9999 Lượt đánh giá)</a>
+            <a href="<?php echo BASEPATH . "/product/details/" . $productData["prod_id"] . "?view=rate" ?>  "
+               class="m-0 text-small text-decoration-none badge bg-secondary  px-3 py-2 "><?php echo "$rateScore[score] Điểm đánh giá ($rateScore[count] Lượt đánh giá)" ?></a>
         </div>
 
         <?php

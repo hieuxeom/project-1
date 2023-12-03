@@ -4,6 +4,7 @@ class ProductController extends BaseController
 {
     private $productModel;
     private $cartModel;
+    private $rateModel;
 
     public function __construct()
     {
@@ -12,6 +13,9 @@ class ProductController extends BaseController
 
         $this->loadModel("CartModel");
         $this->cartModel = new CartModel();
+
+        $this->loadModel("RateModel");
+        $this->rateModel = new RateModel();
     }
 
     public function index()
@@ -68,6 +72,8 @@ class ProductController extends BaseController
             case "rate":
                 $productData = $this->productModel->getProductDetails($productId)[0];
                 $listRateData = $this->productModel->getProductRates($productId);
+                $rateScore = $this->rateModel->getRateScore($productId);
+
 
                 return $this->view(viewPath: "product.viewRate", params: [
                     "productData" => $productData ?? null,
@@ -81,12 +87,14 @@ class ProductController extends BaseController
                 };
                 $this->productModel->increaseViewProduct($productId);
                 $productData = $this->productModel->getProductDetails($productId)[0];
-                $rateScore = $this->productModel->getScore($productId);
+                $rateScore = $this->rateModel->getRateScore($productId);
                 $listRateData = $this->productModel->getProductRates(productId: $productId, limit: 5);
                 $listComments = $this->productModel->getComments($productId);
+                $productStock = $this->productModel->getProductStock($productId);
                 return $this->view(viewPath: "product.viewDefault", params: [
                     "cartData" => $cartData ?? null,
                     "productData" => $productData ?? null,
+                    "productStock" => $productStock ?? null,
                     "rateScore" => $rateScore ?? null,
                     "listRateData" => $listRateData ?? null, // limit 5 rate gần nhất
                     "listComments" => $listComments ?? null, // limit 10 comment gần nhất

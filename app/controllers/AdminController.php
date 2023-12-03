@@ -281,6 +281,30 @@ class AdminController extends BaseController
         }
     }
 
+    public function stocks()
+    {
+        $action = $_REQUEST['pr1'] ?? "default";
+        $productId = $_REQUEST['productId'] ?? null;
+
+        switch ($action) {
+            case "delete":
+                return __METHOD__;
+            case "add":
+                return __METHOD__;
+            case "edit":
+                $modifyData = $this->productModel->getProductStock($productId);
+                return $this->view(viewPath: "admin.stockModify", params: [
+                    "modifyData" => $modifyData
+                ]);
+            default:
+                $listProducts = $this->productModel->getListProductStock();
+
+                return $this->view(viewPath: "admin.stockViews", params: [
+                    "listProducts" => $listProducts,
+                ]);
+        }
+    }
+
 
     public function update()
     {
@@ -303,6 +327,9 @@ class AdminController extends BaseController
                     case "vouchers":
                         $this->voucherModel->updateVouchersInfo(modifyData: $_POST, voucherId: $id);
                         return header("Location: " . BASEPATH . "/admin/vouchers");
+                    case "stocks":
+                        $this->productModel->updateProductStock(modifyData: $_POST, productId: $id);
+                        return header("Location: " . BASEPATH . "/admin/stocks");
                 }
             case "GET":
                 break;
@@ -321,9 +348,8 @@ class AdminController extends BaseController
 
     public function test()
     {
-        $userId = $_SESSION["user_id"];
-        $userData = $this->userModel->getUserInfo($userId);
-        $this->adminModel->sendMail($userData);
-//        echo rand(100000, 999999);
+        $productRate = $this->rateModel->getRateScore(1);
+        print_r($productRate);
+
     }
 }

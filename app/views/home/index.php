@@ -31,7 +31,7 @@
             foreach ($listTopBestSeller as $product) {
                 echo "<div class='card w-1-4'>
                 <div class='d-flex justify-content-center align-items-center p-2'>
-                    <img src='" . BASEPATH . "/public/img/test-img.png' class='card-img-top' alt='...'>
+                    <img src='$product[img_path]' class='card-img-top' alt='...'>
                 </div>
                 <div class='card-body'>
                     <h5 class='card-title text-truncate'>$product[prod_name]</h5>

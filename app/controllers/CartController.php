@@ -34,12 +34,12 @@ class CartController extends BaseController
         $cartId = $_REQUEST["cartId"] ?? null;
 
         if (isset($cartId)) {
-            if ($_SESSION["role"] == "admin") {
-                $cartItems = $this->cartModel->getCartItems(cartId: $cartId);
-                $cartData = $this->cartModel->getCartInfo(cartId: $cartId);
-            } else {
-                return header("Location: " . BASEPATH . "/cart");
-            }
+//            if ($_SESSION["role"] == "admin") {
+            $cartItems = $this->cartModel->getCartItems(cartId: $cartId);
+            $cartData = $this->cartModel->getCartInfo(cartId: $cartId);
+//            } else {
+//                return header("Location: " . BASEPATH . "/cart");
+//            }
         } else {
             $cartItems = $this->cartModel->getCartItems($userId);
             $cartData = $this->cartModel->getCartInfo($userId);

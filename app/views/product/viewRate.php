@@ -8,7 +8,7 @@
 
             <div class="d-flex flex-column gap-2">
                 <div class="w-full d-flex justify-content-between align-items-center">
-                    <p class="m-0 text-small text-decoration-none badge bg-secondary px-3 py-2 ">4/5 Điểm đánh giá (9999 Lượt đánh giá)</p>
+                    <p class="m-0 text-small text-decoration-none badge bg-secondary px-3 py-2 "><?php echo "$rateScore[score] Điểm đánh giá ($rateScore[count] Lượt đánh giá)" ?></p>
                     <a href="<?php echo BASEPATH . "/product/details/$productData[prod_id]"?>" class="m-0 text-normal text-decoration-none btn btn-primary">Quay lại trang sản phẩm</a>
                 </div>
                 <?php

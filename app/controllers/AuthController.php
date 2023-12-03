@@ -48,8 +48,8 @@ class AuthController extends BaseController
                         return $this->view(viewPath: "base.log", params: [
                             "status" => "Thanks",
                             "message" => "Đăng kí thành công",
-                            "btn_title" => "Đến trang chủ",
-                            "url_back" => BASEPATH . "/home",
+                            "btn_title" => "Đến trang đăng nhập",
+                            "url_back" => BASEPATH . "/auth/login",
                         ]);
                     } else {
                         return $this->view(viewPath: "base.log", params: [
