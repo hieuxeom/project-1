@@ -36,7 +36,7 @@
                             echo "
                                     <tr>
                                         <td>$voucher[voucher_id]</td>
-                                        <td>$voucher[voucher_discount]</td>
+                                        <td>$voucher[voucher_discount]%</td>
                                         <td>$voucher[voucher_desc]</td>
                                         <td>$voucher[valid_from]</td>
                                         <td>$voucher[valid_to]</td>

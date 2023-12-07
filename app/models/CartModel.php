@@ -30,8 +30,6 @@ class CartModel extends BaseModel
             $cartId = $this->getCartId($userId);
         }
 
-        $this->updateCartTotal($cartId);
-
         return $this->getOne(table: self::CART_TABLE, conditions: [
             "cart_id" => $cartId
         ]);
@@ -102,10 +100,8 @@ class CartModel extends BaseModel
         }
     }
 
-    public function removeItemsInCart($userId, $productId,)
+    public function removeItemsInCart($cartId, $productId,)
     {
-        $cartId = $this->getCartId($userId);
-
         $this->delete(table: self::CART_ITEMS_TABLE, conditions: [
             "cart_id" => $cartId,
             "prod_id" => $productId,
@@ -148,6 +144,12 @@ class CartModel extends BaseModel
 
     public function updateCartTotal($cartId)
     {
+        $status = $this->getCartInfo(cartId: $cartId);
+
+        if ($status["status"] != "active") {
+            return false;
+        }
+
         $getTotalPrice = $this->getTwoTable(table1: self::CART_ITEMS_TABLE, table2: self::PROD_TABLE, joinColumn: "prod_id", table1Select: [
             "prod_id",
             "quantity",
@@ -169,7 +171,17 @@ class CartModel extends BaseModel
             "cart_id" => $cartId,
         ]);
 
-        return $getTotalPrice;
+
+        return true;
+    }
+
+    public function setCartTotal($cartId, $cartTotal)
+    {
+        $this->update(table: self::CART_TABLE, data: [
+            "cart_total" => $cartTotal,
+        ], conditions: [
+            "cart_id" => $cartId,
+        ]);
     }
 
     public function getAllCarts($userId = null)
@@ -191,7 +203,7 @@ class CartModel extends BaseModel
                     "status",
                 ], table2Select: [
                     "username",
-                ],conditions: [
+                ], conditions: [
                     "user_id" => $userId,
                 ], order: [
                     "status" => "desc",

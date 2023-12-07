@@ -57,6 +57,9 @@
     --purple-900: #581c87;
     --purple-950: #3b0764;
 
+    --success: #65a30d;
+    --fail: #dc2626;
+    --wait: #eab308;
 
     /* Font Family */
     --quicksand-font: 'Quicksand', sans-serif;
@@ -121,6 +124,29 @@
 
 .color-white {
     color: #fff !important;
+}
+
+.color-success {
+    color: var(--success) !important;
+}
+.color-fail {
+    color: var(--fail) !important;
+}
+
+.color-wait {
+    color: var(--wait) !important;
+}
+
+.bg-success {
+    background: var(--success) !important;
+    color: white;
+}
+.bg-fail {
+    background: var(--fail) !important;
+}
+
+.bg-wait {
+    background: var(--wait) !important;
 }
 
 /* Border Radius Style */

@@ -11,19 +11,21 @@
     <title>ShopBake - shopbake.xyz</title>
     <meta name="title" content="ShopBake - shopbake.xyz"/>
     <meta name="description" content="Báo cáo môn TKTW & Dự án Mẫu"/>
-
+    <link rel="icon" type="image/png" href="<?php echo BASEPATH ?>/public/img/only_icon.png"/>
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website"/>
     <!--    <meta property="og:url" content="https://hieutn.xyz/index.php?url=home"/>-->
     <meta property="og:title" content="ShopBake - shopbake.xyz"/>
     <meta property="og:description" content="PRO1014 - Project"/>
-    <meta property="og:image" content="<?php echo BASEPATH . "/public/img/meta.png" ?>"/>
+    <meta property="og:image" content="<?php echo BASEPATH . "/public/img/only_icon.png" ?>"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
             crossorigin="anonymous"></script>
     <!-- Link TO CSS -->
+
+
     <?php
     require_once './app/views/base/css.php';
     ?>

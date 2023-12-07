@@ -29,10 +29,10 @@
                                         <td>$user[fullname]</td>
                                         <td>$user[address]</td>
                                         <td>$user[role]</td>
-                                        <td>$user[regis_date]</td>
+                                        <td class='text-nowrap'>$user[regis_date]</td>
                                         <td>$user[is_active]</td>
-                                        <td>
-                                            <a href='" . BASEPATH . "/admin/users/edit?userId=$user[user_id]" . "' class='me-2'><i class='fa-solid fa-pen-to-square'></i></a>
+                                        <td class='text-nowrap'>
+                                            <a href='" . BASEPATH . "/admin/users/edit?userId=$user[user_id]" . "' class='me-2'><i class='fa-solid fa-eye'></i></a>
                                             <a href='" . BASEPATH . "/admin/users/delete?userId=$user[user_id]" . "' class='me-2'><i class='fa-solid fa-trash'></i></a>
                                             <a href='" . BASEPATH . "/admin/users/banned?userId=$user[user_id]" . "' class='me-2'><i class='fa-solid fa-ban'></i></a>
                                         </td>

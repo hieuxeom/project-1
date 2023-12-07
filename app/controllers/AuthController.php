@@ -3,11 +3,19 @@
 class AuthController extends BaseController
 {
     private $authModel;
+    private $adminModel;
+    private $userModel;
 
     public function __construct()
     {
         $this->loadModel("AuthModel");
         $this->authModel = new AuthModel();
+
+        $this->loadModel("AdminModel");
+        $this->adminModel = new AdminModel();
+
+        $this->loadModel("UserModel");
+        $this->userModel = new UserModel();
     }
 
     public function index()
@@ -81,7 +89,7 @@ class AuthController extends BaseController
                 if ($loginStatus != 2) {
                     if ($loginStatus == 1) {
                         return header("Location: " . BASEPATH . "/home");
-                    } else if ($loginStatus == 3){
+                    } else if ($loginStatus == 3) {
                         return $this->view(viewPath: "base.log", params: [
                             "status" => "Locked!",
                             "message" => "Tài khoản của bạn đã bị khóa!",
@@ -113,5 +121,12 @@ class AuthController extends BaseController
     {
         $this->authModel->removeSessionData();
         return header("Location: " . BASEPATH . "/auth/login");
+    }
+
+    public function sendOTP()
+    {
+        $userId = $_POST["userId"];
+        $userData = $this->userModel->getUserInfo($userId);
+        $this->adminModel->sendMail($userData);
     }
 }

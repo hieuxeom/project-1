@@ -62,7 +62,7 @@ $viewMode = ($_SESSION["role"] == "admin") && ($cartData["user_id"] != $_SESSION
                                         </td>
                                         " . ($cartData["status"] == "active" ? "
                                         <td>
-                                            <a href='#' class='btn btn-primary'>Xóa</a>
+                                            <a href='". BASEPATH . "/cart/delete?cartId=$cartData[cart_id]&prodId=$item[prod_id]" ."' class='btn btn-primary'>Xóa</a>
                                         </td>" : "") . "
                                     </tr>";
                                     }
@@ -136,6 +136,8 @@ $viewMode = ($_SESSION["role"] == "admin") && ($cartData["user_id"] != $_SESSION
                         <div>
                             <form action="<?php echo BASEPATH ?>/cart/payment" method="post">
                                 <input type="hidden" name="cart_id" value="<?php echo $cartData["cart_id"] ?>">
+                                <input type="hidden" id="cartTotal" name="cart_total" class="form-control"
+                                       value="<?php echo $cartData["cart_total"] - $discountCost + $shipCost ?>">
                                 <?php
                                 echo $viewMode ? "<input class='w-full btn btn-primary btn-lg' type='submit' value='Thanh toán'>" : ""
                                 ?>

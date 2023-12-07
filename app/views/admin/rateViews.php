@@ -22,11 +22,16 @@
                         foreach ($listRates as $rate) {
                             echo "
                                     <tr>
-                                        <td>$rate[rate_star]</td>
-                                        <td>$rate[rate_text]</td>
+                                        <td>
+                                        <span class='badge bg-primary d-flex justify-content-center align-items-center'>
+                                            $rate[rate_star]
+                                            <i class='color-white ps-1 fa-solid fa-star'></i>
+                                        </span>
+                                        </td>
+                                        <td class='text-break'>$rate[rate_text]</td>
                                         <td>$rate[username]</td>
-                                        <td>$rate[prod_name]</td>
-                                        <td>$rate[rate_date]</td>
+                                        <td class='text-nowrap'>$rate[prod_name]</td>
+                                        <td class='text-nowrap'>$rate[rate_date]</td>
                                         <td>
                                             <a href='" . BASEPATH . "/product/details/$rate[prod_id]?view=rate#rateId=$rate[rate_id]' class='me-2'><i class='fa-solid fa-eye'></i></a>
                                             <a href='" . BASEPATH . "/admin/rates/delete?rateId=$rate[rate_id]' class='me-2'><i class='fa-solid fa-trash'></i></a>
