@@ -10,6 +10,8 @@ class AdminController extends BaseController
     private $cartModel;
     private $voucherModel;
 
+    private array $analyticsArray = [];
+
     public function __construct()
     {
         if ($this->checkAdminPermission()) {
@@ -33,6 +35,13 @@ class AdminController extends BaseController
 
             $this->loadModel("VoucherModel");
             $this->voucherModel = new VoucherModel();
+
+            $totalOrders =
+            $this->analyticsArray = [
+                "totalOrders" => $this->adminModel->getTotalOrders(),
+                "totalUsers" => $this->adminModel->getTotalUsers(),
+                "totalRevenue" => $this->adminModel->getTotalRevenue(),
+            ];
         } else {
             return header("Location: " . BASEPATH . "/home");
         }
@@ -48,7 +57,6 @@ class AdminController extends BaseController
 
     public function index()
     {
-//        return $this->view(viewPath: "admin.index");
         return header("Location: " . BASEPATH . "/admin/users");
     }
 
@@ -61,9 +69,9 @@ class AdminController extends BaseController
         switch ($action) {
             case "edit":
                 if (isset($userId)) {
-                    $modifyData = $this->userModel->getUserInfo($userId);
-                    return $this->view(viewPath: "admin.userModify", params: [
-                        "modifyData" => $modifyData,
+                    $userInfo = $this->userModel->getUserInfo($userId);
+                    return $this->view(viewPath: "users.index", params: [
+                        "userInfo" => $userInfo ?? null,
                     ]);
                 }
                 return header("Location: " . BASEPATH . "/admin/users");
@@ -77,17 +85,31 @@ class AdminController extends BaseController
             case "banned":
                 if (isset($userId)) {
                     if ($_SERVER["REQUEST_METHOD"] == "GET") {
-                        return $this->view(viewPath: "admin.userBlock");
+                        $isBanned = $this->userModel->isBanned($userId);
+                        if ($isBanned == 0) {
+                            return $this->view(viewPath: "admin.userBlock");
+                        } else if ($isBanned == 1) {
+                            $reasonBanned = $this->adminModel->getReasonBan($userId);
+                            return $this->view(viewPath: "admin.userBlock", params: [
+                                "reasonBanned" => $reasonBanned,
+                            ]);
+                        }
                     } else if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                        $this->userModel->blockUser(userId: $userId, reasonData: $_POST);
+                        if (isset($_POST["btn-unlock"])) {
+                            $this->userModel->unBlockUser(userId: $userId);
+                        } else if (isset($_POST["btn-lock"])) {
+                            $this->userModel->blockUser(userId: $userId, reasonData: $_POST);
+                        }
                     }
                 };
                 return header("Location: " . BASEPATH . "/admin/users");
 
             default:
                 $listUsers = $this->userModel->getAllUser();
+
                 return $this->view(viewPath: "admin.userViews", params: [
                     "listUsers" => $listUsers,
+                    "analyticsArray" => $this->analyticsArray,
                 ]);
         }
     }
@@ -130,6 +152,7 @@ class AdminController extends BaseController
                 $listProducts = $this->productModel->getListProduct();
                 return $this->view(viewPath: "admin.productViews", params: [
                     "listProducts" => $listProducts,
+                    "analyticsArray" => $this->analyticsArray,
                 ]);
         }
     }
@@ -170,6 +193,7 @@ class AdminController extends BaseController
                 $listCategories = $this->productModel->getListCategories();
                 return $this->view(viewPath: "admin.categoryViews", params: [
                     "listCategories" => $listCategories,
+                    "analyticsArray" => $this->analyticsArray,
                 ]);
         }
     }
@@ -196,6 +220,7 @@ class AdminController extends BaseController
                 $listComments = $this->adminModel->mergeArray(originalArray: $this->commentModel->getAllComment(), byKey: "comment_id");
                 return $this->view(viewPath: "admin.commentViews", params: [
                     "listComments" => $listComments,
+                    "analyticsArray" => $this->analyticsArray,
                 ]);
         }
     }
@@ -217,6 +242,7 @@ class AdminController extends BaseController
                 $listRates = $this->adminModel->mergeArray(originalArray: $this->rateModel->getAllRate(), byKey: "rate_id");
                 return $this->view(viewPath: "admin.rateViews", params: [
                     "listRates" => $listRates,
+                    "analyticsArray" => $this->analyticsArray,
                 ]);
         }
     }
@@ -238,6 +264,7 @@ class AdminController extends BaseController
                 $listCarts = $this->cartModel->getAllCarts();
                 return $this->view(viewPath: "admin.cartViews", params: [
                     "listCarts" => $listCarts,
+                    "analyticsArray" => $this->analyticsArray,
                 ]);
         }
     }
@@ -277,6 +304,7 @@ class AdminController extends BaseController
 
                 return $this->view(viewPath: "admin.voucherViews", params: [
                     "listVouchers" => $listVouchers,
+                    "analyticsArray" => $this->analyticsArray,
                 ]);
         }
     }
@@ -301,6 +329,7 @@ class AdminController extends BaseController
 
                 return $this->view(viewPath: "admin.stockViews", params: [
                     "listProducts" => $listProducts,
+                    "analyticsArray" => $this->analyticsArray,
                 ]);
         }
     }
@@ -339,12 +368,6 @@ class AdminController extends BaseController
         }
     }
 
-    public function sendOTP()
-    {
-        $userId = $_POST["userId"];
-        $userData = $this->userModel->getUserInfo($userId);
-        $this->adminModel->sendMail($userData);
-    }
 
     public function test()
     {

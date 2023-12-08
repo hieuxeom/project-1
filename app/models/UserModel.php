@@ -50,6 +50,10 @@ class UserModel extends BaseModel
                 "user_id" => $userId
             ]);
 
+        $this->delete(table: self::VIOLATE_TABLE, conditions: [
+            "user_id" => $userId,
+        ]);
+
         return $this->insert(table: self::VIOLATE_TABLE, data: [
             "user_id" => $userId,
             "violate_reason" => $reasonData["reason"],
@@ -63,5 +67,35 @@ class UserModel extends BaseModel
         ], conditions: [
             "user_id" => $userId,
         ]);
+    }
+
+    public function isBanned($userId)
+    {
+        $status = $this->getOne(table: self::USER_TABLE, conditions: [
+            "user_id" => $userId,
+        ])["is_active"];
+
+        if ($status == "active") {
+            return 0;
+        } else if ($status == "disable") {
+            return 1;
+        } else {
+            return 2;
+        }
+    }
+
+    public function unBlockUser(mixed $userId)
+    {
+        $this->delete(table: self::VIOLATE_TABLE, conditions: [
+            "user_id" => $userId,
+        ]);
+
+        $this->update(table: self::USER_TABLE, data: [
+            "is_active" => "active",
+        ],
+            conditions: [
+                "user_id" => $userId
+            ]);
+
     }
 }

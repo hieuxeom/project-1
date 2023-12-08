@@ -5,17 +5,6 @@
 
             <div class="table-responsive">
                 <div class="table-wrapper">
-                    <div class="table-title pb-3">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <a href="<?php echo BASEPATH . "/admin/products/add" ?>" class="btn btn-success "
-                                   data-toggle="modal">
-                                    <i class="fa-solid fa-plus text-white"></i>
-                                    <span class="text-white">Thêm</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
                     <table class="table table-striped table-hover">
                         <thead>
                         <tr>
@@ -36,7 +25,7 @@
                                         <td>$product[prod_name]</td>
                                         <td>$product[quantity]</td>
                                         <td>$product[last_update]</td>
-                                        <td>" . ($product["quantity"] == 0 ?  "Hết hàng" : ($product["quantity"] < 50 ? "Sắp hết" : "Bình thường")) . "</td>
+                                        <td>" . ($product["quantity"] == 0 ? "Hết hàng" : ($product["quantity"] < 50 ? "Sắp hết" : "Bình thường")) . "</td>
                                         <td>
                                             <a href='" . BASEPATH . "/admin/stocks/edit?productId=$product[prod_id]" . "' class=' me-2'><i class='fa-solid fa-pen-to-square'></i></a>
                                         </td>

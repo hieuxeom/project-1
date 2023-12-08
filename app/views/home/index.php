@@ -62,12 +62,12 @@
                 </div>
             </div>
             <div class="faq-item">
-                <div data-answer="1"
+                <div data-answer="2"
                      class="question d-flex justify-content-between align-items-center py-3 cursor-pointer">
                     <p class="text-super-large color-primary text-bold m-0">Tôi có thể xem lịch sử bình luận của mình không?</p>
                     <i class="fa-solid fa-chevron-up color-primary"></i>
                 </div>
-                <div id="answer1" class="answer pb-16">
+                <div id="answer2" class="answer pb-16">
                     <p class="text-normal">Có, bạn có thể xem lịch sử bình luận của mình tại đây: <a href="<?php echo BASEPATH ?>/user/commentHistory" class="btn btn-secondary btn-sm">Xem lịch sử bình luận</a></p>
                 </div>
             </div>

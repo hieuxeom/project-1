@@ -6,6 +6,9 @@ use PHPMailer\PHPMailer\Exception;
 class AdminModel extends BaseModel
 {
     const OTP_TABLE = "otp";
+    const VIOLATE_TABLE = "violates";
+    const CART_TABLE = "carts";
+    const USER_TABLE = "users";
 
 
     public function mergeArray($originalArray, $byKey)
@@ -43,14 +46,15 @@ class AdminModel extends BaseModel
         return $otpCode;
     }
 
-    public function verifyAuthCode($userId, $otpCodeInput) {
-        $serverOTP = $this->getOne(table: self::OTP_TABLE,conditions: [
+    public function verifyAuthCode($userId, $otpCodeInput)
+    {
+        $serverOTP = $this->getOne(table: self::OTP_TABLE, conditions: [
             "user_id" => $userId,
             "is_used" => "0",
         ]);
         if (isset($serverOTP["otp_code"]) && $serverOTP["otp_code"] == $otpCodeInput) {
             $this->update(table: self::OTP_TABLE, data: [
-                "is_used" =>  "1",
+                "is_used" => "1",
             ], conditions: [
                 "user_id" => $userId,
             ]);
@@ -574,5 +578,38 @@ class AdminModel extends BaseModel
     </table>
   </body>
 </html>";
+    }
+
+    public function getReasonBan($userId)
+    {
+        return $this->getOne(table: self::VIOLATE_TABLE, conditions: [
+            "user_id" => $userId,
+        ])["violate_reason"];
+    }
+
+    public function getTotalOrders()
+    {
+        return sizeof($this->getAll(table: self::CART_TABLE, conditions: [
+            "status" => "order_success",
+        ]));
+    }
+
+    public function getTotalUsers()
+    {
+        return sizeof($this->getAll(table: self::USER_TABLE));
+    }
+
+    public function getTotalRevenue()
+    {
+        $getOrderSuccess = $this->getAll(table: self::CART_TABLE, conditions: [
+            "status" => "order_success",
+        ]);
+
+        $sum = 0;
+        foreach ($getOrderSuccess as $cartTotal) {
+            $sum += $cartTotal["cart_total"];
+        }
+
+        return $sum;
     }
 }

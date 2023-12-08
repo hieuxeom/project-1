@@ -62,7 +62,7 @@ $viewMode = ($_SESSION["role"] == "admin") && ($cartData["user_id"] != $_SESSION
                                         </td>
                                         " . ($cartData["status"] == "active" ? "
                                         <td>
-                                            <a href='#' class='btn btn-primary'>Xóa</a>
+                                            <a href='" . BASEPATH . "/cart/delete?cartId=$cartData[cart_id]&prodId=$item[prod_id]" . "' class='btn btn-primary'>Xóa</a>
                                         </td>" : "") . "
                                     </tr>";
                                     }
@@ -93,49 +93,60 @@ $viewMode = ($_SESSION["role"] == "admin") && ($cartData["user_id"] != $_SESSION
                                 <input type='submit' class='form-control btn btn-secondary' value='Áp dụng'>
                             </div>" : ""; ?>
                         </form>
-                        <hr>
-                        <div class="d-flex flex-column gap-1">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <p class="text-small m-0" id="">Tạm tính</p>
-                                <p class="text-bold text-normal m-0"
-                                   id="preBill"><?php echo number_format($cartData["cart_total"], thousands_separator: ".", decimal_separator: ",") ?>
-                                    đ</p>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <p class="text-small m-0" id="">Giảm giá</p>
-                                <?php
-                                if (isset($voucherData) && $voucherData["type"] == "product") {
-                                    $discountCost = $cartData["cart_total"] * $voucherData["voucher_discount"] / 100;
-                                    echo "<p class='text-bold text-normal m-0' id='discountCost'><strong class='me-1'>(-$voucherData[voucher_discount]%)</strong>" . (number_format($discountCost, thousands_separator: ".", decimal_separator: ",")) . "đ</p>";
-                                } else {
-                                    echo "<p class='text-bold text-normal m-0' id='discountCost'>" . number_format($discountCost, thousands_separator: ".", decimal_separator: ",") . "đ</p>";
-                                }
-                                ?>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <p class="text-small m-0" id="">Phí vận chuyển</p>
-                                <?php
-                                if (isset($voucherData) && $voucherData["type"] == "ship") {
-                                    $shipCost = 0;
-                                    echo "<p class='text-bold text-normal m-0' id='discountCost'>" . number_format($shipCost, thousands_separator: ".", decimal_separator: ",") . "đ</p>";
-                                } else {
-                                    echo "<p class='text-bold text-normal m-0' id='discountCost'>" . number_format($shipCost, thousands_separator: ".", decimal_separator: ",") . "đ</p>";
-                                }
-                                ?>
-                            </div>
-                        </div>
+
+                        <?php
+                        if ($cartData["status"] == "active") {
+                            echo "
+                                    <hr>
+                                    <div class='d-flex flex-column gap-1'>
+                                    <div class='d-flex justify-content-between align-items-center'>
+                                        <p class='text-small m-0' id=''>Tạm tính</p>
+                                        <p class='text-bold text-normal m-0' id='preBill'>" . number_format($cartData["cart_total"], 0, ',', '.') . " đ</p>
+                                    </div>
+                                    <div class='d-flex justify-content-between align-items-center'>
+                                        <p class='text-small m-0' id=''>Giảm giá</p>";
+
+                            if (isset($cartData["voucher_id"]) && isset($voucherData) && $voucherData["type"] == "product") {
+                                $discountCost = $cartData["cart_total"] * $voucherData["voucher_discount"] / 100;
+                                echo "<p class='text-bold text-normal m-0' id='discountCost'><strong class='me-1'>(-$voucherData[voucher_discount]%)</strong>" . number_format($discountCost, 0, ',', '.') . "đ</p>";
+                            } else {
+                                $discountCost = 0;
+                                echo "<p class='text-bold text-normal m-0' id='discountCost'>" . number_format($discountCost, 0, ',', '.') . "đ</p>";
+                            }
+
+                            echo "</div>
+                                <div class='d-flex justify-content-between align-items-center'>
+                                    <p class='text-small m-0' id=''>Phí vận chuyển</p>";
+
+                            if (isset($cartData["voucher_id"]) && isset($voucherData) && $voucherData["type"] == "ship") {
+                                $shipCost = 0;
+                                echo "<p class='text-bold text-normal m-0' id='discountCost'>" . number_format($shipCost, 0, ',', '.') . "đ</p>";
+                            } else {
+                                echo "<p class='text-bold text-normal m-0' id='discountCost'>" . number_format($shipCost, 0, ',', '.') . "đ</p>";
+                            }
+
+                            echo "</div>
+                                </div>";
+                        }
+                        ?>
+
+
                         <hr>
                         <div>
                             <div class="d-flex justify-content-between align-items-center">
                                 <p class="text-normal m-0" id="">Tổng tiền</p>
-                                <p class="text-bold text-super-large m-0"
-                                   id="shipCost"><?php echo number_format($cartData["cart_total"] - $discountCost + $shipCost, thousands_separator: ".", decimal_separator: ",") ?>
-                                    đ</p>
+                                <?php if ($cartData["status"] == "active") {
+                                    echo "<p class='text-bold text-super-large m-0' id='shipCost'>" . number_format($cartData["cart_total"] - $discountCost + $shipCost, thousands_separator: ".", decimal_separator: ",") . "đ</p>";
+                                } else {
+                                    echo "<p class='text-bold text-super-large m-0' id='shipCost'>" . number_format($cartData["cart_total"], thousands_separator: ".", decimal_separator: ",") . "đ</p>";
+                                } ?>
                             </div>
                         </div>
                         <div>
                             <form action="<?php echo BASEPATH ?>/cart/payment" method="post">
                                 <input type="hidden" name="cart_id" value="<?php echo $cartData["cart_id"] ?>">
+                                <input type="hidden" id="cartTotal" name="cart_total" class="form-control"
+                                       value="<?php echo $cartData["cart_total"] - $discountCost + $shipCost ?>">
                                 <?php
                                 echo $viewMode ? "<input class='w-full btn btn-primary btn-lg' type='submit' value='Thanh toán'>" : ""
                                 ?>

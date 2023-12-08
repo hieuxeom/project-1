@@ -4,6 +4,8 @@ class CartController extends BaseController
 {
     private $cartModel;
     private $userModel;
+    private $voucherModel;
+    private $productModel;
 
     public function __construct()
     {
@@ -13,6 +15,12 @@ class CartController extends BaseController
 
             $this->loadModel("UserModel");
             $this->userModel = new UserModel();
+
+            $this->loadModel("VoucherModel");
+            $this->voucherModel = new VoucherModel();
+
+            $this->loadModel("ProductModel");
+            $this->productModel = new ProductModel();
 
         } else {
             return header("Location: " . BASEPATH . "/home");
@@ -30,30 +38,36 @@ class CartController extends BaseController
 
     public function index()
     {
-        $userId = $_SESSION['user_id']; // Sau code xong login sẽ dùng cái này
+        $userId = $_SESSION['user_id'];
         $cartId = $_REQUEST["cartId"] ?? null;
 
         if (isset($cartId)) {
-//            if ($_SESSION["role"] == "admin") {
             $cartItems = $this->cartModel->getCartItems(cartId: $cartId);
             $cartData = $this->cartModel->getCartInfo(cartId: $cartId);
-//            } else {
-//                return header("Location: " . BASEPATH . "/cart");
-//            }
         } else {
             $cartItems = $this->cartModel->getCartItems($userId);
             $cartData = $this->cartModel->getCartInfo($userId);
         }
 
-        if (isset($cartData["voucher_id"])) {
+        $voucherId = $cartData["voucher_id"];
+        if ($this->voucherModel->canUseVoucher($voucherId)) {
             $voucherData = $this->cartModel->getVoucherData($cartData["voucher_id"]);
+        } else {
+            $this->voucherModel->removeUsingVoucher($voucherId);
         }
         return $this->view(viewPath: "cart.index", params: [
             "cartData" => $cartData ?? null,
             "cartItems" => $cartItems ?? null,
             "voucherData" => $voucherData ?? null,
         ]);
+    }
 
+    public function delete()
+    {
+        $prodId = $_GET["prodId"];
+        $cartId = $_GET["cartId"];
+        $this->cartModel->removeItemsInCart(cartId: $cartId, productId: $prodId);
+        return header("Location: " . BASEPATH . "/cart?cartId=$cartId");
     }
 
     public function update()
@@ -79,9 +93,18 @@ class CartController extends BaseController
         $userId = $_SESSION['user_id']; // Sau code xong login sẽ dùng cái này
         $voucherCode = $_POST['voucher_code'];
 
-        $addVoucher = $this->cartModel->addVoucherToCart($userId, $voucherCode);
+        if ($this->voucherModel->canUseVoucher($voucherCode)) {
+            $this->cartModel->addVoucherToCart($userId, $voucherCode);
+            return header("Location: " . BASEPATH . "/cart");
+        } else {
+            return $this->view("base.log", params: [
+                "status" => "Lỗi",
+                "message" => "Voucher đã hết lượt sử dụng",
+                "btn_title" => "Quay lại trang giỏ hàng",
+                "url_back" => BASEPATH . "/cart",
+            ]);
+        }
 
-        return header("Location: " . BASEPATH . "/cart");
 
     }
 
@@ -94,8 +117,16 @@ class CartController extends BaseController
                 $newAddress = $_POST["address"];
                 $userId = $_SESSION["user_id"];
                 $cartId = $_POST["cart_id"];
+                $cartTotal = $_POST["cart_total"];
+                $voucherId = $this->voucherModel->getVoucherByCartId($cartId);
+
                 $this->userModel->updateUserAddress(userId: $userId, newAddress: $newAddress);
+                $this->productModel->updateStockAfterPayment($cartId);
                 $this->cartModel->changeStatusCart(cartId: $cartId);
+                $this->cartModel->setCartTotal($cartId, $cartTotal);
+                $this->voucherModel->decreaseRemainingUseVoucher($voucherId);
+                $this->cartModel->setCartTotal($cartId, $cartTotal);
+
 
                 return $this->view(viewPath: "base.log", params: [
                     "status" => "Done!",
@@ -106,9 +137,11 @@ class CartController extends BaseController
             default:
                 $cartData = $this->cartModel->getCartInfo(cartId: $_POST["cart_id"]);
                 $userInfo = $this->userModel->getUserInfo($_SESSION["user_id"]);
+                $cartTotal = $_POST["cart_total"];
                 return $this->view(viewPath: "cart.payment", params: [
                     "userInfo" => $userInfo,
                     "cartData" => $cartData,
+                    "cartTotal" => $cartTotal,
                 ]);
         }
 
@@ -118,9 +151,6 @@ class CartController extends BaseController
     public function test()
     {
         $cartId = 6;
-//        $this->cartModel->addItemsToCart(userId: $userId,productId: 6,quantity: 3);
-//        $this->cartModel->removeItemsInCart(userId: $userId,productId: 6);
-//        $this->cartModel->updateQuantity(userId: $userId,productId: 6, quantity: 1);
         return $this->view(viewPath: "cart.test", params: [
             "cartItems" => $this->cartModel->updateCartTotal($cartId),
         ]);

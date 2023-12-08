@@ -208,29 +208,6 @@ class ProductModel extends BaseModel
 
     public function deleteProduct($productId)
     {
-//        $this->delete(table: self::PROD_STOCK_TABLE, conditions: [
-//            "prod_id" => $productId,
-//        ]);
-//
-//        $this->delete(table: self::PROD_CMT_TABLE, conditions: [
-//            "prod_id" => $productId,
-//        ]);
-//
-//        $this->delete(table: self::CART_ITEMS_TABLE, conditions: [
-//            "prod_id" => $productId,
-//        ]);
-//
-//        $this->delete(table: self::PROD_RATE_TABLE, conditions: [
-//            "prod_id" => $productId,
-//        ]);
-//
-//        $this->delete(table: self::USER_SAVED_TABLE, conditions: [
-//            "prod_id" => $productId,
-//        ]);
-
-//        return $this->delete(table: self::PROD_TABLE, conditions: [
-//            "prod_id" => $productId,
-//        ]);
         return $this->update(table: self::PROD_TABLE, data: [
             "is_delete" => 1,
         ], conditions: [
@@ -294,5 +271,23 @@ class ProductModel extends BaseModel
         ], data: [
             "quantity" => $modifyData["quantity"],
         ]);
+    }
+
+    public function updateStockAfterPayment($cartId)
+    {
+        $listItems = $this->getAll(table: self::CART_ITEMS_TABLE, conditions: [
+            "cart_id" => $cartId,
+        ]);
+        print_r($listItems);
+        foreach ($listItems as $item) {
+            $currentQuantity = $this->getOne(self:: PROD_STOCK_TABLE, conditions: [
+                "prod_id" => $item["prod_id"],
+            ])["quantity"];
+            $this->update(table: self::PROD_STOCK_TABLE, conditions: [
+                "prod_id" => $item["prod_id"],
+            ], data: [
+                "quantity" => $currentQuantity - $item["quantity"],
+            ]);
+        }
     }
 }

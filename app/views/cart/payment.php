@@ -3,6 +3,8 @@
         <form action="<?php echo BASEPATH ?>/cart/payment/success" method="post" class="d-flex gap-3">
             <input class="form-control" type="hidden" name="cart_id"
                    value="<?php echo $cartData["cart_id"] ?>">
+            <input class="form-control" type="hidden" name="cart_total"
+                   value="<?php echo $cartTotal ?>">
             <div class="bg-white round-8 p-3 w-full my-2">
                 <h3 class="heading-3">Thông tin nhận hàng</h3>
                 <div class="d-flex flex-column justify-content-center gap-2">
