@@ -5,6 +5,7 @@ class CartController extends BaseController
     private $cartModel;
     private $userModel;
     private $voucherModel;
+    private $productModel;
 
     public function __construct()
     {
@@ -17,6 +18,9 @@ class CartController extends BaseController
 
             $this->loadModel("VoucherModel");
             $this->voucherModel = new VoucherModel();
+
+            $this->loadModel("ProductModel");
+            $this->productModel = new ProductModel();
 
         } else {
             return header("Location: " . BASEPATH . "/home");
@@ -90,7 +94,7 @@ class CartController extends BaseController
         $voucherCode = $_POST['voucher_code'];
 
         if ($this->voucherModel->canUseVoucher($voucherCode)) {
-            $addVoucher = $this->cartModel->addVoucherToCart($userId, $voucherCode);
+            $this->cartModel->addVoucherToCart($userId, $voucherCode);
             return header("Location: " . BASEPATH . "/cart");
         } else {
             return $this->view("base.log", params: [
@@ -117,10 +121,12 @@ class CartController extends BaseController
                 $voucherId = $this->voucherModel->getVoucherByCartId($cartId);
 
                 $this->userModel->updateUserAddress(userId: $userId, newAddress: $newAddress);
+                $this->productModel->updateStockAfterPayment($cartId);
                 $this->cartModel->changeStatusCart(cartId: $cartId);
                 $this->cartModel->setCartTotal($cartId, $cartTotal);
                 $this->voucherModel->decreaseRemainingUseVoucher($voucherId);
                 $this->cartModel->setCartTotal($cartId, $cartTotal);
+
 
                 return $this->view(viewPath: "base.log", params: [
                     "status" => "Done!",
@@ -145,9 +151,6 @@ class CartController extends BaseController
     public function test()
     {
         $cartId = 6;
-//        $this->cartModel->addItemsToCart(userId: $userId,productId: 6,quantity: 3);
-//        $this->cartModel->removeItemsInCart(userId: $userId,productId: 6);
-//        $this->cartModel->updateQuantity(userId: $userId,productId: 6, quantity: 1);
         return $this->view(viewPath: "cart.test", params: [
             "cartItems" => $this->cartModel->updateCartTotal($cartId),
         ]);

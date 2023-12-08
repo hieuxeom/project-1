@@ -126,7 +126,7 @@ class CartModel extends BaseModel
     public function addVoucherToCart($userId, $voucherCode)
     {
         $cartId = $this->getCartId($userId);
-
+        print_r(isset($voucherCode) ? "có" : "không");
         return $this->update(table: self::CART_TABLE, conditions: [
             "cart_id" => $cartId,
         ], data: [

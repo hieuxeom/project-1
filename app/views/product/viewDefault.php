@@ -38,11 +38,13 @@
                         <input id="quantityInput" type="text" class="text-center form-control" value="1">
                         <button id="addButton" class="input-group-text bg-third color-white">+</button>
                     </div>
-                    <p class="m-0 text-small">(<strong><?php echo $productStock ?></strong> sản phẩm có sẵn)</p>
+                    <p id="productStock" data-value="<?php echo $productStock ?>" class="m-0 text-small">
+                        (<strong><?php echo $productStock ?></strong> sản phẩm có sẵn)</p>
                 </div>
             </div>
             <div class="pt-3">
-                <button id="submitButton" class="btn btn-primary btn-lg rounded-pill d-flex gap-2 align-items-center" <?php echo $productStock == 0 ? "disabled" : ""?>>
+                <button id="submitButton"
+                        class="btn btn-primary btn-lg rounded-pill d-flex gap-2 align-items-center" <?php echo $productStock == 0 ? "disabled" : "" ?>>
                     <i class="color-white text-normal fa-solid fa-cart-plus"></i>
                     Thêm sản phẩm vào giỏ hàng
                 </button>

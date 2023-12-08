@@ -75,6 +75,9 @@ class VoucherModel extends BaseModel
 
     public function canUseVoucher($voucherId)
     {
+        if ($voucherId == "") {
+            return true;
+        }
         if ($this->checkExistVoucher($voucherId)) {
             if ($this->getRemainingUses($voucherId) > 0) {
                 return true;
